@@ -38,36 +38,14 @@ function onCreate()
 		scaleObject('TailsSpike', 1.2, 1.2);
 	end
 
-	stepHitFuncs = { --a bunch of timed events, timed to steps
-	[1] = function()
-		makeAnimatedLuaSprite('Jumpscare', 'sonicJUMPSCARE', 0, 370)
-		addAnimationByPrefix('Jumpscare', 'jump', 'sonicSPOOK', 14, true)
-		addLuaSprite('Jumpscare', true)
-		objectPlayAnimation('Jumpscare', 'jump', true)
-		setScrollFactor('Jumpscare', 0.9, 0.9);
-		scaleObject('Jumpscare', 1.1, 1.1);
-		precacheSound('datOneSound');
-	end,
-}
-
-function onStepHit()
-    if stepHitFuncs[curStep] then 
-        stepHitFuncs[curStep]() -- Executes function at curStep in stepHitFuncs
-    end
-	if curStep > 50 then
-		removeLuaSprite('Jumpscare'); --laser dot is gone forever
-	end
-end
-
 	addLuaSprite('SKY', false);
-	addLuaSprite('HILLS', false);
-	addLuaSprite('FLOOR2', false);
-	addLuaSprite('FLOOR1', false);
-	addLuaSprite('EGGMAN', false);
-	addLuaSprite('TAIL', false);
-	addLuaSprite('KNUCKLE', false);
-	addLuaSprite('TailsSpike', false);
-	addLuaSprite('Jumpscare', false);
+    addLuaSprite('HILLS', false);
+    addLuaSprite('FLOOR2', false);
+    addLuaSprite('FLOOR1', false);
+    addLuaSprite('EGGMAN', false);
+    addLuaSprite('TAIL', false);
+    addLuaSprite('KNUCKLE', false);
+    addLuaSprite('TailsSpike', false);
+   	addLuaSprite('Jumpscare', false);
 	
 	close(true); --For performance reasons, close this script once the stage is fully loaded, as this script won't be used anymore after loading the stage
-end
