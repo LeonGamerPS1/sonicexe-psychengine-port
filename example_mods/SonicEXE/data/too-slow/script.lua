@@ -270,7 +270,7 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
                     
     end,
                     
-    [882] = function()
+    [802] = function()
     removeLuaSprite('daSTAT', true);
     
     end,
@@ -864,7 +864,7 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
                                             
     end,
                                             
-    [1734] = function()
+    [1738] = function()
     removeLuaSprite('daSTAT', true);
                 
     end,
