@@ -1,0 +1,89 @@
+{
+	"song": {
+		"speed": 3,
+		"stage": "sonicStage",
+		"player1": "bf",
+		"player2": "SonicEXE",
+		"player3": null,
+		"events": [
+			[
+				2222.22222222222,
+				[
+					[
+						"Play Animation",
+						"pre-attack",
+						"bf"
+					]
+				]
+			],
+			[
+				2444.44444444444,
+				[
+					[
+						"Play Animation",
+						"attack",
+						"bf"
+					]
+				]
+			],
+			[
+				5150,
+				[
+					[
+						"Play Animation",
+						"singLEFT",
+						"bf"
+					]
+				]
+			],
+			[
+				9333.33333333333,
+				[
+					[
+						"Play Animation",
+						"singLAUGH",
+						"dad"
+					]
+				]
+			],
+			[
+				9666.66666666667,
+				[
+					[
+						"Play Animation",
+						"singLAUGH",
+						"dad"
+					]
+				]
+			],
+			[
+				10000,
+				[
+					[
+						"Play Animation",
+						"singLAUGH",
+						"dad"
+					]
+				]
+			],
+			[
+				10333.3333333333,
+				[
+					[
+						"Play Animation",
+						"singLAUGH",
+						"dad"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "gf",
+		"bpm": 135,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "cutscene1"
+	}
+}

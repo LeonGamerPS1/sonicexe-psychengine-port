@@ -1,0 +1,25 @@
+{
+	"songs": [
+		["cutscene1", "sonic", [26, 113, 253]],
+		["too-slow", "sonic", [26, 113, 253]],
+		["you-cant-run", "sonic2", [26, 113, 253]]
+
+	],
+	"hideFreeplay": false,
+	"weekBackground": "sonic",
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"storyName": "Sonic.exe",
+	"weekName": "Sonic.exe Week",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": false,
+	"weekBefore": "tutorial",
+	"startUnlocked": false
+}

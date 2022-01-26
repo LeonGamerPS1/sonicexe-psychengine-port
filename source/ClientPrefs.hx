@@ -14,6 +14,8 @@ class ClientPrefs {
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
+	public static var Popups:Bool = true;
+	public static var Cutscenes:Bool = true;
 	public static var framerate:Int = 60;
 	public static var cursing:Bool = true;
 	public static var violence:Bool = true;
@@ -23,8 +25,44 @@ class ClientPrefs {
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
-	public static var hideTime:Bool = false;
+	public static var timeBarType:String = 'Time Left';
+	public static var scoreZoom:Bool = true;
+	public static var noReset:Bool = false;
+	public static var healthBarAlpha:Float = 1;
+	public static var controllerMode:Bool = false;
+	public static var screenRes:String = "1280 x 720";
+	public static var screenResTemp:String = "1280 x 720"; // dummy value that isn't saved, used so that if the player cancels instead of hitting space the resolution isn't applied
+	public static var screenScaleMode:String = "Letterbox";
+	public static var screenScaleModeTemp:String = "Letterbox";
+	public static var gameplaySettings:Map<String, Dynamic> = [
+		'scrollspeed' => 1.0,
+		'scrolltype' => 'multiplicative', 
+		// anyone reading this, amod is multiplicative speed mod, cmod is constant speed mod, and xmod is bpm based speed mod.
+		// an amod example would be chartSpeed * multiplier
+		// cmod would just be constantSpeed = chartSpeed
+		// and xmod basically works by basing the speed on the bpm.
+		// iirc (beatsPerSecond * (conductorToNoteDifference / 1000)) * noteSize (110 or something like that depending on it, prolly just use note.height)
+		// bps is calculated by bpm / 60
+		// oh yeah and you'd have to actually convert the difference to seconds which I already do, because this is based on beats and stuff. but it should work
+		// just fine. but I wont implement it because I don't know how you handle sustains and other stuff like that.
+		// oh yeah when you calculate the bps divide it by the songSpeed or rate because it wont scroll correctly when speeds exist.
+		'songspeed' => 1.0,
+		'healthgain' => 1.0,
+		'healthloss' => 1.0,
+		'instakill' => false,
+		'practice' => false,
+		'botplay' => false,
+		'opponentplay' => false
+	];
+
+	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; //i was bored, okay?
+	
+	public static var ratingOffset:Int = 0;
+	public static var sickWindow:Int = 45;
+	public static var goodWindow:Int = 90;
+	public static var badWindow:Int = 135;
+	public static var safeFrames:Float = 10;
 
 	//Every key has two binds, add your key bind down here and then add your control on options/ControlsSubState.hx and Controls.hx
 	public static var keyBinds:Map<String, Array<FlxKey>> = [
@@ -57,6 +95,11 @@ class ClientPrefs {
 		defaultKeys = keyBinds.copy();
 		//trace(defaultKeys);
 	}
+	public static function resizeScreen() {
+		if(FlxG.save.data.screenRes != null) {
+			screenRes = FlxG.save.data.screenRes;
+		}
+	}
 
 	public static function saveSettings() {
 		FlxG.save.data.downScroll = downScroll;
@@ -66,6 +109,8 @@ class ClientPrefs {
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.lowQuality = lowQuality;
+		FlxG.save.data.Popups = Popups;
+		FlxG.save.data.Cutscenes = Cutscenes;
 		FlxG.save.data.framerate = framerate;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
@@ -75,9 +120,24 @@ class ClientPrefs {
 		FlxG.save.data.arrowHSV = arrowHSV;
 		FlxG.save.data.imagesPersist = imagesPersist;
 		FlxG.save.data.ghostTapping = ghostTapping;
-		FlxG.save.data.hideTime = hideTime;
+		FlxG.save.data.timeBarType = timeBarType;
+		FlxG.save.data.scoreZoom = scoreZoom;
+		FlxG.save.data.noReset = noReset;
+		FlxG.save.data.healthBarAlpha = healthBarAlpha;
+		FlxG.save.data.comboOffset = comboOffset;
 		FlxG.save.data.achievementsMap = Achievements.achievementsMap;
 		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
+
+		FlxG.save.data.ratingOffset = ratingOffset;
+		FlxG.save.data.sickWindow = sickWindow;
+		FlxG.save.data.goodWindow = goodWindow;
+		FlxG.save.data.badWindow = badWindow;
+		FlxG.save.data.safeFrames = safeFrames;
+		FlxG.save.data.gameplaySettings = gameplaySettings;
+		FlxG.save.data.controllerMode = controllerMode;
+		FlxG.save.data.screenRes = screenRes;
+		FlxG.save.data.screenScaleMode = screenScaleMode;
+	
 		FlxG.save.flush();
 
 		var save:FlxSave = new FlxSave();
@@ -112,6 +172,12 @@ class ClientPrefs {
 		if(FlxG.save.data.lowQuality != null) {
 			lowQuality = FlxG.save.data.lowQuality;
 		}
+	    if(FlxG.save.data.Popups != null) {
+	    	Popups = FlxG.save.data.Popups;
+	    }
+	    if(FlxG.save.data.Cutscenes != null) {
+	    	Cutscenes = FlxG.save.data.Cutscenes;
+	    }
 		if(FlxG.save.data.framerate != null) {
 			framerate = FlxG.save.data.framerate;
 			if(framerate > FlxG.drawFramerate) {
@@ -140,15 +206,56 @@ class ClientPrefs {
 		if(FlxG.save.data.arrowHSV != null) {
 			arrowHSV = FlxG.save.data.arrowHSV;
 		}
-		if(FlxG.save.data.imagesPersist != null) {
-			imagesPersist = FlxG.save.data.imagesPersist;
-			FlxGraphic.defaultPersist = ClientPrefs.imagesPersist;
-		}
 		if(FlxG.save.data.ghostTapping != null) {
 			ghostTapping = FlxG.save.data.ghostTapping;
 		}
-		if(FlxG.save.data.hideTime != null) {
-			hideTime = FlxG.save.data.hideTime;
+		if(FlxG.save.data.timeBarType != null) {
+			timeBarType = FlxG.save.data.timeBarType;
+		}
+		if(FlxG.save.data.scoreZoom != null) {
+			scoreZoom = FlxG.save.data.scoreZoom;
+		}
+		if(FlxG.save.data.noReset != null) {
+			noReset = FlxG.save.data.noReset;
+		}
+		if(FlxG.save.data.healthBarAlpha != null) {
+			healthBarAlpha = FlxG.save.data.healthBarAlpha;
+		}
+		if(FlxG.save.data.comboOffset != null) {
+			comboOffset = FlxG.save.data.comboOffset;
+		}
+		
+		if(FlxG.save.data.ratingOffset != null) {
+			ratingOffset = FlxG.save.data.ratingOffset;
+		}
+		if(FlxG.save.data.sickWindow != null) {
+			sickWindow = FlxG.save.data.sickWindow;
+		}
+		if(FlxG.save.data.goodWindow != null) {
+			goodWindow = FlxG.save.data.goodWindow;
+		}
+		if(FlxG.save.data.badWindow != null) {
+			badWindow = FlxG.save.data.badWindow;
+		}
+		if(FlxG.save.data.safeFrames != null) {
+			safeFrames = FlxG.save.data.safeFrames;
+		}
+		if(FlxG.save.data.controllerMode != null) {
+			controllerMode = FlxG.save.data.controllerMode;
+		}
+		if(FlxG.save.data.screenRes != null) {
+			screenRes = FlxG.save.data.screenRes;
+		}
+		if(FlxG.save.data.screenScaleMode != null) {
+			screenScaleMode = FlxG.save.data.screenScaleMode;
+		}
+		if(FlxG.save.data.gameplaySettings != null)
+		{
+			var savedMap:Map<String, Dynamic> = FlxG.save.data.gameplaySettings;
+			for (name => value in savedMap)
+			{
+				gameplaySettings.set(name, value);
+			}
 		}
 		
 		// flixel automatically saves your volume!
@@ -172,6 +279,10 @@ class ClientPrefs {
 		}
 	}
 
+	inline public static function getGameplaySetting(name:String, defaultValue:Dynamic):Dynamic {
+		return /*PlayState.isStoryMode ? defaultValue : */ (gameplaySettings.exists(name) ? gameplaySettings.get(name) : defaultValue);
+	}
+
 	public static function reloadControls() {
 		PlayerSettings.player1.controls.setKeyboardScheme(KeyboardScheme.Solo);
 
@@ -182,7 +293,15 @@ class ClientPrefs {
 		FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
 		FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
 	}
-
+	public static function getResolution():Array<Int>{
+		var res = ClientPrefs.screenRes.split(" x ");
+		
+		if (ClientPrefs.screenRes == "FULLSCREEN") res = ["1280", "720"];
+		
+		
+		
+		return [Std.parseInt(res[0]),Std.parseInt(res[1])];
+	}
 	public static function copyKey(arrayToCopy:Array<FlxKey>):Array<FlxKey> {
 		var copiedArray:Array<FlxKey> = arrayToCopy.copy();
 		var i:Int = 0;

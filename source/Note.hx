@@ -29,11 +29,13 @@ class Note extends FlxSprite
 	public var noteType(default, set):String = null;
 
 	public var eventName:String = '';
+	public var eventLength:Int = 0;
 	public var eventVal1:String = '';
 	public var eventVal2:String = '';
 
 	public var colorSwap:ColorSwap;
 	public var inEditor:Bool = false;
+	public var gfNote:Bool = false;
 	private var earlyHitMult:Float = 0.5;
 
 	public static var swagWidth:Float = 160 * 0.7;
@@ -84,7 +86,7 @@ class Note extends FlxSprite
 
 		if(noteData > -1 && noteType != value) {
 			switch(value) {
-				case 'Hey!':
+				case 'Hurt Note':
 					ignoreNote = mustPress;
 					reloadNote('HURT');
 					noteSplashTexture = 'HURTnoteSplashes';
@@ -92,25 +94,15 @@ class Note extends FlxSprite
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
 					if(isSustainNote) {
-						hitHealth = 0.03;
+						missHealth = 0.1;
 					} else {
-						missHealth = 0.04;
-					}
-				case 'Hurt Note':
-					ignoreNote = mustPress;
-					reloadNote('BLUR');
-					noteSplashTexture = 'HURTnoteSplashes';
-					colorSwap.hue = 0;
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
-					if(isSustainNote) {
-						missHealth = 0.04;
-					} else {
-						missHealth = 0.4;
+						missHealth = 0.3;
 					}
 					hitCausesMiss = true;
 				case 'No Animation':
 					noAnimation = true;
+				case 'GF Sing':
+					gfNote = true;
 			}
 			noteType = value;
 		}
@@ -206,7 +198,12 @@ class Note extends FlxSprite
 						prevNote.animation.play('redhold');
 				}
 
-				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05 * PlayState.songSpeed;
+				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.05;
+				if(PlayState.instance != null)
+				{
+					prevNote.scale.y *= PlayState.instance.songSpeed;
+				}
+
 				if(PlayState.isPixelStage) {
 					prevNote.scale.y *= 1.19;
 				}
@@ -350,7 +347,7 @@ class Note extends FlxSprite
 				wasGoodHit = true;
 		}
 
-		if (tooLate)
+		if (tooLate && !inEditor)
 		{
 			if (alpha > 0.3)
 				alpha = 0.3;

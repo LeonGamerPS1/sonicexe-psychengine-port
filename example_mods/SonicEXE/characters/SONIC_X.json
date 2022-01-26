@@ -1,0 +1,197 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "idle-loop",
+			"indices": [
+				10,
+				11,
+				12,
+				12
+			],
+			"name": "Dad idle dance"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singLEFT-loop",
+			"indices": [
+				12,
+				13,
+				14,
+				15
+			],
+			"name": "Dad Sing Note LEFT"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singRIGHT-loop",
+			"indices": [
+				15,
+				16,
+				17,
+				18
+			],
+			"name": "Dad Sing Note RIGHT"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singUP-loop",
+			"indices": [
+				56,
+				57,
+				58,
+				59
+			],
+			"name": "Dad Sing Note UP"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "hey",
+			"fps": 24,
+			"name": "WhatYouKnowAboutRollingDownInTheDeep",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singDOWN-alt",
+			"fps": 24,
+			"name": "SONIClaugh",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singLAUGH",
+			"fps": 24,
+			"name": "SONIClaugh",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "iamgod",
+			"fps": 24,
+			"name": "sonicImmagetya",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				60
+			],
+			"anim": "laugh",
+			"fps": 24,
+			"name": "NewPhase2Sonic Laugh instance",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-10,
+				140
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "X_Idle instance 1",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				66,
+				122
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "X_Down instance",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				28,
+				240
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "X_Up instance 1",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				158
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "X_Left instance",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-78,
+				170
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "X_Right instance",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/SONIC_X",
+	"position": [
+		0,
+		200
+	],
+	"healthicon": "sonicx",
+	"flip_x": false,
+	"healthbar_colors": [
+		120,
+		119,
+		176
+	],
+	"camera_position": [
+		-150,
+		-15
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}

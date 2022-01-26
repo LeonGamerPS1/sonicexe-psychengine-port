@@ -4,6 +4,7 @@ package options;
 import Discord.DiscordClient;
 #end
 import flash.text.TextField;
+import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
@@ -24,6 +25,7 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
+import openfl.Lib;
 
 using StringTools;
 
@@ -32,9 +34,24 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 	public function new()
 	{
 		title = 'Graphics';
-		rpcTitle = 'Graphics Menu'; //for Discord Rich Presence
+		rpcTitle = 'Graphics Settings Menu'; //for Discord Rich Presence
 
 		//I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
+
+		var option:Option = new Option('Cutscenes', //Name
+		    'If unChecked, disables Cutscenes in EXE Songs,\ndecreases loading times and improves performance.', //Description
+		    'Cutscenes', //Save data variable name
+		    'bool', //Variable type
+		    true); //Default value
+	    addOption(option);
+
+		var option:Option = new Option('Popups', //Name
+		    'If unChecked, disables Popups in EXE Songs,\ndecreases loading times and improves performance.', //Description
+		    'Popups', //Save data variable name
+		    'bool', //Variable type
+		    true); //Default value
+	    addOption(option);
+
 		var option:Option = new Option('Low Quality', //Name
 			'If checked, disables some background details,\ndecreases loading times and improves performance.', //Description
 			'lowQuality', //Save data variable name
@@ -62,8 +79,48 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		option.maxValue = 240;
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
+		
+		
+		var option:Option = new Option('Screen Resolution',
+			"Size of the window [Press ACCEPT to apply, CANCEL to cancel]",
+			'screenResTemp',
+			'string',
+			'1280 x 720', ['1280 x 720',
+			'1280 x 960',
+			'FULLSCREEN'
+			]);
+		addOption(option);
+		
+		if (ClientPrefs.screenRes == "FULLSCREEN") {
+			var option:Option = new Option('Scale Mode',
+				"How you'd like the screen to scale [Press ACCEPT to apply, CANCEL to cancel] (Adaptive is not compatible with fullscreen.)",
+				'screenScaleModeTemp',
+				'string',
+				'LETTERBOX', ['LETTERBOX',
+				'PAN',
+				'STRETCH'
+				]);
+			addOption(option);
+		} else {
+			var option:Option = new Option('Scale Mode',
+				"Scale Mode [Press ACCEPT to apply, CANCEL to cancel] (Adaptive is unstable and may cause visual issues and doesn't work with fullscreen!)",//summerized < 333
+				'screenScaleModeTemp',
+				'string',
+				'LETTERBOX', ['LETTERBOX',
+				'PAN',
+				'STRETCH',
+				'ADAPTIVE'
+				]);
+			addOption(option);
+		}
+		// before you tell me "why add adaptive in" i didn't add it in. someone changed the default behavior to be like adaptive which was way too buggy so i'm making it optional
+		//thx, niko
+		//      -bbpanzu
+		ClientPrefs.screenScaleModeTemp = ClientPrefs.screenScaleMode;
+		ClientPrefs.screenResTemp = ClientPrefs.screenRes;
 		#end
 
+		/*
 		var option:Option = new Option('Persistent Cached Data',
 			'If checked, images loaded will stay in memory\nuntil the game is closed, this increases memory usage,\nbut basically makes reloading times instant.',
 			'imagesPersist',
@@ -71,17 +128,44 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			false);
 		option.onChange = onChangePersistentData; //Persistent Cached Data changes FlxGraphic.defaultPersist
 		addOption(option);
+		*/
+
+
+
 		super();
+	}
+
+	override function update (elapsed:Float)
+	{
+		if(controls.ACCEPT)
+		{
+			if (curOption.name == "Screen Resolution")
+			{
+				ClientPrefs.screenRes = ClientPrefs.screenResTemp;
+				if (ClientPrefs.screenRes == "FULLSCREEN" && ClientPrefs.screenScaleMode == "ADAPTIVE") ClientPrefs.screenScaleMode = "LETTERBOX";
+				onChangeRes ();
+				MusicBeatState.switchState (new options.OptionsState ());
+				FlxG.sound.play(Paths.sound('confirmMenu'));
+			} else if (curOption.name == "Scale Mode")
+			{
+				var shouldReset:Bool = ClientPrefs.screenScaleMode == "ADAPTIVE" || ClientPrefs.screenScaleModeTemp == "ADAPTIVE";
+				ClientPrefs.screenScaleMode = ClientPrefs.screenScaleModeTemp;
+				if (ClientPrefs.screenScaleMode == "ADAPTIVE") onChangeRes ();
+				if (shouldReset) MusicBeatState.switchState (new options.OptionsState ());
+				else MusicBeatState.musInstance.fixAspectRatio ();
+				FlxG.sound.play(Paths.sound('confirmMenu'));
+			}
+		}
+		super.update(elapsed);
 	}
 
 	function onChangeAntiAliasing()
 	{
-		for (i in 0...members.length)
+		for (sprite in members)
 		{
-			var obj:Dynamic = members[i]; //Don't judge me for this ok
-			var sprite:FlxSprite = obj; //Dumb but works lol
-			var isText:FlxText = obj; //Don't change texts antialiasing
-			if(sprite != null && isText == null) {
+			var sprite:Dynamic = sprite; //Make it check for FlxSprite instead of FlxBasic
+			var sprite:FlxSprite = sprite; //Don't judge me ok
+			if(sprite != null && (sprite is FlxSprite) && !(sprite is FlxText)) {
 				sprite.antialiasing = ClientPrefs.globalAntialiasing;
 			}
 		}
@@ -100,9 +184,23 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			FlxG.updateFramerate = ClientPrefs.framerate;
 		}
 	}
-
-	function onChangePersistentData()
+	
+	public static function onChangeRes()
 	{
-		FlxGraphic.defaultPersist = ClientPrefs.imagesPersist;
+		FlxG.fullscreen = ClientPrefs.screenRes == "FULLSCREEN";
+		if (!FlxG.fullscreen) {
+			var res = ClientPrefs.screenRes.split(" x ");
+			FlxG.resizeWindow(Std.parseInt(res[0]), Std.parseInt(res[1]));
+			// FlxG.resizeGame(Std.parseInt(res[0]), Std.parseInt(res[1]));
+			// Lib.application.window.width = Std.parseInt(res[0]);
+			// Lib.application.window.height = Std.parseInt(res[1]);
+			// Lib.current.stage.width = Std.parseInt(res[0]);
+			// Lib.current.stage.height = Std.parseInt(res[1]);
+			FlxCamera.defaultZoom = 1280/Std.parseInt(res[0]);
+		}
+
+		MusicBeatState.musInstance.fixAspectRatio ();
+		// FlxG.resetState();
 	}
+
 }

@@ -1,0 +1,209 @@
+{
+	"song": {
+		"speed": 3.3,
+		"stage": "sonicexeStage",
+		"player1": "bf",
+		"player2": "sonic.exe",
+		"player3": null,
+		"events": [
+			[
+				13714.2857142857,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				13928.5714285714,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				14142.8571428571,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				14357.1428571429,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				14571.4285714286,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				14785.7142857143,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				15000,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				35142.8571428571,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				35357.1428571429,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				35571.4285714286,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				35785.7142857143,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				56571.4285714286,
+				[
+					[
+						"Change Character",
+						"bf",
+						"bfsonic-pixel"
+					],
+					[
+						"Change Character",
+						"gf",
+						"gfsonic-pixel"
+					],
+					[
+						"Change Character",
+						"dad",
+						"sonicexe-pixel"
+					]
+				]
+			],
+			[
+				84000,
+				[
+					[
+						"Change Character",
+						"dad",
+						"sonic.exe"
+					],
+					[
+						"Change Character",
+						"bf",
+						"bf"
+					],
+					[
+						"Change Character",
+						"gf",
+						"gf"
+					]
+				]
+			],
+			[
+				138000,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				138214.285714286,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				138428.571428571,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				138642.857142857,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": "sonicnoteSplashes",
+		"validScore": false,
+		"gfVersion": "gf",
+		"bpm": 140,
+		"arrowSkin": "",
+		"needsVoices": true,
+		"song": "you-cant-run"
+	}
+}
