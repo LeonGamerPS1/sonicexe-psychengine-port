@@ -23,7 +23,7 @@ end
 -- isSustainNote: If it's a hold note, can be either true or false
 function goodNoteHit(id, noteData, noteType, isSustainNote)
 	if noteType == 'Blurry Note' then
-		-- put something here if you want
+		--debugPrint('Dumbass hit note')
 	end
 end
 

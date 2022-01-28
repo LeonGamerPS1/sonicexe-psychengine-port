@@ -38,20 +38,6 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 
 		//I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
 
-		var option:Option = new Option('Cutscenes', //Name
-		    'If checked, enables Cutscenes in EXE Songs,\ndecreases loading times and improves performance.', //Description
-		    'Cutscenes', //Save data variable name
-		    'bool', //Variable type
-		    true); //Default value
-	    addOption(option);
-
-		var option:Option = new Option('Popups', //Name
-		    'If checked, enables Popups in EXE Songs,\ndecreases loading times and improves performance.', //Description
-		    'Popups', //Save data variable name
-		    'bool', //Variable type
-		    true); //Default value
-	    addOption(option);
-
 		var option:Option = new Option('Low Quality', //Name
 			'If checked, disables some background details,\ndecreases loading times and improves performance.', //Description
 			'lowQuality', //Save data variable name

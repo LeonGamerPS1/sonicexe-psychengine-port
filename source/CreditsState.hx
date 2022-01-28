@@ -82,6 +82,10 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+			['Sonic.exe porter/shoutouts'],
+			['JuniorNovoa',		'shadowmario',		'Creator of the port',						'https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg',	'b0e0e6'],
+			['ItsCapp',		'shadowmario',		'Creator of the Arrow event',						'https://github.com/ItsCapp',	'b0e0e6'],
+			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',						'https://twitter.com/Shadow_Mario_',	'444444'],
 			['RiverOaken',			'riveroaken',		'Main Artist/Animator of Psych Engine',					'https://twitter.com/river_oaken',		'C30085'],

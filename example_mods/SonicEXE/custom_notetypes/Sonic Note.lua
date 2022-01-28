@@ -31,19 +31,30 @@ end
 -- Player missed a note by letting it go offscreen
 function noteMiss(id, noteData, noteType, isSustainNote)
 	if noteType == 'Sonic Note' then
-		makeLuaSprite('StaticLUL', 0, 0);
-		scaleObject('StaticLUL', 2, 2);
-		runTimer('timer', 1);
+		makeAnimatedLuaSprite('hitStatic', 'Jumpscare/hitStatic', 0, 0); --x and y
 
+		setScrollFactor('hitStatic', 0, 0);
+		addAnimationByPrefix('hitStatic', 'stat', 'staticANIMATION0', 24, false);
+		objectPlayAnimation('hitStatic', 'stat', false);
+		runTimer('timer', 0.5);
+	
+		scaleObject('hitStatic', 1, 1);
 		if Popups then
-		    addLuaSprite('StaticLUL', true);
+			playSound('simplejumpsound', 1);
+	
+			addLuaSprite('hitStatic', true);
 		end
+	
+		setObjectCamera('hitStatic', 'camHUD')
 		
+		--debugPrint('Dumbass missed note')
+
+
 	end
 end
 
 function onTimerCompleted(tag, loops, loopsleft)
-    if tag == 'timer' then
-		removeLuaSprite('StaticLUL', true);
+	if tag == 'timer' then
+		removeLuaSprite('hitStatic', true);
     end
 end

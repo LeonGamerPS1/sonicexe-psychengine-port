@@ -3,6 +3,8 @@ function onCreate()
    precacheImage('two'); -- so it doesn't freeze
    precacheImage('one'); -- so it doesn't freeze
    precacheImage('gofun'); -- so it doesn't freeze
+
+   --debugPrint('Lua Precached shit!!!!!')
 end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by junior - https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg)

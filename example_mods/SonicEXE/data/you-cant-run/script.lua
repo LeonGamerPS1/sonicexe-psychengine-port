@@ -1,5 +1,8 @@
 function onCreate()
+    precacheImage('daSTAT'); -- so it doesn't freeze
+    precacheImage('GreenHill'); -- so it doesn't freeze
 
+   --debugPrint('Lua Precached shit!!!!!')
 end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by junior - https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg)
@@ -22,7 +25,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
 	setScrollFactor('GreenHill', 0.9, 0.9)
 	scaleObject('GreenHill', 8.0, 8.0);
 
-	addLuaSprite('GreenHill', false)
+    if StageSwap then
+	    addLuaSprite('GreenHill', false)
+    end
 
     end,
 

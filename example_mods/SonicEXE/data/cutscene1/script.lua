@@ -1,5 +1,7 @@
 function onCreate()
    precacheImage('Too Slow Cutscene'); -- so it doesn't freeze
+
+   --debugPrint('Lua Precached shit!!!!!')
 end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps

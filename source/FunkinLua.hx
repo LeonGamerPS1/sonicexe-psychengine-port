@@ -175,6 +175,8 @@ class FunkinLua {
 		set('lowQuality', ClientPrefs.lowQuality);
 		set('Popups', ClientPrefs.Popups);
 		set('Cutscenes', ClientPrefs.Cutscenes);
+		set('StageSwap', ClientPrefs.StageSwap);
+		set('Jumpscare', ClientPrefs.Jumpscare);
 
 		Lua_helper.add_callback(lua, "addLuaScript", function(luaFile:String, ?ignoreAlreadyRunning:Bool = false) { //would be dope asf. 
 			var cervix = luaFile + ".lua";

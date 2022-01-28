@@ -165,24 +165,29 @@ class PauseSubState extends MusicBeatSubstate
 			{
 				case "Resume":
 					close();
+					trace('Resumed');
 				case 'Change Difficulty':
 					menuItems = difficultyChoices;
 					regenMenu();
+					trace('Changing Difficulty');
 				case 'Toggle Practice Mode':
 					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
 					PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
 				case "Restart Song":
 					restartSong();
+					trace('Restarted Song');
 				case 'Toggle Botplay':
 					PlayState.instance.cpuControlled = !PlayState.instance.cpuControlled;
 					PlayState.changedDifficulty = true;
 					PlayState.instance.botplayTxt.visible = PlayState.instance.cpuControlled;
 					PlayState.instance.botplayTxt.alpha = 1;
 					PlayState.instance.botplaySine = 0;
+					trace('Botplay Enabled');
 				case 'Options':
 					MusicBeatState.switchState(new options.OptionsState());
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					trace('Went to options');
 				case "Exit to menu":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
@@ -194,6 +199,7 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
+					trace('Went to menu');
 
 				case 'BACK':
 					menuItems = menuItemsOG;

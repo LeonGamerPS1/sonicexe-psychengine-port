@@ -15,6 +15,8 @@ class ClientPrefs {
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
 	public static var Popups:Bool = true;
+	public static var StageSwap:Bool = true;
+	public static var Jumpscare :Bool = true;
 	public static var Cutscenes:Bool = true;
 	public static var framerate:Int = 60;
 	public static var cursing:Bool = true;

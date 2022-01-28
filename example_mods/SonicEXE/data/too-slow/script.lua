@@ -9,6 +9,8 @@ function onCreate()
    precacheSound('sppok'); -- so it doesn't freeze
    precacheSound('jumpscare'); -- so it doesn't freeze
    precacheSound('datOneSound'); -- so it doesn't freeze
+
+   --debugPrint('Lua Precached shit!!!!!')
 end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by junior - https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg)
