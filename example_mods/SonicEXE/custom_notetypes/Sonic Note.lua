@@ -40,7 +40,7 @@ function noteMiss(id, noteData, noteType, isSustainNote)
 	
 		scaleObject('hitStatic', 1, 1);
 		if Popups then
-			playSound('simplejumpsound', 1);
+			playSound('hitStatic1', 1);
 	
 			addLuaSprite('hitStatic', true);
 		end
