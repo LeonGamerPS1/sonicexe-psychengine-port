@@ -1,7 +1,7 @@
 function onCreate()
 	--Iterate over all notes
 	for i = 0, getProperty('unspawnNotes.length')-1 do
-		--Check if the note is an Instakill Note
+		--Check if the note is an Sonic Note
 		if getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Sonic Note' then
 			setPropertyFromGroup('unspawnNotes', i, 'texture', 'staticNotes'); --Change texture
 			setPropertyFromGroup('unspawnNotes', i, 'hitHealth', '0.023'); --Default value is: 0.023, health gained on hit
