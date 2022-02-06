@@ -66,46 +66,4 @@ class EXESubState extends BaseOptionsMenu
 
 		super();
 	}
-
-	override function update (elapsed:Float)
-	{
-		if(controls.ACCEPT)
-
-		{
-			if (curOption.name == "Cutscenes")
-			{
-				#if desktop
-				DiscordClient.changePresence("Selected Cutscenes", null);
-				#end
-
-				trace('Selected Cutscenes');
-
-			} else if (curOption.name == "Jumpscare")
-			{
-				#if desktop
-				DiscordClient.changePresence("Selected Jumpscare", null);
-				#end
-
-				trace('Selected Jumpscare');
-
-		    } else if (curOption.name == "Popups")
-		    {
-				#if desktop
-				DiscordClient.changePresence("Selected Popups", null);
-				#end
-
-				trace('Selected Popups');
-
-		    } else if (curOption.name == "Stage Swap")
-		    {
-				#if desktop
-				DiscordClient.changePresence("Selected Stage Swap", null);
-				#end
-
-				trace('Selected Stage Swap');
-
-			}
-		}
-		super.update(elapsed);
-	}
 }

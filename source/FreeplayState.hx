@@ -301,7 +301,26 @@ class FreeplayState extends MusicBeatState
 		if(ctrl)
 		{
 			persistentUpdate = false;
-			openSubState(new GameplayChangersSubstate());
+			
+			var NoCheating:FlxSprite;
+					
+			NoCheating = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/nocheating.png', IMAGE));
+			NoCheating.setGraphicSize(0, FlxG.height);
+			NoCheating.updateHitbox();
+			NoCheating.antialiasing = ClientPrefs.globalAntialiasing;
+			add(NoCheating);
+			NoCheating.scrollFactor.set();
+			NoCheating.screenCenter();
+
+			if (controls.BACK) {
+				remove(NoCheating);
+			}
+
+			if (controls.ACCEPT) {
+				remove(NoCheating);
+			}
+
+			trace('NO CHEATING');
 		}
 		else if(space)
 		{

@@ -135,6 +135,7 @@ class PauseSubState extends MusicBeatSubstate
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
+		var closeimage = controls.BACK;
 
 		if (upP)
 		{
@@ -165,29 +166,44 @@ class PauseSubState extends MusicBeatSubstate
 			{
 				case "Resume":
 					close();
+
 					trace('Resumed');
 				case 'Change Difficulty':
 					menuItems = difficultyChoices;
 					regenMenu();
+
 					trace('Changing Difficulty');
 				case 'Toggle Practice Mode':
 					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
 					PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
+
 					trace('Toggled Practice Mode');
 				case "Restart Song":
 					restartSong();
+
 					trace('Restarted Song');
 				case 'Toggle Botplay':
-					PlayState.instance.cpuControlled = !PlayState.instance.cpuControlled;
-					PlayState.changedDifficulty = true;
-					PlayState.instance.botplayTxt.visible = PlayState.instance.cpuControlled;
-					PlayState.instance.botplayTxt.alpha = 1;
-					PlayState.instance.botplaySine = 0;
-					trace('Botplay Enabled');
+					var NoCheating:FlxSprite;
+					
+					NoCheating = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/nocheating.png', IMAGE));
+					NoCheating.setGraphicSize(0, FlxG.height);
+					NoCheating.updateHitbox();
+					NoCheating.antialiasing = ClientPrefs.globalAntialiasing;
+					add(NoCheating);
+					NoCheating.scrollFactor.set();
+					NoCheating.screenCenter();
+
+					if (closeimage) 
+					{
+					    remove(NoCheating, true);
+					}
+
+					trace('NO CHEATING');
 				case 'Options':
 					MusicBeatState.switchState(new options.OptionsState());
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+
 					trace('Went to options');
 				case "Exit to menu":
 					PlayState.deathCounter = 0;
@@ -200,8 +216,8 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
-					trace('Went to menu');
 
+					trace('Went to menu');
 				case 'BACK':
 					menuItems = menuItemsOG;
 					regenMenu();
