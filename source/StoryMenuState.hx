@@ -248,6 +248,8 @@ class StoryMenuState extends MusicBeatState
 			else if (controls.ACCEPT)
 			{
 				selectWeek();
+
+				trace('Selected a week');
 			}
 		}
 

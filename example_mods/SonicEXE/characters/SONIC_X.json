@@ -1,178 +1,178 @@
 {
 	"animations": [
 		{
+			"loop": true,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "idle-loop",
+			"fps": 24,
+			"name": "Dad idle dance",
 			"indices": [
 				10,
 				11,
 				12,
 				12
-			],
-			"name": "Dad idle dance"
+			]
 		},
 		{
+			"loop": true,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "singLEFT-loop",
+			"fps": 24,
+			"name": "Dad Sing Note LEFT",
 			"indices": [
 				12,
 				13,
 				14,
 				15
-			],
-			"name": "Dad Sing Note LEFT"
+			]
 		},
 		{
+			"loop": true,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "singRIGHT-loop",
+			"fps": 24,
+			"name": "Dad Sing Note RIGHT",
 			"indices": [
 				15,
 				16,
 				17,
 				18
-			],
-			"name": "Dad Sing Note RIGHT"
+			]
 		},
 		{
+			"loop": true,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "singUP-loop",
+			"fps": 24,
+			"name": "Dad Sing Note UP",
 			"indices": [
 				56,
 				57,
 				58,
 				59
-			],
-			"name": "Dad Sing Note UP"
+			]
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "hey",
-			"fps": 24,
-			"name": "WhatYouKnowAboutRollingDownInTheDeep",
-			"indices": []
+			"indices": [],
+			"name": "WhatYouKnowAboutRollingDownInTheDeep"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN-alt",
-			"fps": 24,
-			"name": "SONIClaugh",
-			"indices": []
+			"indices": [],
+			"name": "SONIClaugh"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singLAUGH",
-			"fps": 24,
-			"name": "SONIClaugh",
-			"indices": []
+			"indices": [],
+			"name": "SONIClaugh"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "iamgod",
+			"loop": false,
 			"fps": 24,
-			"name": "sonicImmagetya",
-			"indices": []
+			"anim": "iamgod",
+			"indices": [],
+			"name": "sonicImmagetya"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				10,
 				60
 			],
-			"anim": "laugh",
+			"loop": false,
 			"fps": 24,
-			"name": "NewPhase2Sonic Laugh instance",
-			"indices": []
+			"anim": "laugh",
+			"indices": [],
+			"name": "NewPhase2Sonic Laugh instance"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-10,
 				140
 			],
-			"anim": "idle",
+			"loop": false,
 			"fps": 24,
-			"name": "X_Idle instance 1",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "X_Idle instance 1"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				66,
 				122
 			],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "X_Down instance",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "X_Down instance"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				28,
 				240
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "X_Up instance 1",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "X_Up instance 1"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				10,
 				158
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "X_Left instance",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "X_Left instance"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-78,
 				170
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "X_Right instance",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "X_Right instance"
 		}
 	],
 	"no_antialiasing": false,
@@ -190,7 +190,7 @@
 	],
 	"camera_position": [
 		-150,
-		-15
+		-80
 	],
 	"sing_duration": 6.1,
 	"scale": 1

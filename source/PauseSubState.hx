@@ -174,6 +174,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
 					PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
+					trace('Toggled Practice Mode');
 				case "Restart Song":
 					restartSong();
 					trace('Restarted Song');

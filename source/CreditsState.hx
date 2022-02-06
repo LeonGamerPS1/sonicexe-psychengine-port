@@ -42,8 +42,6 @@ class CreditsState extends MusicBeatState
 
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		add(bg);
-
-		bg.scale.x = bg.scale.y = scaleRatio;
 		bg.screenCenter();
 		
 		grpOptions = new FlxTypedGroup<Alphabet>();
@@ -82,9 +80,8 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
-			['Sonic.exe porter/shoutouts'],
-			['JuniorNovoa',		'shadowmario',		'Creator of the port',						'https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg',	'b0e0e6'],
-			['ItsCapp',		'shadowmario',		'Creator of the Arrow event',						'https://github.com/ItsCapp',	'b0e0e6'],
+			['Psych Engine But Better Team'],
+			['JuniorNovoa',			'bb-panzu',			'Programmer of PsychEngine but better?!?!?!',				'https://twitter.com/bbsub3',			'389A58'],
 			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',						'https://twitter.com/Shadow_Mario_',	'444444'],

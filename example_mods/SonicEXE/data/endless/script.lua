@@ -22,12 +22,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
 
     end,
 
-    [890] = function() --890
+    [892] = function() --890
     removeLuaSprite('three', true);
     
-    end,
-
-    [891] = function() --891
     makeLuaSprite('two', 'FunInfiniteStage/two', 450, 200);
     setScrollFactor('two', 0, 0);
     scaleObject('two', 0.5, 0.5);
@@ -40,12 +37,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     
     end,
     
-    [894] = function() --894
+    [896] = function() --894
     removeLuaSprite('two', true);
     
-    end,
-
-    [895] = function() --885
     makeLuaSprite('one', 'FunInfiniteStage/one', 450, 200);
     setScrollFactor('one', 0, 0);
     scaleObject('one', 0.5, 0.5);
@@ -58,12 +52,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
         
     end,
         
-    [899] = function() --899
+    [900] = function() --899
     removeLuaSprite('one', true);
     
-    end,
-
-    [900] = function() --900
     makeLuaSprite('gofun', 'FunInfiniteStage/gofun', 450, 200);
     setScrollFactor('gofun', 0, 0);
     scaleObject('gofun', 0.5, 0.5);
@@ -73,10 +64,10 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
     
     setObjectCamera('gofun', 'camHUD')
-            
+
     end,
-            
-    [905] = function() --905
+    
+    [903] = function() --905
     removeLuaSprite('gofun', true);
     
     end

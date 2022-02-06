@@ -35,7 +35,7 @@ function onCreate()
 		setScrollFactor('smallflower2', 0.9, 0.9);
 		scaleObject('smallflower2', 0.6, 0.9);
 
-		makeLuaSprite('smallflowe2', 'LordXStage/smallflowe2', 1435, -525);
+		makeLuaSprite('smallflowe2', 'LordXStage/smallflowe2', 1435, -575);
 		setScrollFactor('smallflowe2', 0.9, 0.9);
 		scaleObject('smallflowe2', 0.6, 0.9);
 
