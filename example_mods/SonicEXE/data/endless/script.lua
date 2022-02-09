@@ -4,7 +4,7 @@ function onCreate()
    precacheImage('one'); -- so it doesn't freeze
    precacheImage('gofun'); -- so it doesn't freeze
 
-   --debugPrint('Lua Precached shit!!!!!')
+   print('endless/script.lua: Precached shit!!!!!')
 end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by junior - https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg)
@@ -16,6 +16,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
 
     if Popups then
         addLuaSprite('three', true);
+
+        print('endless/script.lua: 3!')
     end
 
     setObjectCamera('three', 'camHUD')
@@ -31,6 +33,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     
     if Popups then
         addLuaSprite('two', true);
+
+        print('endless/script.lua: 2!')
     end
     
     setObjectCamera('two', 'camHUD')
@@ -46,6 +50,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
         
     if Popups then
         addLuaSprite('one', true);
+
+        print('endless/script.lua: 1!')
     end
 
     setObjectCamera('one', 'camHUD')
@@ -61,6 +67,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     
     if Popups then
         addLuaSprite('gofun', true);
+
+        print('endless/script.lua: Go!')
     end
     
     setObjectCamera('gofun', 'camHUD')

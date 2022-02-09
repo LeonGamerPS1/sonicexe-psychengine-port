@@ -1,21 +1,31 @@
-function start (song)
-	print("Song: " .. song .. " @ " .. bpm .. " downscroll: " .. downscroll)
-
+if cutscenes then
+    local allowCountdown = false
+    function onStartCountdown()
+	    if not allowCountdown and isStoryMode and not seenCutscene then --Block the first countdown
+		    startVideo('tooslowcutscene1');
+		    allowCountdown = true;
+		    return 'Function_Stop';
+	    end
+	    return 'Function_Continue';
+    end
 end
 
 function onCreate()
-   precacheImage('sonicJUMPSCARE'); -- so it doesn't freeze
-   precacheXml('sonicJUMPSCARE'); -- so it doesn't freeze
-   precacheImage('daSTAT'); -- so it doesn't freeze
-   precacheImage('RED'); -- so it doesn't freeze
-   precacheImage('simplejump'); -- so it doesn't freeze
-   precacheSound('simplejumpsound'); -- so it doesn't freeze
-   precacheSound('datOneSound'); -- so it doesn't freeze
-   precacheSound('sppok'); -- so it doesn't freeze
-   precacheSound('jumpscare'); -- so it doesn't freeze
-   precacheSound('datOneSound'); -- so it doesn't freeze
+    precacheImage('jumpscare/hitStatic'); -- so it doesn't freeze
+	precacheXml('jumpscare/hitStatic'); -- so it doesn't freeze
+	precacheSound('hitStatic1'); -- so it doesn't freeze
+    precacheImage('sonicJUMPSCARE'); -- so it doesn't freeze
+    precacheXml('sonicJUMPSCARE'); -- so it doesn't freeze
+    precacheImage('daSTAT'); -- so it doesn't freeze
+    precacheImage('RED'); -- so it doesn't freeze
+    precacheImage('simplejump'); -- so it doesn't freeze
+    precacheSound('simplejumpsound'); -- so it doesn't freeze
+    precacheSound('datOneSound'); -- so it doesn't freeze
+    precacheSound('sppok'); -- so it doesn't freeze
+    precacheSound('jumpscare'); -- so it doesn't freeze
+    precacheSound('datOneSound'); -- so it doesn't freeze
 
-   --debugPrint('Lua Precached shit!!!!!')
+    print('too-slow/script.lua: Precached shit!!!!!')
 end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by junior - https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg)
@@ -30,7 +40,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
 
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
 
     setObjectCamera('daSTAT', 'camHUD')
@@ -52,7 +64,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
     
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
     
     setObjectCamera('daSTAT', 'camHUD')
@@ -74,7 +88,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
         
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
         
     setObjectCamera('daSTAT', 'camHUD')
@@ -96,7 +112,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
             
     setObjectCamera('daSTAT', 'camHUD')
@@ -118,7 +136,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                 
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                 
     setObjectCamera('daSTAT', 'camHUD')
@@ -137,6 +157,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
                     
     if Popups then
         addLuaSprite('RED', true);
+
+        print('too-slow/script.lua: RED!!!!')
     end
                     
     setObjectCamera('RED', 'camHUD')
@@ -155,6 +177,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
                         
     if Popups then
         addLuaSprite('RED', true);
+
+        print('too-slow/script.lua: RED!!!!')
     end
                         
     setObjectCamera('RED', 'camHUD')
@@ -173,6 +197,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
                         
     if Popups then
         addLuaSprite('RED', true);
+
+        print('too-slow/script.lua: RED!!!!')
     end
                         
     setObjectCamera('RED', 'camHUD')
@@ -195,6 +221,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
                         
     if Popups then
         addLuaSprite('RED', true);
+
+        print('too-slow/script.lua: RED!!!!')
     end
                         
     setObjectCamera('RED', 'camHUD')
@@ -213,6 +241,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
                         
     if Popups then
         addLuaSprite('RED', true);
+
+        print('too-slow/script.lua: RED!!!!')
     end
                         
     setObjectCamera('RED', 'camHUD')
@@ -231,6 +261,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
                             
     if Popups then
         addLuaSprite('RED', true);
+
+        print('too-slow/script.lua: RED!!!!')
     end
                             
     setObjectCamera('RED', 'camHUD')
@@ -249,6 +281,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
                             
     if Popups then
         addLuaSprite('RED', true);
+
+        print('too-slow/script.lua: RED!!!!')
     end
                             
     setObjectCamera('RED', 'camHUD')
@@ -270,7 +304,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                     
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                     
     setObjectCamera('daSTAT', 'camHUD')
@@ -292,7 +328,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                         
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                         
     setObjectCamera('daSTAT', 'camHUD')
@@ -314,7 +352,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -336,7 +376,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                 
     if Popups then
-        addLuaSprite('simplejump', true);
+		addLuaSprite('simplejump', true);
+
+		print('too-slow/script.lua: SONICEXE!')
     end
                                 
     setObjectCamera('simplejump', 'camHUD')
@@ -358,7 +400,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                 
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                 
     setObjectCamera('daSTAT', 'camHUD')
@@ -380,7 +424,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                 
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                 
     setObjectCamera('daSTAT', 'camHUD')
@@ -402,7 +448,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                 
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                 
     setObjectCamera('daSTAT', 'camHUD')
@@ -424,7 +472,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                     
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                     
     setObjectCamera('daSTAT', 'camHUD')
@@ -446,7 +496,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                     
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                     
     setObjectCamera('daSTAT', 'camHUD')
@@ -468,7 +520,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                     
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                     
     setObjectCamera('daSTAT', 'camHUD')
@@ -490,7 +544,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                     
     if Popups then
-        addLuaSprite('simplejump', true);
+		addLuaSprite('simplejump', true);
+
+		print('too-slow/script.lua: SONICEXE!')
     end
                                     
     setObjectCamera('simplejump', 'camHUD')
@@ -512,7 +568,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                         
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                         
     setObjectCamera('daSTAT', 'camHUD')
@@ -522,6 +580,11 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     [1246] = function()
     removeLuaSprite('daSTAT', true);
             
+    end,
+
+    [1305] = function()
+    setProperty('camHUD.visible',false)
+                
     end,
 
     [1336] = function()
@@ -534,7 +597,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                                 
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                                 
     setObjectCamera('daSTAT', 'camHUD')
@@ -552,11 +617,13 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     scaleObject('simplejump', 1, 1);
 
     if Popups then
-        playSound('simplejumpsound', 1);
+        playSound('sppok', 1);
     end
                                       
     if Popups then
-        addLuaSprite('simplejump', true);
+		addLuaSprite('simplejump', true);
+
+		print('too-slow/script.lua: SONICEXE!')
     end
                                         
     setObjectCamera('simplejump', 'camHUD')
@@ -578,11 +645,18 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
                                             
+    end,
+
+    [1432] = function()
+    setProperty('camHUD.visible',true)
+                        
     end,
                                             
     [1349] = function()
@@ -600,7 +674,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -622,7 +698,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -644,7 +722,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -666,7 +746,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -688,7 +770,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -710,7 +794,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -732,7 +818,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -754,7 +842,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -776,7 +866,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -798,7 +890,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -820,7 +914,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -842,7 +938,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -864,7 +962,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -886,7 +986,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -908,7 +1010,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -930,7 +1034,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -952,7 +1058,9 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
                                             
     if Popups then
-        addLuaSprite('daSTAT', true);
+		addLuaSprite('daSTAT', true);
+
+		print('too-slow/script.lua: DA STAT!!!!')
     end
                                             
     setObjectCamera('daSTAT', 'camHUD')
@@ -977,6 +1085,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
         playSound('jumpscare', 0.3);
 
         addLuaSprite('sonic', true);
+
+        print('too-slow/script.lua: SONICEXE JUMPSCARE!')
     end
 
     setObjectCamera('sonic', 'camHUD')

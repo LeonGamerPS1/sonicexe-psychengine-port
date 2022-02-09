@@ -1,8 +1,23 @@
+if cutscenes then
+    local allowCountdown = false
+    function onStartCountdown()
+	    if not allowCountdown and isStoryMode and not seenCutscene then --Block the first countdown
+		    startVideo('tooslowcutscene2');
+		    allowCountdown = true;
+		    return 'Function_Stop';
+	    end
+	    return 'Function_Continue';
+    end
+end
+
 function onCreate()
+    precacheImage('jumpscare/hitStatic'); -- so it doesn't freeze
+	precacheXml('jumpscare/hitStatic'); -- so it doesn't freeze
+	precacheSound('hitStatic1'); -- so it doesn't freeze
     precacheImage('daSTAT'); -- so it doesn't freeze
     precacheImage('GreenHill'); -- so it doesn't freeze
 
-   --debugPrint('Lua Precached shit!!!!!')
+    print('you-cant-run/script.lua: Precached shit!!!!!')
 end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by junior - https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg)
@@ -14,6 +29,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     
     if Popups then
         addLuaSprite('daSTAT', true);
+
+        print('you-cant-run/script.lua: DA STAT!!!!')
     end
     
     setObjectCamera('daSTAT', 'camHUD')
@@ -27,6 +44,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
 
     if StageSwap then
 	    addLuaSprite('GreenHill', false)
+
+        print('you-cant-run/script.lua: GREEN HILL!')
     end
 
     end,
@@ -43,6 +62,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
         
     if Popups then
         addLuaSprite('daSTAT', true);
+
+        print('you-cant-run/script.lua: DA STAT!!!!')
     end
         
     setObjectCamera('daSTAT', 'camHUD')

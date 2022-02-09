@@ -86,7 +86,7 @@ using StringTools;
 class Cache extends MusicBeatState
 {
 	public static var bitmapData:Map<String,FlxGraphic>;
-	public static var bitmapData2:Map<String,FlxGraphic>;
+	public static var bitmapData2:Map<String,FlxText>;
 
 	var images = [];
 	var sounds = [];
@@ -104,7 +104,7 @@ class Cache extends MusicBeatState
 		FlxG.worldBounds.set(0,0);
 
 		bitmapData = new Map<String,FlxGraphic>();
-		bitmapData2 = new Map<String,FlxGraphic>();
+		bitmapData2 = new Map<String,FlxText>();
 
 		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d);
 		add(bg);
@@ -836,27 +836,6 @@ class Cache extends MusicBeatState
 			sounds.push(i);
 		}
 
-		for (i in FileSystem.readDirectory(FileSystem.absolutePath("mods/SonicEXE/songs/cutscene1")))
-		{
-			if (!i.endsWith(".ogg"))
-				continue;
-			sounds.push(i);
-		}
-	
-		for (i in FileSystem.readDirectory(FileSystem.absolutePath("mods/SonicEXE/data/cutscene1")))
-		{
-			if (!i.endsWith(".json"))
-				continue;
-			data.push(i);
-		}
-	
-		for (i in FileSystem.readDirectory(FileSystem.absolutePath("mods/SonicEXE/data/cutscene1")))
-		{
-			if (!i.endsWith(".lua"))
-				continue;
-			lua.push(i);
-		}
-
 		for (i in FileSystem.readDirectory(FileSystem.absolutePath("mods/SonicEXE/songs/too-slow")))
 		{
 			if (!i.endsWith(".ogg"))
@@ -1029,7 +1008,7 @@ class Cache extends MusicBeatState
 		for (i in sounds)
 		{
 			var replaced = i.replace(".ogg", "");
-			var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/" + i);
+			var data:BitmapData = BitmapData.fromFile("assets/shared/sounds/" + i);
 			var graph = FlxGraphic.fromBitmapData(data);
 			graph.persist = true;
 			graph.destroyOnNoUse = false;
@@ -1039,7 +1018,7 @@ class Cache extends MusicBeatState
 		for (i in data)
 		{
 			var replaced = i.replace(".json", "");
-			var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/" + i);
+			var data:BitmapData = BitmapData.fromFile("assets/characters/" + i);
 			var graph = FlxGraphic.fromBitmapData(data);
 			graph.persist = true;
 			graph.destroyOnNoUse = false;
@@ -1049,7 +1028,7 @@ class Cache extends MusicBeatState
 		for (i in lua)
 		{
 			var replaced = i.replace(".lua", "");
-			var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/" + i);
+			var data:BitmapData = BitmapData.fromFile("mods/SonicEXE/custom_notetypes/" + i);
 			var graph = FlxGraphic.fromBitmapData(data);
 			graph.persist = true;
 			graph.destroyOnNoUse = false;

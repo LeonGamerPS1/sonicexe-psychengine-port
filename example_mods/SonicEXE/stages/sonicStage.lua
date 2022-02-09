@@ -4,6 +4,7 @@ function onCreate()
 	setScrollFactor('SKY', 0.9, 0.9);
 	scaleObject('SKY', 1.0, 1.0);
 	
+	-- sprites that only load if Low Quality is turned off
 	if not lowQuality then
 		makeLuaSprite('FLOOR2', 'FLOOR2', -345, -289 + 170);
 		setScrollFactor('FLOOR2', 0.9, 0.9);
@@ -47,6 +48,8 @@ function onCreate()
     addLuaSprite('TAIL', false);
     addLuaSprite('KNUCKLE', false);
 	addLuaSprite('TailsSpike', false)
+
+	print('sonicStage.lua: Loaded Stage!')
 	
 	close(true); --For performance reasons, close this script once the stage is fully loaded, as this script won't be used anymore after loading the stage
 end

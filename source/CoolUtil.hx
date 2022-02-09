@@ -121,6 +121,12 @@ class CoolUtil
 			Assets.getSound(EmbeddedSound, true);
 	}
 
+	public static function precacheXml(text:String, ?library:String = null):Void {
+		var Xml = Paths.xml(text, library);
+		if (Assets.exists(Xml, TEXT) || Assets.exists(Xml, TEXT))
+			Assets.getSound(Xml, true);
+	}
+
 	public static function browserLoad(site:String) {
 		#if linux
 		Sys.command('/usr/bin/xdg-open', [site]);

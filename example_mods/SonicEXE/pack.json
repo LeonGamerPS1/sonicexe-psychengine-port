@@ -1,6 +1,6 @@
 {
 	"name": "Sonic.exe on PsychEngine",
-	"description": "The Sonic.exe Experience on PsychEngine, By JuniorNovoa",
+	"description": "The Sonic.exe Experience on PsychEngine",
 	"restart":false,
 	"color": [170, 0, 255]
 }

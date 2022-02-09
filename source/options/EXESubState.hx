@@ -37,7 +37,7 @@ class EXESubState extends BaseOptionsMenu
 		rpcTitle = 'EXE Settings Menu'; //for Discord Rich Presence
 
 		var option:Option = new Option('Cutscenes', //Name
-		    'If checked, enables Cutscenes in EXE Songs,\ndecreases loading times and improves performance.', //Description
+		    'If checked, enables Cutscenes in EXE Songs,\nMac/Linux/Window32bit users need to have this off or game will crash.', //Description
 		    'Cutscenes', //Save data variable name
 		    'bool', //Variable type
 		    true); //Default value

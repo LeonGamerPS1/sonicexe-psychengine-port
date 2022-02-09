@@ -47,8 +47,7 @@ function noteMiss(id, noteData, noteType, isSustainNote)
 	
 		setObjectCamera('hitStatic', 'camHUD')
 		
-		--debugPrint('Dumbass missed note')
-
+		print('Sonic Note.lua: missed static note')
 
 	end
 end
@@ -56,5 +55,7 @@ end
 function onTimerCompleted(tag, loops, loopsleft)
 	if tag == 'timer' then
 		removeLuaSprite('hitStatic', true);
+
+		print('Sonic Note.lua: Removed hitstatic')
     end
 end

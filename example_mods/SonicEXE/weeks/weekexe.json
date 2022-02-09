@@ -1,11 +1,10 @@
 {
 	"songs": [
-		["cutscene1", "sonic", [26, 113, 253]],
 		["too-slow", "sonic", [26, 113, 253]],
 		["you-cant-run", "sonic2", [26, 113, 253]]
 
 	],
-	"hideFreeplay": false,
+	"hideFreeplay": true,
 	"weekBackground": "sonic",
 	"weekCharacters": [
 		"dad",
