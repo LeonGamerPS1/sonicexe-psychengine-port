@@ -11,7 +11,7 @@ resetStacks();
 end
 function addOneStack()
 Bruh = poisonstacks;
-poisonstacks = Bruh + 0.80;
+poisonstacks = Bruh + 0.40;
 
 end
 function resetStacks()
@@ -24,7 +24,7 @@ curHealth = getProperty('health');
 bruh = 0.01 * poisonstacks;
 
 	if bruh >= curHealth then
-	setProperty('health', 0.1);
+	setProperty('health', 0);
 	else
 	setProperty('health', curHealth - bruh);
 	end
@@ -33,7 +33,7 @@ function goodNoteHit(id, noteData, noteType, isSustainNote)
 	if noteType == 'Blurry Note' then
 		addOneStack();
 
-		runTimer('timer', 2.0);
+		runTimer('timer', 6.0);
 	end
 
 end

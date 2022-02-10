@@ -22,7 +22,7 @@ end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by junior - https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg)
 
-    [527] = function() --528 is the original thing im just using a different number
+    [527] = function()
     makeLuaSprite('daSTAT', 'Jumpscare/daSTAT', 0, 0);
     setScrollFactor('daSTAT', 0, 0);
     scaleObject('daSTAT', 2, 2);
@@ -37,7 +37,7 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
 
     end,
 
-    [528] = function() --528 is the original thing im just using a different number
+    [528] = function()
 	makeLuaSprite('GreenHill', 'GreenHill', -428.5 + 50 + 700, -449.35 + 25 + 392 + 105 + 50)
 	setScrollFactor('GreenHill', 0.9, 0.9)
 	scaleObject('GreenHill', 8.0, 8.0);
@@ -55,7 +55,7 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
 
     end,
 
-    [783] = function() --528 is the original thing im just using a different number
+    [783] = function()
     makeLuaSprite('daSTAT', 'Jumpscare/daSTAT', 0, 0);
     setScrollFactor('daSTAT', 0, 0);
     scaleObject('daSTAT', 2, 2);
@@ -81,9 +81,74 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end
 }
 
-function onStepHit()
-    if stepHitFuncs[curStep] then 
-        stepHitFuncs[curStep]() -- Executes function at curStep in stepHitFuncs
-    end
+local xx = 500;
+local yy = 470;
+local xx2 = 925;
+local yy2 = 535;
+local ofs = 30;
+local followchars = true;
+local del = 0;
+local del2 = 0;
 
+function onUpdate()
+	if del > 0 then
+		del = del - 1
+	end
+	if del2 > 0 then
+		del2 = del2 - 1
+	end
+    if followchars == true then
+        if mustHitSection == false then
+            if getProperty('dad.animation.curAnim.name') == 'singLEFT' then
+                triggerEvent('Camera Follow Pos',xx-ofs,yy)
+            end
+            if getProperty('dad.animation.curAnim.name') == 'singRIGHT' then
+                triggerEvent('Camera Follow Pos',xx+ofs,yy)
+            end
+            if getProperty('dad.animation.curAnim.name') == 'singUP' then
+                triggerEvent('Camera Follow Pos',xx,yy-ofs)
+            end
+            if getProperty('dad.animation.curAnim.name') == 'singDOWN' then
+                triggerEvent('Camera Follow Pos',xx,yy+ofs)
+            end
+            if getProperty('dad.animation.curAnim.name') == 'singLEFT-alt' then
+                triggerEvent('Camera Follow Pos',xx-ofs,yy)
+            end
+            if getProperty('dad.animation.curAnim.name') == 'singRIGHT-alt' then
+                triggerEvent('Camera Follow Pos',xx+ofs,yy)
+            end
+            if getProperty('dad.animation.curAnim.name') == 'singUP-alt' then
+                triggerEvent('Camera Follow Pos',xx,yy-ofs)
+            end
+            if getProperty('dad.animation.curAnim.name') == 'singDOWN-alt' then
+                triggerEvent('Camera Follow Pos',xx,yy+ofs)
+            end
+            if getProperty('dad.animation.curAnim.name') == 'idle-alt' then
+                triggerEvent('Camera Follow Pos',xx,yy)
+            end
+            if getProperty('dad.animation.curAnim.name') == 'idle' then
+                triggerEvent('Camera Follow Pos',xx,yy)
+            end
+        else
+
+            if getProperty('boyfriend.animation.curAnim.name') == 'singLEFT' then
+                triggerEvent('Camera Follow Pos',xx2-ofs,yy2)
+            end
+            if getProperty('boyfriend.animation.curAnim.name') == 'singRIGHT' then
+                triggerEvent('Camera Follow Pos',xx2+ofs,yy2)
+            end
+            if getProperty('boyfriend.animation.curAnim.name') == 'singUP' then
+                triggerEvent('Camera Follow Pos',xx2,yy2-ofs)
+            end
+            if getProperty('boyfriend.animation.curAnim.name') == 'singDOWN' then
+                triggerEvent('Camera Follow Pos',xx2,yy2+ofs)
+            end
+	    if getProperty('boyfriend.animation.curAnim.name') == 'idle' then
+                triggerEvent('Camera Follow Pos',xx2,yy2)
+            end
+        end
+    else
+        triggerEvent('Camera Follow Pos','','')
+    end
+    
 end
