@@ -202,8 +202,8 @@
 	"no_antialiasing": true,
 	"image": "characters/BF",
 	"position": [
-		950,
-		745
+		175,
+		350
 	],
 	"healthicon": "bfpixel",
 	"flip_x": true,

@@ -55,12 +55,12 @@ class EXESubState extends BaseOptionsMenu
 		    true); //Default value
 	    addOption(option);
 
-		var option:Option = new Option('Stage Swap', //Name
+		var option:Option = new Option('StageSwap', //Name
 		    'If checked, enables stage swapping in "You cant run",\nimproves performance.', //Description
 			'StageSwap', //Save data variable name
 			'bool', //Variable type
 			true); //Default value
-	    addOption(option);
+        //addOption(option);
 
 		super();
 	}

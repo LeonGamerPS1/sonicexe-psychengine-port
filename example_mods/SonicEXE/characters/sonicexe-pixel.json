@@ -178,8 +178,8 @@
 	"no_antialiasing": true,
 	"image": "characters/Sonic_EXE_Pixel",
 	"position": [
-		575,
-		600
+		-50,
+		225
 	],
 	"healthicon": "sonicpixel",
 	"flip_x": false,

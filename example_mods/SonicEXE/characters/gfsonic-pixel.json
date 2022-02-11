@@ -213,8 +213,8 @@
 	"no_antialiasing": true,
 	"image": "characters/Pixel_gf",
 	"position": [
-		875,
-		685
+		150,
+		275
 	],
 	"healthicon": "gf",
 	"flip_x": false,
