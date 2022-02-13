@@ -14,7 +14,11 @@ class ClientPrefs {
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
+	#if windows
 	public static var Cutscenes:Bool = true;
+	#else
+	public static var Cutscenes:Bool = false;
+	#end
 	public static var Jumpscare:Bool = true;
 	public static var Popups:Bool = true;
 	public static var StageSwap:Bool = true;

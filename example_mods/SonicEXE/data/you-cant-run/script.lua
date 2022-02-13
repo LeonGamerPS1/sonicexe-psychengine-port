@@ -124,6 +124,7 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
 	makeLuaSprite('GreenHill', 'GreenHill', -275, -275)
 	setScrollFactor('GreenHill', 0.9, 0.9)
 	scaleObject('GreenHill', 8.0, 8.0);
+    setProperty('GreenHill.antialiasing', false)
 	addLuaSprite('GreenHill', false)
 
     print('you-cant-run/script.lua: GREEN HILL!')

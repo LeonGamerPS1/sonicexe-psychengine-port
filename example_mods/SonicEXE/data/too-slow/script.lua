@@ -12,8 +12,8 @@ end
 
 function onCreate()
     precacheImage('jumpscare/hitStatic'); -- so it doesn't freeze
-	precacheXml('jumpscare/hitStatic'); -- so it doesn't freeze
-	precacheSound('hitStatic1'); -- so it doesn't freeze
+	  precacheXml('jumpscare/hitStatic'); -- so it doesn't freeze
+	  precacheSound('hitStatic1'); -- so it doesn't freeze
     precacheImage('sonicJUMPSCARE'); -- so it doesn't freeze
     precacheXml('sonicJUMPSCARE'); -- so it doesn't freeze
     precacheImage('daSTAT'); -- so it doesn't freeze
