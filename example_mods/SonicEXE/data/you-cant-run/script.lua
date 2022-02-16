@@ -1,14 +1,14 @@
-if cutscenes then
+if Cutscenes then
     local allowCountdown = false
     function onStartCountdown()
-	    if not allowCountdown and isStoryMode and not seenCutscene then --Block the first countdown
-		    startVideo('tooslowcutscene2');
-		    allowCountdown = true;
-		    return 'Function_Stop';
-	    end
-	    return 'Function_Continue';
+      if not allowCountdown and isStoryMode and not seenCutscene then --Block the first countdown
+        startVideo('tooslowcutscene2');
+        allowCountdown = true;
+        return 'Function_Stop';
+      end
+      return 'Function_Continue';
     end
-end
+  end
 
 function onCreate()
     precacheImage('jumpscare/hitStatic'); -- so it doesn't freeze
