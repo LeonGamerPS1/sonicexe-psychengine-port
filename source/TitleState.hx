@@ -79,6 +79,9 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+
 		#if MODS_ALLOWED
 		// Just to load a mod on start up if ya got one. For mods that change the menu music and bg
 		if (FileSystem.exists("modsList.txt")){
@@ -599,12 +602,12 @@ class TitleState extends MusicBeatState
 				// credTextShit.screenCenter();
 				case 5:
 					#if PSYCH_WATERMARKS
-					createCoolText(['Not associated', 'with'], -40);
+					createCoolText(['Extra keys mod', 'by'], -40);
 					#else
 					createCoolText(['In association', 'with'], -40);
 					#end
 				case 7:
-					addMoreText('newgrounds', -40);
+					addMoreText('tposejank', -40);
 					ngSpr.visible = true;
 				// credTextShit.text += '\nNewgrounds';
 				case 8:

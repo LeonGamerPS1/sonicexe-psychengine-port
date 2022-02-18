@@ -25,9 +25,9 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var sonicVersion:String = '2.0';
 	public static var psychEngineVersion:String = '0.5.1'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
+
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
@@ -92,6 +92,8 @@ class MainMenuState extends MusicBeatState
 		magenta.antialiasing = ClientPrefs.globalAntialiasing;
 		magenta.color = 0xFFfd719b;
 		add(magenta);
+		
+		// magenta.scrollFactor.set();
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -124,10 +126,6 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Sonic.exe v" + sonicVersion, 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -142,6 +140,7 @@ class MainMenuState extends MusicBeatState
 		changeItem();
 
 		#if ACHIEVEMENTS_ALLOWED
+		Achievements.loadAchievements();
 		var leDate = Date.now();
 		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
 			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');

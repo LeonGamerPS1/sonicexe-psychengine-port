@@ -1,15 +1,3 @@
-if Cutscenes then
-  local allowCountdown = false
-  function onStartCountdown()
-    if not allowCountdown and isStoryMode and not seenCutscene then --Block the first countdown
-      startVideo('tooslowcutscene1');
-      allowCountdown = true;
-      return 'Function_Stop';
-    end
-    return 'Function_Continue';
-  end
-end
-
 function onCreate()
     precacheImage('jumpscare/hitStatic'); -- so it doesn't freeze
 	  precacheXml('jumpscare/hitStatic'); -- so it doesn't freeze
@@ -25,6 +13,18 @@ function onCreate()
     precacheSound('jumpscare'); -- so it doesn't freeze
     precacheSound('datOneSound'); -- so it doesn't freeze
 
+    if Cutscenes then
+      local allowCountdown = false
+          function onStartCountdown()
+              if not allowCountdown and isStoryMode and not seenCutscene then --Block the first countdown
+                  startVideo('tooslowcutscene1');
+                  allowCountdown = true;
+                  return 'Function_Stop';
+              end
+          return 'Function_Continue';
+      end
+    end
+    
     print('too-slow/script.lua: Precached shit!!!!!')
 end
 
@@ -1166,6 +1166,7 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     objectPlayAnimation('sonic', 'scare', false);
 
     scaleObject('sonic', 1, 1);
+    
     if Popups then
         playSound('datOneSound', 1);
         playSound('jumpscare', 0.3);

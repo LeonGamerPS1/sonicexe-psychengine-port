@@ -43,8 +43,8 @@ import Discord;
 using StringTools;
 
 class FunkinLua {
-	public static var Function_Stop = "Function_Stop";
-	public static var Function_Continue = "Function_Continue";
+	public static var Function_Stop = 1;
+	public static var Function_Continue = 0;
 
 	#if LUA_ALLOWED
 	public var lua:State = null;
@@ -81,8 +81,8 @@ class FunkinLua {
 		#end
 
 		// Lua shit
-		set('Function_Stop', "Function_Stop");
-		set('Function_Continue', "Function_Continue");
+		set('Function_Stop', Function_Stop);
+		set('Function_Continue', Function_Continue);
 		set('luaDebugMode', false);
 		set('luaDeprecatedWarnings', true);
 		set('inChartEditor', false);
@@ -103,8 +103,10 @@ class FunkinLua {
 		set('week', WeekData.weeksList[PlayState.storyWeek]);
 		set('seenCutscene', PlayState.seenCutscene);
 		
-		// Block require, Should probably have a proper function but this should be good enough
+		
+		// Block require and os, Should probably have a proper function but this should be good enough for now until someone smarter comes along and recreates a safe version of the OS library
 		set('require', false);
+		set('os', false);
 
 		// Camera poo
 		set('cameraX', 0);
@@ -172,12 +174,11 @@ class FunkinLua {
 		set('noteOffset', ClientPrefs.noteOffset);
 		set('healthBarAlpha', ClientPrefs.healthBarAlpha);
 		set('noResetButton', ClientPrefs.noReset);
-		set('lowQuality', ClientPrefs.lowQuality);
 		set('Cutscenes', ClientPrefs.Cutscenes);
 		set('Jumpscare', ClientPrefs.Jumpscare);
 		set('Popups', ClientPrefs.Popups);
 		set('StageSwap', ClientPrefs.StageSwap);
-		//set('Dialogue', ClientPrefs.Dialogue); //This is also the custom one
+		set('lowQuality', ClientPrefs.lowQuality);
 
 		Lua_helper.add_callback(lua, "addLuaScript", function(luaFile:String, ?ignoreAlreadyRunning:Bool = false) { //would be dope asf. 
 			var cervix = luaFile + ".lua";
@@ -730,6 +731,9 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "precacheSound", function(name:String) {
 			CoolUtil.precacheSound(name);
 		});
+		Lua_helper.add_callback(lua, "precacheMusic", function(name:String) {
+			CoolUtil.precacheMusic(name);
+		});
 		Lua_helper.add_callback(lua, "triggerEvent", function(name:String, arg1:Dynamic, arg2:Dynamic) {
 			var value1:String = arg1;
 			var value2:String = arg2;
@@ -885,7 +889,7 @@ class FunkinLua {
 			PlayState.instance.modchartSprites.set(tag, leSprite);
 			leSprite.active = true;
 		});
-		Lua_helper.add_callback(lua, "makeAnimatedLuaSprite", function(tag:String, image:String, x:Float, y:Float, spriteType:String = "sparrow") {
+		Lua_helper.add_callback(lua, "makeAnimatedLuaSprite", function(tag:String, image:String, x:Float, y:Float, ?spriteType:String = "sparrow") {
 			tag = tag.replace('.', '');
 			resetSpriteTag(tag);
 			var leSprite:ModchartSprite = new ModchartSprite(x, y);

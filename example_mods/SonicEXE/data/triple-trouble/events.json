@@ -1,0 +1,142 @@
+{
+	"song": {
+		"speed": 3.2,
+		"stage": "trioStage",
+		"player1": "bf",
+		"player2": "tails",
+		"player3": null,
+		"events": [
+			[
+				106849.315068493,
+				[
+					[
+						"Change Character",
+						"bf",
+						"bf-p3"
+					],
+					[
+						"Change Character",
+						"dad",
+						"sonic-p3"
+					]
+				],
+				null,
+				"Sonic Note"
+			],
+			[
+				133150.684931507,
+				[
+					[
+						"Change Character",
+						"bf",
+						"bf-flipped"
+					],
+					[
+						"Change Character",
+						"dad",
+						"KnucklesEXE"
+					]
+				]
+			],
+			[
+				238356.164383562,
+				[
+					[
+						"Change Character",
+						"bf",
+						"bf-p3-flipped"
+					],
+					[
+						"Change Character",
+						"dad",
+						"sonic-p3-flipped"
+					]
+				]
+			],
+			[
+				290958.904109589,
+				[
+					[
+						"Change Character",
+						"bf",
+						"bf"
+					],
+					[
+						"Change Character",
+						"dad",
+						"eggman"
+					]
+				]
+			],
+			[
+				296380.590856577,
+				[
+					[
+						"Play Animation",
+						"dad",
+						"SingUP"
+					]
+				]
+			],
+			[
+				296561.313748144,
+				[
+					[
+						"Play Animation",
+						"dad",
+						"SingUP"
+					]
+				]
+			],
+			[
+				307946.855916818,
+				[
+					[
+						"Play Animation",
+						"dad",
+						"SingUP"
+					]
+				]
+			],
+			[
+				308127.578808384,
+				[
+					[
+						"Play Animation",
+						"dad",
+						"SingUP"
+					]
+				]
+			],
+			[
+				400476.976398745,
+				[
+					[
+						"Play Animation",
+						"dad",
+						"SingUP"
+					]
+				]
+			],
+			[
+				400657.699290311,
+				[
+					[
+						"Play Animation",
+						"dad",
+						"SingUP"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "nothing",
+		"bpm": 146,
+		"mania": 4,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "triple-trouble"
+	}
+}

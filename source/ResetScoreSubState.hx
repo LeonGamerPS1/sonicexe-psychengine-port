@@ -59,11 +59,11 @@ class ResetScoreSubState extends MusicBeatSubstate
 			add(icon);
 		}
 
-		yesText = new Alphabet(0, text.y + 150, 'Yessir', true);
+		yesText = new Alphabet(0, text.y + 150, 'Yes', true);
 		yesText.screenCenter(X);
 		yesText.x -= 200;
 		add(yesText);
-		noText = new Alphabet(0, text.y + 150, 'Nope', true);
+		noText = new Alphabet(0, text.y + 150, 'No', true);
 		noText.screenCenter(X);
 		noText.x += 200;
 		add(noText);
@@ -93,13 +93,8 @@ class ResetScoreSubState extends MusicBeatSubstate
 			if(onYes) {
 				if(week == -1) {
 					Highscore.resetSong(song, difficulty);
-
-					trace("Reset song score");
-
 				} else {
 					Highscore.resetWeek(WeekData.weeksList[week], difficulty);
-
-					trace("Reset week score");
 				}
 			}
 			FlxG.sound.play(Paths.sound('cancelMenu'), 1);

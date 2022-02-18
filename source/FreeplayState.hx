@@ -41,6 +41,7 @@ class FreeplayState extends MusicBeatState
 	var intendedScore:Int = 0;
 	var intendedRating:Float = 0;
 
+
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
@@ -133,6 +134,8 @@ class FreeplayState extends MusicBeatState
 		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(1, 66, 0xFF000000);
 		scoreBG.alpha = 0.6;
 		add(scoreBG);
+		
+
 
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
@@ -226,6 +229,8 @@ class FreeplayState extends MusicBeatState
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
+		
+
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
 		lerpRating = FlxMath.lerp(lerpRating, intendedRating, CoolUtil.boundTo(elapsed * 12, 0, 1));
@@ -301,26 +306,7 @@ class FreeplayState extends MusicBeatState
 		if(ctrl)
 		{
 			persistentUpdate = false;
-			
-			var NoCheating:FlxSprite;
-					
-			NoCheating = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/nocheating.png', IMAGE));
-			NoCheating.setGraphicSize(0, FlxG.height);
-			NoCheating.updateHitbox();
-			NoCheating.antialiasing = ClientPrefs.globalAntialiasing;
-			add(NoCheating);
-			NoCheating.scrollFactor.set();
-			NoCheating.screenCenter();
-
-			if (controls.BACK) {
-				remove(NoCheating);
-			}
-
-			if (controls.ACCEPT) {
-				remove(NoCheating);
-			}
-
-			trace('NO CHEATING');
+			openSubState(new GameplayChangersSubstate());
 		}
 		else if(space)
 		{

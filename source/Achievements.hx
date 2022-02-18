@@ -30,13 +30,14 @@ typedef AchievementFile =
 class Achievements {
 	public static var achievementShits:Array<Dynamic> = [//Name, Description, Achievement save tag, Unlocks after, Hidden achievement
 		//Set unlock after to "null" if it doesnt unlock after a week!!
+		["Freaky on a Friday Night",	"Play on a Friday... Night.",						'friday_night_play',	 null, 			true],
 		["She Calls Me Daddy Too",		"Beat Week 1 on Hard with no Misses.",				'week1_nomiss',			'week1', 		false],
 		["No More Tricks",				"Beat Week 2 on Hard with no Misses.",				'week2_nomiss',         'week2', 		false],
 		["Call Me The Hitman",			"Beat Week 3 on Hard with no Misses.",				'week3_nomiss',			'week3', 		false],
 		["Lady Killer",					"Beat Week 4 on Hard with no Misses.",				'week4_nomiss',			'week4', 		false],
 		["Missless Christmas",			"Beat Week 5 on Hard with no Misses.",				'week5_nomiss',			'week5',		false],
 		["Highscore!!",					"Beat Week 6 on Hard with no Misses.",				'week6_nomiss',			'week6',		false],
-		["You'll Pay For That...",		"Beat Week 7 on Hard with no Misses.",				'week7_nomiss',			'week7',		false],
+		["You'll Pay For That...",		"Beat Week 7 on Hard with no Misses.",				'week7_nomiss',			'week7',		true],
 		["What a Funkin' Disaster!",	"Complete a Song with a rating lower than 20%.",	'ur_bad',				null, 			false],
 		["Perfectionist",				"Complete a Song with a rating of 100%.",			'ur_good',				null,			false],
 		["Roadkill Enthusiast",			"Watch the Henchmen die over 100 times.",			'roadkill_enthusiast',	null, 			false],
@@ -44,7 +45,6 @@ class Achievements {
 		["Hyperactive",					"Finish a Song without going Idle.",				'hype',					null, 			false],
 		["Just the Two of Us",			"Finish a Song pressing only two keys.",			'two_keys',				null,			false],
 		["Toaster Gamer",				"Have you tried to run the game on a toaster?",		'toastie',				null,			false],
-		["Freaky on a Friday Night",	"Play on a Friday... Night.",						'friday_night_play',	 null, 			false],
 		["Debugger",					"Beat the \"Test\" Stage from the Chart Editor.",	'debugger',				null,			true]
 	];
 
@@ -288,16 +288,17 @@ class AchievementObject extends FlxSpriteGroup {
 		var modsImage = null;
 		var isModIcon:Bool = false;
 
-		if (Achievements.loadedAchievements.exists(name)) {
+		//fucking hell bro
+		/*if (Achievements.loadedAchievements.exists(name)) {
 			isModIcon = true;
 			modsImage = Paths.image(Achievements.loadedAchievements.get(name).icon);
-		}
+		}*/
 
 		var index:Int = Achievements.getAchievementIndex(name);
 		if (isModIcon) index = 0;
 
-		trace(imagePath);
-		trace(modsImage);
+		//trace(imagePath);
+		//trace(modsImage);
 
 		var achievementIcon:FlxSprite = new FlxSprite(achievementBG.x + 10, achievementBG.y + 10).loadGraphic((isModIcon ? modsImage : imagePath), true, 150, 150);
 		achievementIcon.animation.add('icon', [index], 0, false, false);

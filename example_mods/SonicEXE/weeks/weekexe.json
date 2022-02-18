@@ -1,8 +1,8 @@
 {
 	"songs": [
 		["too-slow", "sonic", [26, 113, 253]],
-		["you-cant-run", "sonic2", [26, 113, 253]]
-
+		["you-cant-run", "sonic2", [26, 113, 253]],
+		["triple-trouble", "sonic2", [26, 113, 253]]
 	],
 	"hideFreeplay": true,
 	"weekBackground": "sonic",

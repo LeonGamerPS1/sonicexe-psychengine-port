@@ -6097,6 +6097,7 @@
 		"validScore": true,
 		"needsVoices": true,
 		"noteStyle": null,
+        "mania": 3,
 		"bpm": 135,
 		"speed": 3
 	}

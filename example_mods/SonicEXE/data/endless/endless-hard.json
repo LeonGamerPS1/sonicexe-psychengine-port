@@ -9349,6 +9349,7 @@
 		"validScore": true,
 		"needsVoices": true,
 		"speed": 3,
+		"mania": 3,
 		"bpm": 155,
 		"noteStyle": "majinNOTES"
 	}

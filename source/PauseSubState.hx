@@ -19,15 +19,13 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Options', 'Exit to menu'];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Exit to menu'];
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
 	var practiceText:FlxText;
 	//var botplayText:FlxText;
-
-	public static var transCamera:FlxCamera;
 
 	public function new(x:Float, y:Float)
 	{
@@ -135,7 +133,6 @@ class PauseSubState extends MusicBeatSubstate
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
-		var closeimage = controls.BACK;
 
 		if (upP)
 		{
@@ -154,7 +151,6 @@ class PauseSubState extends MusicBeatSubstate
 				var poop = Highscore.formatSong(name, curSelected);
 				PlayState.SONG = Song.loadFromJson(poop, name);
 				PlayState.storyDifficulty = curSelected;
-				CustomFadeTransition.nextCamera = transCamera;
 				MusicBeatState.resetState();
 				FlxG.sound.music.volume = 0;
 				PlayState.changedDifficulty = true;
@@ -166,45 +162,21 @@ class PauseSubState extends MusicBeatSubstate
 			{
 				case "Resume":
 					close();
-
-					trace('Resumed');
 				case 'Change Difficulty':
 					menuItems = difficultyChoices;
 					regenMenu();
-
-					trace('Changing Difficulty');
 				case 'Toggle Practice Mode':
 					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
 					PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
-
-					trace('Toggled Practice Mode');
 				case "Restart Song":
 					restartSong();
-
-					trace('Restarted Song');
 				case 'Toggle Botplay':
-					var NoCheating:FlxSprite;
-					
-					NoCheating = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/nocheating.png', IMAGE));
-					NoCheating.setGraphicSize(0, FlxG.height);
-					NoCheating.updateHitbox();
-					NoCheating.antialiasing = ClientPrefs.globalAntialiasing;
-					add(NoCheating);
-					NoCheating.scrollFactor.set();
-					NoCheating.screenCenter();
-
-					if (closeimage) 
-					{
-					    remove(NoCheating, true);
-					}
-
-					trace('NO CHEATING');
-				case 'Options':
-					MusicBeatState.switchState(new options.OptionsState());
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
-
-					trace('Went to options');
+					PlayState.instance.cpuControlled = !PlayState.instance.cpuControlled;
+					PlayState.changedDifficulty = true;
+					PlayState.instance.botplayTxt.visible = PlayState.instance.cpuControlled;
+					PlayState.instance.botplayTxt.alpha = 1;
+					PlayState.instance.botplaySine = 0;
 				case "Exit to menu":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
@@ -217,7 +189,6 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
 
-					trace('Went to menu');
 				case 'BACK':
 					menuItems = menuItemsOG;
 					regenMenu();

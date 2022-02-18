@@ -6,7 +6,7 @@ import Discord.DiscordClient;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
-import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.FlxTransitionableState; // appearently its visual studio code
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxGroup;
@@ -237,26 +237,7 @@ class StoryMenuState extends MusicBeatState
 			if(FlxG.keys.justPressed.CONTROL)
 			{
 				persistentUpdate = false;
-				
-				var NoCheating:FlxSprite;
-					
-				NoCheating = new FlxSprite(0, 0).loadGraphic(Paths.getPath('images/nocheating.png', IMAGE));
-				NoCheating.setGraphicSize(0, FlxG.height);
-				NoCheating.updateHitbox();
-				NoCheating.antialiasing = ClientPrefs.globalAntialiasing;
-				add(NoCheating);
-				NoCheating.scrollFactor.set();
-				NoCheating.screenCenter();
-
-				if (controls.BACK) {
-					remove(NoCheating);
-				}
-
-				if (controls.ACCEPT) {
-					remove(NoCheating);
-				}
-
-				trace('NO CHEATING');
+				openSubState(new GameplayChangersSubstate());
 			}
 			else if(controls.RESET)
 			{
@@ -267,8 +248,6 @@ class StoryMenuState extends MusicBeatState
 			else if (controls.ACCEPT)
 			{
 				selectWeek();
-
-				trace('Selected a week');
 			}
 		}
 

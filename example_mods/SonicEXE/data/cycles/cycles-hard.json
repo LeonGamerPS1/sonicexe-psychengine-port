@@ -4103,6 +4103,7 @@
 		"stage": "stageX",
 		"needsVoices": true,
 		"noteStyle": null,
+		"mania": 3,
 		"bpm": 156,
 		"speed": 3.2
 	}
