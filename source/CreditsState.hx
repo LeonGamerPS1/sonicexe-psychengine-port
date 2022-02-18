@@ -80,8 +80,11 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+			['Sonic.exe Psych Port'],
+			['Junior', 			'unknown',			'Creator of the port', 						'https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg', 		'444444'],
+			[''],
 			['Psych Engine Extra Keys'],
-			['tposejank', 			'unknown',			'Main programmer of ~~the keys~~', 						'https://twitter.com/tpose_jank', 		'000000'],
+			['tposejank', 			'unknown',			'Main programmer of ~~the keys~~', 						'https://twitter.com/tpose_jank', 		'444444'],
 			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',						'https://twitter.com/Shadow_Mario_',	'444444'],
