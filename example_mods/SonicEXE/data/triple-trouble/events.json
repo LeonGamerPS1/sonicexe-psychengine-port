@@ -1,7 +1,7 @@
 {
 	"song": {
 		"speed": 3.2,
-		"stage": "trioStage",
+		"stage": "sonicp3stage",
 		"player1": "bf",
 		"player2": "tails",
 		"player3": null,
@@ -69,62 +69,17 @@
 				]
 			],
 			[
-				296380.590856577,
+				406621.554711998,
 				[
 					[
-						"Play Animation",
+						"Change Character",
 						"dad",
-						"SingUP"
-					]
-				]
-			],
-			[
-				296561.313748144,
-				[
+						"sonic-p3"
+					],
 					[
-						"Play Animation",
-						"dad",
-						"SingUP"
-					]
-				]
-			],
-			[
-				307946.855916818,
-				[
-					[
-						"Play Animation",
-						"dad",
-						"SingUP"
-					]
-				]
-			],
-			[
-				308127.578808384,
-				[
-					[
-						"Play Animation",
-						"dad",
-						"SingUP"
-					]
-				]
-			],
-			[
-				400476.976398745,
-				[
-					[
-						"Play Animation",
-						"dad",
-						"SingUP"
-					]
-				]
-			],
-			[
-				400657.699290311,
-				[
-					[
-						"Play Animation",
-						"dad",
-						"SingUP"
+						"Change Character",
+						"bf",
+						"bf-p3-flipped"
 					]
 				]
 			]
