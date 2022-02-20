@@ -683,8 +683,20 @@ class PlayState extends MusicBeatState
 					bg.scale.set(6, 6);
 					bg.antialiasing = false;
 					add(bg);
-				}				
-	}
+				}	
+			case 'sunkStage':
+				var bg:BGSprite = new BGSprite('SunkBG', -670, -260, 0.91, 0.91);
+				bg.setGraphicSize(Std.int(bg.width * 0.8));
+				bg.antialiasing = true;
+				bg.updateHitbox();
+				add(bg);
+			case 'sanicStage':
+				var bg:BGSprite = new BGSprite('sanicbg', -370, -130, 0.91, 0.91);
+				bg.setGraphicSize(Std.int(bg.width * 1.2));
+				bg.antialiasing = true;
+				bg.updateHitbox();
+                add(bg);
+}
 
 		if(isPixelStage) {
 			introSoundsSuffix = '-pixel';

@@ -1,0 +1,60 @@
+{
+	"song": {
+		"speed": 2.7,
+		"stage": "sunkStage",
+		"player1": "bf",
+		"player2": "sunky",
+		"player3": null,
+		"events": [
+			[
+				43306.4516129032,
+				[
+					[
+						"Change Character",
+						"dad",
+						"nothing"
+					]
+				]
+			],
+			[
+				43870.9677419355,
+				[
+					[
+						"Change Character",
+						"dad",
+						"sunky"
+					]
+				]
+			],
+			[
+				183306.451612903,
+				[
+					[
+						"Change Character",
+						"dad",
+						"nothing"
+					]
+				]
+			],
+			[
+				183951.612903226,
+				[
+					[
+						"Change Character",
+						"dad",
+						"sunky"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "nothing",
+		"bpm": 186,
+		"mania": 3,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "milk"
+	}
+}

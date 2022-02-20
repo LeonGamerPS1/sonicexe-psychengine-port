@@ -1,173 +1,173 @@
 {
 	"animations": [
 		{
+			"loop": true,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "idle-loop",
+			"fps": 24,
+			"name": "Dad idle dance",
 			"indices": [
 				10,
 				11,
 				12,
 				12
-			],
-			"name": "Dad idle dance"
+			]
 		},
 		{
+			"loop": true,
 			"offsets": [
 				-9,
 				10
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "singLEFT-loop",
+			"fps": 24,
+			"name": "Dad Sing Note LEFT",
 			"indices": [
 				12,
 				13,
 				14,
 				15
-			],
-			"name": "Dad Sing Note LEFT"
+			]
 		},
 		{
+			"loop": true,
 			"offsets": [
 				0,
 				27
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "singRIGHT-loop",
+			"fps": 24,
+			"name": "Dad Sing Note RIGHT",
 			"indices": [
 				15,
 				16,
 				17,
 				18
-			],
-			"name": "Dad Sing Note RIGHT"
+			]
 		},
 		{
+			"loop": true,
 			"offsets": [
 				-6,
 				50
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "singUP-loop",
+			"fps": 24,
+			"name": "Dad Sing Note UP",
 			"indices": [
 				56,
 				57,
 				58,
 				59
-			],
-			"name": "Dad Sing Note UP"
+			]
 		},
 		{
-			"loop": false,
 			"offsets": [
 				140,
 				-100
 			],
-			"anim": "hey",
+			"loop": false,
 			"fps": 24,
-			"name": "WhatYouKnowAboutRollingDownInTheDeep",
-			"indices": []
+			"anim": "hey",
+			"indices": [],
+			"name": "WhatYouKnowAboutRollingDownInTheDeep"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				40,
 				0
 			],
-			"anim": "singDOWN-alt",
+			"loop": false,
 			"fps": 24,
-			"name": "SONIClaugh",
-			"indices": []
+			"anim": "singDOWN-alt",
+			"indices": [],
+			"name": "SONIClaugh"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				69,
 				0
 			],
-			"anim": "iamgod",
+			"loop": false,
 			"fps": 24,
-			"name": "sonicImmagetya",
-			"indices": []
+			"anim": "iamgod",
+			"indices": [],
+			"name": "sonicImmagetya"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "idle",
+			"loop": false,
 			"fps": 24,
-			"name": "Beast_IDLE0",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "Beast_IDLE0"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				246,
 				-90
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "Beast_LEFT",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Beast_LEFT"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				418,
+				393,
 				-60
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "Beast_RIGHT",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Beast_RIGHT"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				82,
 				-92
 			],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "Beast_DOWN",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Beast_DOWN"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				70,
 				78
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "Beast_UP",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "Beast_UP"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				110,
 				-220
 			],
-			"anim": "singLAUGH",
+			"loop": false,
 			"fps": 24,
-			"name": "Beast_LAUGH",
-			"indices": []
+			"anim": "singLAUGH",
+			"indices": [],
+			"name": "Beast_LAUGH"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/Beast",
 	"position": [
-		750,
+		800,
 		150
 	],
 	"healthicon": "sonicp3",

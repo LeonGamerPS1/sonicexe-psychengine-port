@@ -1,7 +1,9 @@
 {
 	"songs": [
 		["endless", "sonicfun", [26, 113, 253]],
-		["cycles", "sonicx", [26, 113, 253]]
+		["cycles", "sonicx", [26, 113, 253]],
+		["milk", "sunky", [26, 113, 253]],
+		["too-fest", "sanic", [26, 113, 253]]
 
 	],
 	"hideFreeplay": false,
