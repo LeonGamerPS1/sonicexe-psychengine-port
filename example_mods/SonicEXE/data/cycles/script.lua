@@ -1,12 +1,17 @@
+function onCreate()
+    --shit
+
+    print('cycles/script.lua: Precached shit!!!!!')
+end
+
 local xx = 500;
-local yy = 535;
-local xx2 = 1050;
-local yy2 = 535;
-local ofs = 30;
+local yy = 745;
+local xx2 = 925;
+local yy2 = 780;
+local ofs = 50;
 local followchars = true;
 local del = 0;
 local del2 = 0;
-
 
 function onUpdate()
 	if del > 0 then
@@ -40,12 +45,6 @@ function onUpdate()
             end
             if getProperty('dad.animation.curAnim.name') == 'singDOWN-alt' then
                 triggerEvent('Camera Follow Pos',xx,yy+ofs)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'iamgod' then
-              triggerEvent('Camera Follow Pos',xx,yy)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'singLAUGH' then
-              triggerEvent('Camera Follow Pos',xx,yy)
             end
             if getProperty('dad.animation.curAnim.name') == 'idle-alt' then
                 triggerEvent('Camera Follow Pos',xx,yy)
