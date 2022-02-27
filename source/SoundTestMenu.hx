@@ -358,6 +358,8 @@ class SoundTestMenu extends MusicBeatState
 						soundtesttext.setFormat("Sonic CD Menu Font Regular", 25, FlxColor.fromRGB(0, 163, 255));
 						soundtesttext.setBorderStyle(SHADOW, FlxColor.BLACK, 4, 1);
 						add(soundtesttext);
+
+						trace('No Cutscene For You :(');
 					#end
 					incameo = true;
 				});
@@ -391,6 +393,8 @@ class SoundTestMenu extends MusicBeatState
 						soundtesttext.setFormat("Sonic CD Menu Font Regular", 25, FlxColor.fromRGB(0, 163, 255));
 						soundtesttext.setBorderStyle(SHADOW, FlxColor.BLACK, 4, 1);
 						add(soundtesttext);
+
+						trace('No Cutscene For You :(');
 					#end
 					incameo = true;
 				});

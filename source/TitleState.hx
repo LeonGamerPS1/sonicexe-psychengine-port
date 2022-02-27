@@ -74,10 +74,6 @@ class TitleState extends MusicBeatState
 	var mustUpdate:Bool = false;
 	
 	var titleJSON:TitleData;
-
-	#if windows
-	    var video:MP4Handler = new MP4Handler();
-	#end
 	
 	public static var updateVersion:String = '';
 
@@ -659,6 +655,8 @@ class TitleState extends MusicBeatState
 			skippedIntro = true;
 
 			#if windows
+			    var video:MP4Handler = new MP4Handler();
+
 			    video.playMP4(Paths.video('bothCreditsAndIntro'));
 			#end
 		}
