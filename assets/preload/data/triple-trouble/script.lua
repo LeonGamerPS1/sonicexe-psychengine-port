@@ -123,11 +123,11 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
         print('triple-trouble/script.lua: Static change thing')
     end
 
-    noteTweenX('NoteMove1', 0, 100, 0.001, cubeInOut)
-    noteTweenX('NoteMove2', 1, 200, 0.001, cubeInOut)
-    noteTweenX('NoteMove3', 2, -768, 0.001, cubeInOut)
-    noteTweenX('NoteMove4', 3, 300, 0.001, cubeInOut)
-    noteTweenX('NoteMove5', 4, 400, 0.001, cubeInOut)
+    noteTweenX('NoteMove1', 0, 100, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove2', 1, 200, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove3', 2, -768, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove4', 3, 300, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove5', 4, 400, 0.000000001, cubeInOut)
 
     setObjectCamera('static', 'camHUD')
 
@@ -279,16 +279,16 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
             print('triple-trouble/script.lua: Static change thing')
         end
         
-        noteTweenX('NoteMove1', 0, 100, 0.001, cubeInOut)
-        noteTweenX('NoteMove2', 1, 200, 0.001, cubeInOut)
+        noteTweenX('NoteMove1', 0, 100, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove2', 1, 200, 0.000000001, cubeInOut)
         noteTweenX('NoteMove3', 2, -841, 0.3, cubeInOut) --hello if u are reading, this is the middle note for the opponent so uh pretty useless
-        noteTweenX('NoteMove4', 3, 300, 0.001, cubeInOut)
-        noteTweenX('NoteMove5', 4, 400, 0.001, cubeInOut)
-        noteTweenX('NoteMove6', 5, 710, 0.001, cubeInOut)
-        noteTweenX('NoteMove7', 6, 810, 0.001, cubeInOut)
-        noteTweenX('NoteMove8', 7, 910, 0.001, cubeInOut)
-        noteTweenX('NoteMove9', 8, 1010, 0.001, cubeInOut)
-        noteTweenX('NoteMove10', 9, 1110, 0.001, cubeInOut)
+        noteTweenX('NoteMove4', 3, 300, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove5', 4, 400, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove6', 5, 710, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove7', 6, 810, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove8', 7, 910, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove9', 8, 1010, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove10', 9, 1110, 0.000000001, cubeInOut)
     
         setObjectCamera('static', 'camHUD')
       

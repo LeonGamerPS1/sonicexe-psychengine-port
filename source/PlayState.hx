@@ -687,15 +687,21 @@ class PlayState extends MusicBeatState
 			case 'sunkStage':
 				var bg:BGSprite = new BGSprite('SunkBG', -670, -260, 0.91, 0.91);
 				bg.setGraphicSize(Std.int(bg.width * 0.8));
-				bg.antialiasing = true;
 				bg.updateHitbox();
+				bg.antialiasing = true;
 				add(bg);
 			case 'sanicStage':
 				var bg:BGSprite = new BGSprite('sanicbg', -370, -130, 0.91, 0.91);
 				bg.setGraphicSize(Std.int(bg.width * 1.2));
-				bg.antialiasing = true;
 				bg.updateHitbox();
+				bg.antialiasing = true;
                 add(bg);
+			case 'TDStage':
+				var bgspec:BGSprite = new BGSprite('TailsBG', -370, -130, 0.91, 0.91);
+				bgspec.setGraphicSize(Std.int(bgspec.width * 1.2));
+				bgspec.updateHitbox();
+				bgspec.antialiasing = true;
+				add(bgspec);
 }
 
 		if(isPixelStage) {
@@ -882,6 +888,15 @@ class PlayState extends MusicBeatState
 		timeTxt.visible = showTime;
 		if(ClientPrefs.downScroll) timeTxt.y = FlxG.height - 44;
 
+		if (ClientPrefs.sonicExeShaders)
+		{
+			var funny:shaders.SonicExe;
+			funny = new shaders.SonicExe();
+
+			camGame.setFilters([new ShaderFilter(funny)]);
+			camHUD.setFilters([new ShaderFilter(funny)]);
+		}
+
 		if(ClientPrefs.timeBarType == 'Song Name')
 		{
 			timeTxt.text = SONG.song;
@@ -1037,7 +1052,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
-		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
+		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "CHEATING :)", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
@@ -1156,6 +1171,8 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
+				case 'sunshine':			
+                    //fart
 				default:
 					startCountdown();
 			}
@@ -1165,10 +1182,14 @@ class PlayState extends MusicBeatState
 		}
 		RecalculateRating();
 
-		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
+		//PRECACHING SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
 		CoolUtil.precacheSound('missnote1');
 		CoolUtil.precacheSound('missnote2');
 		CoolUtil.precacheSound('missnote3');
+		CoolUtil.precacheSound('datOneSound');
+		CoolUtil.precacheSound('sppok');
+		CoolUtil.precacheSound('simplejumpsound');
+		CoolUtil.precacheSound('hitStatic1');
 		CoolUtil.precacheMusic('breakfast');
 
 		#if desktop

@@ -63,6 +63,8 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
 
+	var menubg:BGSprite;
+
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
@@ -72,6 +74,7 @@ class TitleState extends MusicBeatState
 	var lastKeysPressed:Array<FlxKey> = [];
 
 	var mustUpdate:Bool = false;
+	var code:Int = 0;
 	
 	var titleJSON:TitleData;
 	
@@ -260,41 +263,45 @@ class TitleState extends MusicBeatState
 		}else{
 			bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		}
-		
-		// bg.antialiasing = ClientPrefs.globalAntialiasing;
-		// bg.setGraphicSize(Std.int(bg.width * 0.6));
-		// bg.updateHitbox();
-		
-		
-		
-		
-		add(bg);
 
 		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
-		
+
+		menubg = new BGSprite('NewTitleMenuBG', 0, 0);
+		menubg.animation.addByPrefix('idle', "TitleMenuSSBG instance 1", 24);
+		menubg.animation.play('idle');
+		menubg.alpha = .75;
+		menubg.scale.x = 0.6;
+		menubg.scale.y = 0.6;
+		menubg.antialiasing = true;
+		menubg.updateHitbox();
+		menubg.screenCenter();
+		add(menubg);
 		
 		#if (desktop && MODS_ALLOWED)
-		var path = "mods/" + Paths.currentModDirectory + "/images/logoBumpin.png";
+		var path = "mods/" + Paths.currentModDirectory + "/images/KadeEngineLogoBumpin.png";
 		//trace(path, FileSystem.exists(path));
 		if (!FileSystem.exists(path)){
-			path = "mods/images/logoBumpin.png";
+			path = "mods/images/KadeEngineLogoBumpin.png";
 		}
 		//trace(path, FileSystem.exists(path));
 		if (!FileSystem.exists(path)){
-			path = "assets/images/logoBumpin.png";
+			path = "assets/images/KadeEngineLogoBumpin.png";
 		}
 		//trace(path, FileSystem.exists(path));
 		logoBl.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
 		#else
 		
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl.frames = Paths.getSparrowAtlas('KadeEngineLogoBumpin');
 		#end
 		
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
+		logoBl.scale.x = 0.7;
+		logoBl.scale.y = 0.7;
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
-		// logoBl.screenCenter();
+		logoBl.screenCenter(X);
+		logoBl.screenCenter(Y);
 		// logoBl.color = FlxColor.BLACK;
 
 		swagShader = new ColorSwap();
@@ -327,26 +334,28 @@ class TitleState extends MusicBeatState
 
 		titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
 		#if (desktop && MODS_ALLOWED)
-		var path = "mods/" + Paths.currentModDirectory + "/images/titleEnter.png";
+		var path = "mods/" + Paths.currentModDirectory + "/images/titleEnterNEW.png";
 		//trace(path, FileSystem.exists(path));
 		if (!FileSystem.exists(path)){
-			path = "mods/images/titleEnter.png";
+			path = "mods/images/titleEnterNEW.png";
 		}
 		//trace(path, FileSystem.exists(path));
 		if (!FileSystem.exists(path)){
-			path = "assets/images/titleEnter.png";
+			path = "assets/images/titleEnterNEW.png";
 		}
 		//trace(path, FileSystem.exists(path));
 		titleText.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
 		#else
 		
-		titleText.frames = Paths.getSparrowAtlas('titleEnter');
 		#end
-		titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
-		titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
+		titleText = new FlxSprite(0, 0);
+		titleText.frames = Paths.getSparrowAtlas('titleEnterNEW');
+		titleText.animation.addByPrefix('idle', "Press Enter to Begin instance 1", 24);
+		titleText.animation.addByPrefix('press', "ENTER PRESSED instance 1", 24);
 		titleText.antialiasing = ClientPrefs.globalAntialiasing;
 		titleText.animation.play('idle');
 		titleText.updateHitbox();
+		titleText.screenCenter(X);
 		// titleText.screenCenter(X);
 		add(titleText);
 
@@ -440,6 +449,30 @@ class TitleState extends MusicBeatState
 
 		// EASTER EGG
 
+		if (FlxG.keys.justPressed.UP)
+			if (code == 0)
+				code = 1;
+			else
+				code == 0;
+
+		if (FlxG.keys.justPressed.DOWN)
+			if (code == 1)
+				code = 2;
+			else
+				code == 0;
+
+		if (FlxG.keys.justPressed.LEFT)
+			if (code == 2)
+				code = 3;
+			else
+				code == 0;
+
+		if (FlxG.keys.justPressed.RIGHT)
+			if (code == 3)
+				code = 4;
+			else
+				code == 0;
+
 		if (!transitioning && skippedIntro)
 		{
 			if(pressedEnter)
@@ -447,12 +480,14 @@ class TitleState extends MusicBeatState
 				if(titleText != null) titleText.animation.play('press');
 
 				FlxG.camera.flash(FlxColor.WHITE, 1);
-				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+				FlxG.sound.play(Paths.sound('menumomentclick'));
+				FlxG.sound.play(Paths.sound('menulaugh'));
 
 				transitioning = true;
 				// FlxG.sound.music.stop();
 
-				new FlxTimer().start(1, function(tmr:FlxTimer)
+				//if Sunky();
+				new FlxTimer().start(1.5, function(tmr:FlxTimer)
 				{
 					if (mustUpdate) {
 						MusicBeatState.switchState(new OutdatedState());
@@ -463,49 +498,23 @@ class TitleState extends MusicBeatState
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 			}
-			else if(easterEggEnabled)
+			/*
+			else if(!transitioning && skippedIntro && code != 4)
 			{
-				var finalKey:FlxKey = FlxG.keys.firstJustPressed();
-				if(finalKey != FlxKey.NONE) {
-					lastKeysPressed.push(finalKey); //Convert int to FlxKey
-					if(lastKeysPressed.length > easterEggKeyCombination.length)
+				    PlayState.SONG = Song.loadFromJson('milk', 'milk');
+				    PlayState.isStoryMode = false;
+				    PlayState.storyDifficulty = 1;
+				    PlayState.storyWeek = 1;
+				    FlxG.camera.fade(FlxColor.WHITE, 0.5, false);
+				    FlxG.sound.play(Paths.sound('confirmMenu'));
+				    FlxTransitionableState.skipNextTransIn = true;
+				    FlxTransitionableState.skipNextTransOut = true;
+				    new FlxTimer().start(1.5, function(tmr:FlxTimer)
 					{
-						lastKeysPressed.shift();
-					}
-					
-					if(lastKeysPressed.length == easterEggKeyCombination.length)
-					{
-						var isDifferent:Bool = false;
-						for (i in 0...lastKeysPressed.length) {
-							if(lastKeysPressed[i] != easterEggKeyCombination[i]) {
-								isDifferent = true;
-								break;
-							}
-						}
-
-						/*if(!isDifferent) {
-							trace('Easter egg triggered!');
-							FlxG.save.data.psykaEasterEgg = !FlxG.save.data.psykaEasterEgg;
-							FlxG.sound.play(Paths.sound('secretSound'));
-
-							var black:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-							black.alpha = 0;
-							add(black);
-
-							FlxTween.tween(black, {alpha: 1}, 1, {onComplete:
-								function(twn:FlxTween) {
-									FlxTransitionableState.skipNextTransIn = true;
-									FlxTransitionableState.skipNextTransOut = true;
-									MusicBeatState.switchState(new TitleState());
-								}
-							});
-							lastKeysPressed = [];
-							closedState = true;
-							transitioning = true;
-						}*/
-					}
-				}
+						LoadingState.loadAndSwitchState(new PlayState());
+					});
 			}
+			*/
 		}
 
 		if (pressedEnter && !skippedIntro)
@@ -556,6 +565,13 @@ class TitleState extends MusicBeatState
 		}
 	}
 
+	function Sunky()
+	{
+		FlxG.keys.justPressed.LEFT;
+		FlxG.keys.justPressed.UP;
+		FlxG.keys.justPressed.DOWN;
+		FlxG.keys.justPressed.RIGHT;
+	}
 	private var sickBeats:Int = 0; //Basically curBeat but won't be skipped if you hold the tab or resize the screen
 	public static var closedState:Bool = false;
 	override function beatHit()
@@ -574,6 +590,7 @@ class TitleState extends MusicBeatState
 				gfDance.animation.play('danceLeft');
 		}
 
+		
 		if(!closedState) {
 			sickBeats++;
 			switch (sickBeats)
@@ -653,12 +670,6 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;
-
-			#if windows
-			    var video:MP4Handler = new MP4Handler();
-
-			    video.playMP4(Paths.video('bothCreditsAndIntro'));
-			#end
 		}
 	}
 }

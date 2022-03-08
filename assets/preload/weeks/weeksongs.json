@@ -1,0 +1,27 @@
+{
+	"songs": [
+		["endless", "sonicfun", [26, 113, 253]],
+		["cycles", "sonicx", [26, 113, 253]],
+		["milk", "sunky", [26, 113, 253]],
+		["too-fest", "sanic", [26, 113, 253]]
+
+	],
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "Hard",
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"storyName": "Extra Songs",
+	"weekName": "Extra Songs",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": true,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}

@@ -19,6 +19,9 @@ class ClientPrefs {
 	public static var Cutscenes:Bool = false;
 	#end
 	public static var Jumpscare:Bool = true;
+	#if desktop
+	public static var sonicExeShaders:Bool = false;
+	#end
 	public static var Popups:Bool = true;
 	public static var StageSwap:Bool = true;
 	public static var lowQuality:Bool = false;
@@ -203,6 +206,7 @@ class ClientPrefs {
 		FlxG.save.data.gameplaySettings = gameplaySettings;
 		FlxG.save.data.inputSystem = inputSystem;
 		FlxG.save.data.controllerMode = controllerMode;
+		FlxG.save.data.sonicExeShaders = sonicExeShaders;
 	
 		FlxG.save.flush();
 
@@ -217,6 +221,11 @@ class ClientPrefs {
 		if(FlxG.save.data.downScroll != null) {
 			downScroll = FlxG.save.data.downScroll;
 		}
+
+		if (FlxG.save.data.sonicExeShaders != null) {
+			sonicExeShaders = FlxG.save.data.sonicExeShaders;
+		}
+
 		if(FlxG.save.data.middleScroll != null) {
 			middleScroll = FlxG.save.data.middleScroll;
 		}

@@ -34,6 +34,11 @@ class EXESubState extends BaseOptionsMenu
 		title = 'EXE Settings';
 		rpcTitle = 'EXE Settings Menu'; //for Discord Rich Presence
 
+		function onChangeShaders()
+		{
+			trace('Shaders are ' + ClientPrefs.sonicExeShaders);
+		}
+
 		var option:Option = new Option('Cutscenes', //Name
 		    'If checked, enables Cutscenes in EXE Songs,\nMac/Linux/Window32bit users need to have this off or game will crash.', //Description
 		    'Cutscenes', //Save data variable name
@@ -54,6 +59,16 @@ class EXESubState extends BaseOptionsMenu
 		    'bool', //Variable type
 		    true); //Default value
 	    addOption(option);
+
+		#if desktop
+		var option:Option = new Option('Sunshine Shaders', 
+		    'If checked, there will be sunshine shaders in every song',
+			'sonicExeShaders',
+			'bool',
+			false);
+		option.onChange = onChangeShaders;
+		addOption(option);
+		#end
 
 		var option:Option = new Option('StageSwap', //Name
 		    'If checked, enables stage swapping in "You cant run",\nimproves performance.', //Description

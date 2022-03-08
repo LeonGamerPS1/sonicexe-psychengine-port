@@ -220,7 +220,6 @@ class SoundTestMenu extends MusicBeatState
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
 				flashyWashy(true);
-				if (!FlxG.save.data.songArray.contains('sunshine') && !FlxG.save.data.botplay) FlxG.save.data.songArray.push('sunshine');
 				new FlxTimer().start(2, function(tmr:FlxTimer)
 				{
 					LoadingState.loadAndSwitchState(new PlayState());
@@ -331,9 +330,6 @@ class SoundTestMenu extends MusicBeatState
 			}
 		else if (first == 23 && second == 23) 
 			{
-				#if windows
-				var video:MP4Handler = new MP4Handler();
-				#end
 				woahmanstopspammin = false;
 				flashyWashy(true);
 				new FlxTimer().start(2, function(tmr:FlxTimer)
@@ -345,7 +341,7 @@ class SoundTestMenu extends MusicBeatState
 				new FlxTimer().start(2.1, function(tmr:FlxTimer)
 				{
 					#if windows
-                	    video.playMP4(Paths.video('Keel'));
+					    //new FlxVideo(Paths.video('Keel'));
 					#else
 					    cameoImg.visible = true;
 					    cameoImg.loadGraphic(Paths.image('cameostuff/Bitches'));
@@ -366,9 +362,6 @@ class SoundTestMenu extends MusicBeatState
 			}
 		else if (first == 12 && second == 34) 
 			{
-				#if windows
-				var video:MP4Handler = new MP4Handler();
-				#end
 				woahmanstopspammin = false;
 				flashyWashy(true);
 				new FlxTimer().start(2, function(tmr:FlxTimer)
@@ -380,7 +373,7 @@ class SoundTestMenu extends MusicBeatState
 				new FlxTimer().start(2.1, function(tmr:FlxTimer)
 				{
 					#if windows
-                	    video.playMP4(Paths.video('Milky'));
+					    //new FlxVideo(Paths.video('Milky'));
 					#else
 					    cameoImg.visible = true;
 					    cameoImg.loadGraphic(Paths.image('cameostuff/Bitches'));

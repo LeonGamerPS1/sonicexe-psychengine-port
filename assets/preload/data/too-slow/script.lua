@@ -126,10 +126,8 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     scaleObject('daSTAT', 2, 2);
 
     if Popups then
-        playSound('simplejumpsound', 1);
-    end
+    playSound('simplejumpsound', 1);
 
-    if Popups then
 		addLuaSprite('daSTAT', true);
 
 		print('too-slow/script.lua: DA STAT!!!!')
