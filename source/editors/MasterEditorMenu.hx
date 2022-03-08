@@ -21,6 +21,7 @@ using StringTools;
 class MasterEditorMenu extends MusicBeatState
 {
 	var options:Array<String> = [
+		'Freeplay Menu',
 		'Week Editor',
 		'Menu Character Editor',
 		'Dialogue Editor',
@@ -113,6 +114,8 @@ class MasterEditorMenu extends MusicBeatState
 		if (controls.ACCEPT)
 		{
 			switch(options[curSelected]) {
+				case 'Freeplay Menu':
+					MusicBeatState.switchState(new FreeplayState());
 				case 'Character Editor':
 					LoadingState.loadAndSwitchState(new CharacterEditorState(Character.DEFAULT_CHARACTER, false));
 				case 'Week Editor':

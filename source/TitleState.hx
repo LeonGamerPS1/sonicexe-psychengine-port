@@ -7,6 +7,7 @@ import sys.thread.Thread;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.graphics.FlxGraphic;
 import flixel.input.keyboard.FlxKey;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
@@ -207,7 +208,7 @@ class TitleState extends MusicBeatState
 				DiscordClient.shutdown();
 			});
 			#end
-			new FlxTimer().start(1, function(tmr:FlxTimer)
+			new FlxTimer().start(0.1, function(tmr:FlxTimer)
 			{
 				startIntro();
 			});
@@ -225,7 +226,7 @@ class TitleState extends MusicBeatState
 	{
 		if (!initialized)
 		{
-			/*var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
+			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
 			diamond.persist = true;
 			diamond.destroyOnNoUse = false;
 
@@ -235,7 +236,7 @@ class TitleState extends MusicBeatState
 				{asset: diamond, width: 32, height: 32}, new FlxRect(-300, -300, FlxG.width * 1.8, FlxG.height * 1.8));
 				
 			transIn = FlxTransitionableState.defaultTransIn;
-			transOut = FlxTransitionableState.defaultTransOut;*/
+			transOut = FlxTransitionableState.defaultTransOut;
 
 			// HAD TO MODIFY SOME BACKEND SHIT
 			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
@@ -245,12 +246,9 @@ class TitleState extends MusicBeatState
 			// music.loadStream(Paths.music('freakyMenu'));
 			// FlxG.sound.list.add(music);
 			// music.play();
+			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 
-			if(FlxG.sound.music == null) {
-				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-
-				FlxG.sound.music.fadeIn(4, 0, 0.7);
-			}
+			FlxG.sound.music.fadeIn(5, 0, 0.7);
 		}
 
 		Conductor.changeBPM(titleJSON.bpm);
@@ -268,11 +266,11 @@ class TitleState extends MusicBeatState
 
 		menubg = new BGSprite('NewTitleMenuBG', 0, 0);
 		menubg.animation.addByPrefix('idle', "TitleMenuSSBG instance 1", 24);
-		menubg.animation.play('idle');
 		menubg.alpha = .75;
-		menubg.scale.x = 0.6;
-		menubg.scale.y = 0.6;
+		menubg.scale.x = 0.3;
+		menubg.scale.y = 0.3;
 		menubg.antialiasing = true;
+		menubg.animation.play('idle');
 		menubg.updateHitbox();
 		menubg.screenCenter();
 		add(menubg);
@@ -418,6 +416,23 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		/*
+		if (FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.UP || FlxG.keys.justPressed.DOWN)
+		{
+			PlayState.SONG = Song.loadFromJson('milk', 'milk');
+			PlayState.isStoryMode = false;
+			PlayState.storyDifficulty = 1;
+			PlayState.storyWeek = 1;
+			FlxG.camera.fade(FlxColor.WHITE, 0.5, false);
+			FlxG.sound.play(Paths.sound('confirmMenu'));
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
+			new FlxTimer().start(1.5, function(tmr:FlxTimer)
+			{
+				LoadingState.loadAndSwitchState(new PlayState());
+			});
+		}
+		*/
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);

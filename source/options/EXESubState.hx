@@ -60,7 +60,6 @@ class EXESubState extends BaseOptionsMenu
 		    true); //Default value
 	    addOption(option);
 
-		#if desktop
 		var option:Option = new Option('Sunshine Shaders', 
 		    'If checked, there will be sunshine shaders in every song',
 			'sonicExeShaders',
@@ -68,7 +67,6 @@ class EXESubState extends BaseOptionsMenu
 			false);
 		option.onChange = onChangeShaders;
 		addOption(option);
-		#end
 
 		var option:Option = new Option('StageSwap', //Name
 		    'If checked, enables stage swapping in "You cant run",\nimproves performance.', //Description

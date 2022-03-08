@@ -3449,13 +3449,15 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				trace('WENT BACK TO FREEPLAY??');
+				//trace('WENT BACK TO FREEPLAY??');
+				trace('Back to soundtest');
 				cancelMusicFadeTween();
 				if(FlxTransitionableState.skipNextTransIn) {
 					CustomFadeTransition.nextCamera = null;
 				}
-				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				//MusicBeatState.switchState(new FreeplayState());
+				MusicBeatState.switchState(new SoundTestMenu());
+				//FlxG.sound.playMusic(Paths.music('freakyMenu'));
 				changedDifficulty = false;
 			}
 			transitioning = true;

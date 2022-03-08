@@ -3,7 +3,7 @@ import openfl.net.NetConnection;
 import openfl.net.NetStream;
 import openfl.events.NetStatusEvent;
 import openfl.media.Video;
-#else
+#elseif windows
 import openfl.events.Event;
 import vlc.VlcBitmap;
 #end

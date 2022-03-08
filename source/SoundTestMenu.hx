@@ -3,6 +3,7 @@ package;
 #if desktop
 import Discord.DiscordClient;
 #end
+import FlxVideo;
 import flixel.FlxState;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxTimer;
@@ -328,6 +329,7 @@ class SoundTestMenu extends MusicBeatState
 					incameo = true;
 				});
 			}
+		/*
 		else if (first == 23 && second == 23) 
 			{
 				woahmanstopspammin = false;
@@ -340,8 +342,8 @@ class SoundTestMenu extends MusicBeatState
 				});
 				new FlxTimer().start(2.1, function(tmr:FlxTimer)
 				{
-					#if windows
-					    //new FlxVideo(Paths.video('Keel'));
+					#if desktop
+					    new FlxVideo(Paths.video('Keel'));
 					#else
 					    cameoImg.visible = true;
 					    cameoImg.loadGraphic(Paths.image('cameostuff/Bitches'));
@@ -372,8 +374,8 @@ class SoundTestMenu extends MusicBeatState
 				});
 				new FlxTimer().start(2.1, function(tmr:FlxTimer)
 				{
-					#if windows
-					    //new FlxVideo(Paths.video('Milky'));
+					#if desktop
+					    new FlxVideo(Paths.video('Keel'));
 					#else
 					    cameoImg.visible = true;
 					    cameoImg.loadGraphic(Paths.image('cameostuff/Bitches'));
@@ -392,6 +394,7 @@ class SoundTestMenu extends MusicBeatState
 					incameo = true;
 				});
 			}
+		*/
 		else if (first == 32 && second == 8) 
 		{
 			woahmanstopspammin = false;
