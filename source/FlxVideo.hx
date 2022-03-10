@@ -14,7 +14,7 @@ class FlxVideo extends FlxBasic {
 	#if VIDEOS_ALLOWED
 	public var finishCallback:Void->Void = null;
 	
-	#if desktop
+	#if windows
 	public static var vlcBitmap:VlcBitmap;
 	#end
 

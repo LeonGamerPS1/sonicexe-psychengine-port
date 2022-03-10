@@ -64,14 +64,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		addOption(option); //now shut up before i put you in my basement
 		// PD: i dont have a basement
 
-		var option:Option = new Option('Input System', 
-			"The input system you wish to use.",
-			'inputSystem',
-			'string',
-			"Native",
-			["Native", "Kade Engine"]);
-		addOption(option);
-
 		var option:Option = new Option('Disable Reset Button',
 			"If checked, pressing Reset won't do anything.",
 			'noReset',
@@ -79,16 +71,17 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			false);
 		addOption(option);
 
-		/*var option:Option = new Option('Note Delay',
-			'Changes how late a note is spawned.\nUseful for preventing audio lag from wireless earphones.',
-			'noteOffset',
-			'int',
+		var option:Option = new Option('Hitsound Volume',
+			'Funny notes does \"Tick!\" when you hit them."',
+			'hitsoundVolume',
+			'percent',
 			0);
-		option.displayFormat = '%vms';
-		option.scrollSpeed = 100;
-		option.minValue = 0;
-		option.maxValue = 500;
-		addOption(option);*/
+		addOption(option);
+		option.scrollSpeed = 1.6;
+		option.minValue = 0.0;
+		option.maxValue = 1;
+		option.changeValue = 0.1;
+		option.decimals = 1;
 
 		var option:Option = new Option('Rating Offset',
 			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
@@ -108,8 +101,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			45);
 		option.displayFormat = '%vms';
 		option.scrollSpeed = 15;
-		option.minValue = 5;
-		option.maxValue = 80;
+		option.minValue = 15;
+		option.maxValue = 45;
 		addOption(option);
 
 		var option:Option = new Option('Good Hit Window',
@@ -140,8 +133,8 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			'float',
 			10);
 		option.scrollSpeed = 5;
-		option.minValue = 1;
-		option.maxValue = 20;
+		option.minValue = 2;
+		option.maxValue = 10;
 		option.changeValue = 0.1;
 		addOption(option);
 

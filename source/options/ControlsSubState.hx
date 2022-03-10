@@ -36,13 +36,13 @@ class ControlsSubState extends MusicBeatSubstate {
 
 	var optionShit:Array<Dynamic> = [
 		['NOTES'],
-		[''],
 		['Left', 'note_left'],
 		['Down', 'note_down'],
-		['Center', 'note_five3'],
 		['Up', 'note_up'],
 		['Right', 'note_right'],
-		[''],
+		['Center', 'note_five3'],
+		['Dodge', 'note_five3'],
+        [''],
 		['UI'],
 		['Left', 'ui_left'],
 		['Down', 'ui_down'],
