@@ -1,3 +1,4 @@
-tutorial
-weekexe
+too-slow
+you-cant-run
+triple-trouble
 weeksongs
