@@ -252,6 +252,22 @@ class StoryMenuState extends MusicBeatState
 		rightArrow.animation.play('idle');
 		add(rightArrow);
 
+		leftArrow2 = new FlxSprite(325, 136 + 5);
+		leftArrow2.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets_alt');
+		leftArrow2.setGraphicSize(Std.int(leftArrow2.width * 0.8));
+		leftArrow2.animation.addByPrefix('idle', "arrow left");
+		leftArrow2.animation.addByPrefix('press', "arrow push left");
+		leftArrow2.animation.play('idle');
+		add(leftArrow2);
+
+		rightArrow2 = new FlxSprite(820, 136 + 5);
+		rightArrow2.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets_alt');
+		rightArrow2.setGraphicSize(Std.int(rightArrow2.width * 0.8));
+		rightArrow2.animation.addByPrefix('idle', "arrow right");
+		rightArrow2.animation.addByPrefix('press', "arrow push right");
+		rightArrow2.animation.play('idle');
+		add(rightArrow2);
+
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
 
@@ -307,6 +323,26 @@ class StoryMenuState extends MusicBeatState
 		changeDifficulty();
 
 		super.create();
+	}
+
+	function changeSelec()
+		{
+		selection = !selection;
+	
+		if (selection)
+		{
+			leftArrow.setPosition(345, 145);
+			rightArrow.setPosition(839, 145);
+			leftArrow2.setPosition(550 - 160 - 5, 600 - 2);
+			rightArrow2.setPosition(550 + 230 - 15, 600 - 2);
+		}
+		else
+		{
+			leftArrow2.setPosition(325, 136 + 5);
+			rightArrow2.setPosition(820, 136 + 5);
+			leftArrow.setPosition(550 - 150, 600);
+			rightArrow.setPosition(550 + 230, 600);
+		}
 	}
 
 	function changediff(diff:Int = 1)
