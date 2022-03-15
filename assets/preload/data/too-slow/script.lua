@@ -33,10 +33,10 @@ function onCreate()
 end
 
 local xx = 500;
-local yy = 535;
+local yy = 570;
 local xx2 = 1050;
-local yy2 = 535;
-local ofs = 30;
+local yy2 = 585;
+local ofs = 25;
 local followchars = true;
 local del = 0;
 local del2 = 0;

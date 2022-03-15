@@ -4,7 +4,7 @@
 	],
 	"hideFreeplay": false,
 	"weekBackground": "sonic",
-	"difficulties": "Hard, Encore",
+	"difficulties": "Hard",
 	"weekCharacters": [
 		"dad",
 		"bf",
@@ -18,6 +18,6 @@
 		253
 	],
 	"hideStoryMode": false,
-	"weekBefore": "tutorial",
-	"startUnlocked": true
+	"weekBefore": "you-cant-run",
+	"startUnlocked": false
 }

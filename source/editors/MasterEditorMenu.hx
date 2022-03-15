@@ -22,6 +22,7 @@ class MasterEditorMenu extends MusicBeatState
 {
 	var options:Array<String> = [
 		'Freeplay Menu',
+		'Soundtest Menu',
 		'Week Editor',
 		'Menu Character Editor',
 		'Dialogue Editor',
@@ -116,6 +117,9 @@ class MasterEditorMenu extends MusicBeatState
 			switch(options[curSelected]) {
 				case 'Freeplay Menu':
 					MusicBeatState.switchState(new FreeplayState());
+				case 'Soundtest Menu':
+					MusicBeatState.switchState(new SoundTestMenu());
+				#if debug
 				case 'Character Editor':
 					LoadingState.loadAndSwitchState(new CharacterEditorState(Character.DEFAULT_CHARACTER, false));
 				case 'Week Editor':
@@ -128,6 +132,7 @@ class MasterEditorMenu extends MusicBeatState
 					LoadingState.loadAndSwitchState(new DialogueEditorState(), false);
 				case 'Chart Editor'://felt it would be cool maybe
 					LoadingState.loadAndSwitchState(new ChartingState(), false);
+				#end
 			}
 			FlxG.sound.music.volume = 0;
 			#if PRELOAD_ALL

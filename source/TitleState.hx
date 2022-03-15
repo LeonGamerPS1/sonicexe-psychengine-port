@@ -57,6 +57,9 @@ class TitleState extends MusicBeatState
 
 	public static var initialized:Bool = false;
 
+	#if windows
+	var video:MP4Handler = new MP4Handler();
+	#end
 	var blackScreen:FlxSprite;
 	var credGroup:FlxGroup;
 	var credTextShit:Alphabet;
@@ -733,6 +736,10 @@ class TitleState extends MusicBeatState
 				#end
 			}
 			skippedIntro = true;
+
+			#if windows
+			video.playMP4(Paths.video('bothCreditsAndIntro'));
+		    #end
 		}
 	}
 }
