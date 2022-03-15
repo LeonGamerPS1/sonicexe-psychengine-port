@@ -223,6 +223,13 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
 
+	var p3staticbg:BGSprite; //USE THIS FOR TRIP TRUB
+
+	//STARTING SONG SHIT
+	var blackFuck:FlxSprite;
+	var startCircle:FlxSprite;
+	var startText:FlxSprite;
+
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
@@ -693,7 +700,44 @@ class PlayState extends MusicBeatState
 					bg.scale.set(6, 6);
 					bg.antialiasing = false;
 					add(bg);
-				}		
+				}	
+			case 'sonicp3stage':
+				var sSKY:BGSprite = new BGSprite('Glitch', -621.1, -395.65, 0.9, 0.1);
+				sSKY.scale.set(4.5, 4.5);
+				sSKY.updateHitbox();
+				sSKY.antialiasing = true;
+				add(sSKY);
+
+				var p3staticbg:BGSprite;
+				p3staticbg = new BGSprite('NewTitleMenuBG', 0.0, 0.0, 0.1, 0.1, ['TitleMenuSSBG instance 1']);
+				p3staticbg.animation.addByPrefix('idle', 'TitleMenuSSBG instance 1', 24);
+				p3staticbg.animation.play('idle');
+				p3staticbg.alpha = .75;
+				p3staticbg.scale.x = 4.5;
+				p3staticbg.scale.y = 4.5;
+				p3staticbg.antialiasing = true;
+				p3staticbg.updateHitbox();
+				p3staticbg.screenCenter();
+				p3staticbg.visible = false;
+				add(p3staticbg);
+
+				var trees:BGSprite = new BGSprite('Trees', -607.35, -401.55, 0.95, 0.1);
+				trees.scale.set(1.2, 1.2);
+				trees.updateHitbox();
+				trees.antialiasing = true;
+				add(trees);
+
+				var bg2:BGSprite = new BGSprite('Trees2', -623.5, -410.4, 1.0, 1.0);
+				bg2.scale.set(1.2, 1.2);
+				bg2.updateHitbox();
+				bg2.antialiasing = true;
+				add(bg2);
+
+				var bg:BGSprite = new BGSprite('Grass', -630.4, -266, 1.1, 1.0);
+				bg.scale.set(1.2, 1.2);
+				bg.updateHitbox();
+				bg.antialiasing = true;
+				add(bg);
 			case 'sunkStage':
 				var bg:BGSprite = new BGSprite('SunkBG', -670, -260, 0.91, 0.91);
 				bg.setGraphicSize(Std.int(bg.width * 0.8));
@@ -1188,6 +1232,31 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
+				case 'too-slow':
+					/*
+					var blackScreen:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+					add(blackScreen);
+					startCircle.loadGraphic(Paths.image('StartScreens/CircleTooSlow'));
+					startCircle.x += 777;
+					add(startCircle);
+					startText.loadGraphic(Paths.image('StartScreens/TextTooSlow'));
+					startText.x -= 1200;
+					add(startText);
+	
+					new FlxTimer().start(0.6, function(tmr:FlxTimer)
+					{
+						FlxTween.tween(startCircle, {x: 0}, 0.5);
+						FlxTween.tween(startText, {x: 0}, 0.5);
+					});
+	
+					new FlxTimer().start(1.9, function(tmr:FlxTimer)
+					{
+						FlxTween.tween(startCircle, {alpha: 0}, 1);
+						FlxTween.tween(startText, {alpha: 0}, 1);
+						FlxTween.tween(blackFuck, {alpha: 0}, 1);
+					});
+					startCountdown();
+					*/
 				default:
 					startCountdown();
 			}

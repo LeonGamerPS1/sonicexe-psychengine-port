@@ -24,7 +24,6 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var psychEngineVersion:String = '0.5.2h'; //This is also used for Discord RPC
 
 	var curSelected:Int = 0;
 
@@ -50,8 +49,9 @@ class MainMenuState extends MusicBeatState
 
 	public static var nightly:String = "";
 
+	public static var psychEngineVersion:String = '0.5.2h';
 	public static var kadeEngineVer:String = "1.5.4";
-	public static var gameVer:String = "0.2.7";
+	public static var gameVer:String = "0.2.7.1";
 
 	var bgdesat:FlxSprite;
 	var camFollow:FlxObject;
