@@ -116,6 +116,7 @@ class PlayState extends MusicBeatState
 	public static var isPixelStage:Bool = false;
 	public static var SONG:SwagSong = null;
 	public static var isStoryMode:Bool = false;
+	public static var isFreeplay:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
@@ -2466,7 +2467,7 @@ class PlayState extends MusicBeatState
 			cancelMusicFadeTween();
 			MusicBeatState.switchState(new CharacterEditorState(SONG.player2));
 		}
-
+		
 		if (startingSong)
 		{
 			if (startedCountdown)
@@ -3364,9 +3365,31 @@ class PlayState extends MusicBeatState
 							cancelMusicFadeTween();
 							LoadingState.loadAndSwitchState(new PlayState());
 						});
-					} else {
+					} else 
+					{
 						cancelMusicFadeTween();
 						LoadingState.loadAndSwitchState(new PlayState());
+					}
+					if (curSong.toLowerCase() == 'too-slow' && storyDifficulty == 2)
+					{
+						FlxG.save.data.storyProgress = 1;
+					
+						{
+							LoadingState.loadAndSwitchState(new PlayState());
+						}
+					}
+					else if (curSong.toLowerCase() == 'too-slow' && storyDifficulty != 2)
+					{
+						LoadingState.loadAndSwitchState(new UnlockScreen(false, 'soundtest'));
+					}
+					else if (curSong == 'you-cant-run')
+					{
+						FlxG.save.data.storyProgress = 2;
+						FlxG.save.data.soundTestUnlocked = true;
+		
+						{
+							LoadingState.loadAndSwitchState(new PlayState());
+						}
 					}
 				}
 			}

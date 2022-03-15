@@ -328,9 +328,11 @@ class SoundTestMenu extends MusicBeatState
 					incameo = true;
 				});
 			}
-		/*
 		else if (first == 23 && second == 23) 
 			{
+				#if windows
+				var video:MP4Handler = new MP4Handler();
+				#end
 				woahmanstopspammin = false;
 				flashyWashy(true);
 				new FlxTimer().start(2, function(tmr:FlxTimer)
@@ -341,8 +343,8 @@ class SoundTestMenu extends MusicBeatState
 				});
 				new FlxTimer().start(2.1, function(tmr:FlxTimer)
 				{
-					#if desktop
-					    new FlxVideo(Paths.video('Keel'));
+					#if windows
+					    video.playMP4(Paths.video('Keel'));
 					#else
 					    cameoImg.visible = true;
 					    cameoImg.loadGraphic(Paths.image('cameostuff/Bitches'));
@@ -363,6 +365,9 @@ class SoundTestMenu extends MusicBeatState
 			}
 		else if (first == 12 && second == 34) 
 			{
+				#if windows
+				var video:MP4Handler = new MP4Handler();
+				#end
 				woahmanstopspammin = false;
 				flashyWashy(true);
 				new FlxTimer().start(2, function(tmr:FlxTimer)
@@ -373,8 +378,8 @@ class SoundTestMenu extends MusicBeatState
 				});
 				new FlxTimer().start(2.1, function(tmr:FlxTimer)
 				{
-					#if desktop
-					    new FlxVideo(Paths.video('Keel'));
+					#if windows
+					    video.playMP4(Paths.video('Keel'));
 					#else
 					    cameoImg.visible = true;
 					    cameoImg.loadGraphic(Paths.image('cameostuff/Bitches'));
@@ -393,7 +398,6 @@ class SoundTestMenu extends MusicBeatState
 					incameo = true;
 				});
 			}
-		*/
 		else if (first == 32 && second == 8) 
 		{
 			woahmanstopspammin = false;
