@@ -706,7 +706,7 @@ class PlayState extends MusicBeatState
 					add(bg);
 				}	
 			case 'sonicp3stage':
-				var sSKY:BGSprite = new BGSprite('Glitch', -621.1, -395.65, 0.9, 0.1);
+				var sSKY:BGSprite = new BGSprite('Phase3/Glitch', -621.1, -395.65, 0.9, 0.1);
 				sSKY.scale.set(4.5, 4.5);
 				sSKY.updateHitbox();
 				sSKY.antialiasing = true;
@@ -725,19 +725,19 @@ class PlayState extends MusicBeatState
 				p3staticbg.visible = false;
 				add(p3staticbg);
 
-				var trees:BGSprite = new BGSprite('Trees', -607.35, -401.55, 0.95, 0.1);
+				var trees:BGSprite = new BGSprite('Phase3/Trees', -607.35, -401.55, 0.95, 0.1);
 				trees.scale.set(1.2, 1.2);
 				trees.updateHitbox();
 				trees.antialiasing = true;
 				add(trees);
 
-				var bg2:BGSprite = new BGSprite('Trees2', -623.5, -410.4, 1.0, 1.0);
+				var bg2:BGSprite = new BGSprite('Phase3/Trees2', -623.5, -410.4, 1.0, 1.0);
 				bg2.scale.set(1.2, 1.2);
 				bg2.updateHitbox();
 				bg2.antialiasing = true;
 				add(bg2);
 
-				var bg:BGSprite = new BGSprite('Grass', -630.4, -266, 1.1, 1.0);
+				var bg:BGSprite = new BGSprite('Phase3/Grass', -630.4, -266, 1.1, 1.0);
 				bg.scale.set(1.2, 1.2);
 				bg.updateHitbox();
 				bg.antialiasing = true;

@@ -109,6 +109,16 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end,
 
     [528] = function() --528
+
+    for i=0,4,1 do
+    setPropertyFromGroup('opponentStrums', i, 'texture', 'PIXEL_NOTE_assets');
+    setPropertyFromGroup('playerStrums', i, 'texture', 'PIXEL_NOTE_assets');
+    end
+
+    for i = 0, getProperty('unspawnNotes.length')-1 do
+    setPropertyFromGroup('unspawnNotes', i, 'texture', 'PIXEL_NOTE_assets');
+    end
+
 	makeLuaSprite('GreenHill', 'GreenHill', -275, -275)
 	setScrollFactor('GreenHill', 0.9, 0.9)
 	scaleObject('GreenHill', 8.0, 8.0);
@@ -140,6 +150,15 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     end,
 
     [784] = function()
+
+    for i=0,4,1 do
+		setPropertyFromGroup('opponentStrums', i, 'texture', 'NOTE_assets');
+		setPropertyFromGroup('playerStrums', i, 'texture', 'NOTE_assets');
+	end
+
+    for i = 0, getProperty('unspawnNotes.length')-1 do
+        setPropertyFromGroup('unspawnNotes', i, 'texture', 'NOTE_assets');
+    end
     removeLuaSprite('GreenHill', true);
 
     end,

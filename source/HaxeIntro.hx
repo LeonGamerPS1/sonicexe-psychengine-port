@@ -29,6 +29,8 @@ class HaxeIntro extends MusicBeatState
 
     override public function create():Void
 	{
+		FlxG.mouse.visible = false;
+		
 		#if windows
 		video.playMP4(Paths.video('HaxeFlixelIntro'));
 		video.finishCallback = function()
