@@ -940,8 +940,19 @@ class PlayState extends MusicBeatState
 
 		if (ClientPrefs.sonicExeShaders)
 		{
+			var daStatic:BGSprite;
 			var funny:shaders.SonicExe;
 			funny = new shaders.SonicExe();
+
+			daStatic = new BGSprite('Jumpscare/daSTAT', 0, 0, 0.1, 0.1, ['staticFLASH']);
+			daStatic.animation.addByPrefix('static', 'staticFLASH', 24);
+			daStatic.animation.play('static');
+			daStatic.alpha = 0.05;
+			daStatic.cameras = [camHUD];
+			daStatic.setGraphicSize(FlxG.width, FlxG.height);
+			daStatic.updateHitbox();
+			daStatic.screenCenter();
+			add(daStatic);
 	
 			camGame.setFilters([new ShaderFilter(funny)]);
 			camHUD.setFilters([new ShaderFilter(funny)]);
@@ -1246,31 +1257,6 @@ class PlayState extends MusicBeatState
 				    #else
 					startCountdown();
                     #end
-
-					/*
-					var blackScreen:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
-					add(blackScreen);
-					startCircle.loadGraphic(Paths.image('StartScreens/CircleTooSlow'));
-					startCircle.x += 777;
-					add(startCircle);
-					startText.loadGraphic(Paths.image('StartScreens/TextTooSlow'));
-					startText.x -= 1200;
-					add(startText);
-	
-					new FlxTimer().start(0.6, function(tmr:FlxTimer)
-					{
-						FlxTween.tween(startCircle, {x: 0}, 0.5);
-						FlxTween.tween(startText, {x: 0}, 0.5);
-					});
-	
-					new FlxTimer().start(1.9, function(tmr:FlxTimer)
-					{
-						FlxTween.tween(startCircle, {alpha: 0}, 1);
-						FlxTween.tween(startText, {alpha: 0}, 1);
-						FlxTween.tween(blackFuck, {alpha: 0}, 1);
-					});
-					startCountdown();
-					*/
 				case 'you-cant-run':
 					#if windows
 					video.playMP4(Paths.video('tooslowcutscene2'));
