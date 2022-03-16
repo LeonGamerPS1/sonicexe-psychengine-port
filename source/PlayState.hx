@@ -189,6 +189,10 @@ class PlayState extends MusicBeatState
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
+	#if windows
+	var video:MP4Handler = new MP4Handler();
+	#end
+
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 	var dialogueJson:DialogueFile = null;
 
@@ -1233,6 +1237,16 @@ class PlayState extends MusicBeatState
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'too-slow':
+					#if windows
+					video.playMP4(Paths.video('tooslowcutscene1'));
+					video.finishCallback = function()
+					{
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+				    #else
+					startCountdown();
+                    #end
+
 					/*
 					var blackScreen:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 					add(blackScreen);
@@ -1257,6 +1271,26 @@ class PlayState extends MusicBeatState
 					});
 					startCountdown();
 					*/
+				case 'you-cant-run':
+					#if windows
+					video.playMP4(Paths.video('tooslowcutscene2'));
+					video.finishCallback = function()
+					{
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+					#else
+					startCountdown();
+					#end
+				case 'triple-trouble':
+					#if windows
+					video.playMP4(Paths.video('youcantruncutscene2'));
+					video.finishCallback = function()
+					{
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+					#else
+					startCountdown();
+					#end
 				default:
 					startCountdown();
 			}

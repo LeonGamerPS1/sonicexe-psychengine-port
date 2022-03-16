@@ -1,20 +1,3 @@
-if Cutscenes then
-    
-    local allowCountdown = false
-    local CutsceneEnd = false
-
-    --OPENING CUTSCENE
-    function onStartCountdown()
-        if not allowCountdown and isStoryMode and not seenCutscene then --Block the first countdown
-            startVideo('youcantruncutscene2');
-            allowCountdown = true;
-            return Function_Stop;
-        end
-        return Function_Continue;
-    end
-    
-end
-
 function onCreate()
     --shit...
 

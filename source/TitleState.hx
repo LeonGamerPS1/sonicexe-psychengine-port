@@ -489,9 +489,16 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(4, function(tmr:FlxTimer)
 				{
-					if (mustUpdate) {
+					if (mustUpdate) 
+					{
 						MusicBeatState.switchState(new OutdatedState());
-					} else {
+					} 
+					else 
+					{
+						#if windows
+						video.playMP4(Paths.video('bothCreditsAndIntro'));
+						#end
+						
 						MusicBeatState.switchState(new MainMenuState());
 					}
 					closedState = true;
@@ -723,10 +730,6 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.RED, 2);
 			remove(credGroup);
 			skippedIntro = true;
-
-			#if windows
-			video.playMP4(Paths.video('bothCreditsAndIntro'));
-			#end
 		}
 	}
 }

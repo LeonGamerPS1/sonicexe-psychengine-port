@@ -379,7 +379,7 @@ class SoundTestMenu extends MusicBeatState
 				new FlxTimer().start(2.1, function(tmr:FlxTimer)
 				{
 					#if windows
-					    video.playMP4(Paths.video('Keel'));
+					    video.playMP4(Paths.video('Milky'));
 					#else
 					    cameoImg.visible = true;
 					    cameoImg.loadGraphic(Paths.image('cameostuff/Bitches'));
