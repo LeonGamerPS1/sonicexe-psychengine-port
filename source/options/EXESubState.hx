@@ -39,22 +39,22 @@ class EXESubState extends BaseOptionsMenu
 			trace('Shaders are ' + ClientPrefs.sonicExeShaders);
 		}
 
-		//var option:Option = new Option('Cutscenes', //Name
-		//    'If checked, enables Cutscenes in EXE Songs,\nMac/Linux/Window32bit users need to have this off or game will crash.', //Description
-		//    'Cutscenes', //Save data variable name
-		//    'bool', //Variable type
-		//    true); //Default value
-	    //addOption(option);
+		var option:Option = new Option('Cutscenes', //Name
+		    'If checked, enables Cutscenes in EXE Songs,\nMac/Linux/Window32bit users need to have this off or game will crash.', //Description
+		    'Cutscenes', //Save data variable name
+		    'bool', //Variable type
+		    true); //Default value
+	    addOption(option);
 
 		var option:Option = new Option('Jumpscare', //Name
-		    'If checked, enables the Jumpscare in "Too Slow",\nimproves performance.', //Description
+		    'If checked, enables the Jumpscare in "Too Slow",\nslows performance.', //Description
 			'Jumpscare', //Save data variable name
 			'bool', //Variable type
 		    true); //Default value
 	    addOption(option);
 
 		var option:Option = new Option('Popups', //Name
-		    'If checked, enables Popups in EXE Songs,\ndecreases loading times and improves performance.', //Description
+		    'If checked, enables Popups in EXE Songs,\nincreases loading times and slows performance.', //Description
 		    'Popups', //Save data variable name
 		    'bool', //Variable type
 		    true); //Default value
@@ -68,12 +68,14 @@ class EXESubState extends BaseOptionsMenu
 		option.onChange = onChangeShaders;
 		addOption(option);
 
+		/*
 		var option:Option = new Option('StageSwap', //Name
 		    'If checked, enables stage swapping in "You cant run",\nimproves performance.', //Description
 			'StageSwap', //Save data variable name
 			'bool', //Variable type
 			true); //Default value
-        //addOption(option);
+        addOption(option);
+		*/
 
 		super();
 	}

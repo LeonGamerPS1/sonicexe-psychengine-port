@@ -20,11 +20,11 @@ class UnlockScreen extends MusicBeatState
         {
             if (isUnlocked)
             {
-                image = new FlxSprite().loadGraphic(Paths.image('unlockscreen/Special', 'exe'));
+                image = new FlxSprite().loadGraphic(Paths.image('unlockscreen/Special'));
                 FlxG.save.data.soundTestUnlocked = true;
             }
             else
-                image = new FlxSprite().loadGraphic(Paths.image('unlockscreen/Harder', 'exe'));
+                image = new FlxSprite().loadGraphic(Paths.image('unlockscreen/Harder'));
         }
         super();
     }
