@@ -1,6 +1,6 @@
 function onCreate()
     precacheImage('jumpscare/hitStatic'); -- so it doesn't freeze
-	precacheXml('jumpscare/hitStatic'); -- so it doesn't freeze
+	--precacheXml('jumpscare/hitStatic'); -- so it doesn't freeze
 	precacheSound('hitStatic1'); -- so it doesn't freeze
     precacheImage('daSTAT'); -- so it doesn't freeze
     precacheImage('GreenHill'); -- so it doesn't freeze
@@ -8,81 +8,20 @@ function onCreate()
     print('you-cant-run/script.lua: Precached shit!!!!!')
 end
 
-local xx = 500;
-local yy = 470;
-local xx2 = 925;
-local yy2 = 535;
-local ofs = 25;
-local followchars = true;
-local del = 0;
-local del2 = 0;
+function onUpdate(elapsed)
 
-
-function onUpdate()
-	if del > 0 then
-		del = del - 1
-	end
-	if del2 > 0 then
-		del2 = del2 - 1
-	end
-    if followchars == true then
-        if mustHitSection == false then
-            if getProperty('dad.animation.curAnim.name') == 'singLEFT' then
-                triggerEvent('Camera Follow Pos',xx-ofs,yy)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'singRIGHT' then
-                triggerEvent('Camera Follow Pos',xx+ofs,yy)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'singUP' then
-                triggerEvent('Camera Follow Pos',xx,yy-ofs)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'singDOWN' then
-                triggerEvent('Camera Follow Pos',xx,yy+ofs)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'singLEFT-alt' then
-                triggerEvent('Camera Follow Pos',xx-ofs,yy)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'singRIGHT-alt' then
-                triggerEvent('Camera Follow Pos',xx+ofs,yy)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'singUP-alt' then
-                triggerEvent('Camera Follow Pos',xx,yy-ofs)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'singDOWN-alt' then
-                triggerEvent('Camera Follow Pos',xx,yy+ofs)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'laugh' then
-              triggerEvent('Camera Follow Pos',xx,yy)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'idle-alt' then
-                triggerEvent('Camera Follow Pos',xx,yy)
-            end
-            if getProperty('dad.animation.curAnim.name') == 'idle' then
-                triggerEvent('Camera Follow Pos',xx,yy)
-            end
-        else
-
-            if getProperty('boyfriend.animation.curAnim.name') == 'singLEFT' then
-                triggerEvent('Camera Follow Pos',xx2-ofs,yy2)
-            end
-            if getProperty('boyfriend.animation.curAnim.name') == 'singRIGHT' then
-                triggerEvent('Camera Follow Pos',xx2+ofs,yy2)
-            end
-            if getProperty('boyfriend.animation.curAnim.name') == 'singUP' then
-                triggerEvent('Camera Follow Pos',xx2,yy2-ofs)
-            end
-            if getProperty('boyfriend.animation.curAnim.name') == 'singDOWN' then
-                triggerEvent('Camera Follow Pos',xx2,yy2+ofs)
-            end
-	    if getProperty('boyfriend.animation.curAnim.name') == 'idle' then
-                triggerEvent('Camera Follow Pos',xx2,yy2)
+    if curStep == 755 then
+        for i = 0, getProperty('unspawnNotes.length')-1 do
+            if getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Sonic Note' then
+                    setPropertyFromGroup('unspawnNotes', i, 'texture', 'staticNotes');
+                elseif getPropertyFromGroup('unspawnNotes', i, 'noteType') == 'Blurry Note' then
+                    setPropertyFromGroup('unspawnNotes', i, 'texture', 'BLURNOTE_assets');
+                else
+                    setPropertyFromGroup('unspawnNotes', i, 'texture', 'NOTE_assets');
+                end
             end
         end
-    else
-        triggerEvent('Camera Follow Pos','','')
     end
-    
-end
 
 function onStepHit()
     if stepHitFuncs[curStep] then 
@@ -156,15 +95,13 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
 		setPropertyFromGroup('playerStrums', i, 'texture', 'NOTE_assets');
 	end
 
-    for i = 0, getProperty('unspawnNotes.length')-1 do
-        setPropertyFromGroup('unspawnNotes', i, 'texture', 'NOTE_assets');
-    end
     removeLuaSprite('GreenHill', true);
 
     end,
 
     [786] = function()
     removeLuaSprite('daSTAT', true);
-    
+
     end
+
 }

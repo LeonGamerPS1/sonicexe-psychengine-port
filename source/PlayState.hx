@@ -181,6 +181,7 @@ class PlayState extends MusicBeatState
 
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
+	var kadeEngineWatermark:FlxText;
 
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
@@ -1138,6 +1139,17 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBarBG.y - 78;
 		}
 
+		// Add Kade Engine watermark
+		kadeEngineWatermark = new FlxText(-2, 650
+			+ 50, 0,
+			SONG.song
+			+ " - "
+			+ CoolUtil.difficultyFromInt(storyDifficulty)
+			+ (Main.watermarks ? " | KE 1.5.4/PE " + MainMenuState.psychEngineVersion : ""), 17);
+		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		kadeEngineWatermark.scrollFactor.set();
+		add(kadeEngineWatermark);
+
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -1147,6 +1159,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
+		kadeEngineWatermark.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];

@@ -25,6 +25,13 @@ class CoolUtil
 
 	public static var difficulties:Array<String> = [];
 
+	public static var difficultyArray:Array<String> = ['Hard', "Normal", "Easy"];
+
+	public static function difficultyFromInt(difficulty:Int):String
+	{
+		return difficultyArray[difficulty];
+	}
+
 	public static function getDifficultyFilePath(num:Null<Int> = null)
 	{
 		if(num == null) num = PlayState.storyDifficulty;

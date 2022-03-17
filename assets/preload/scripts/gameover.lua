@@ -1,5 +1,5 @@
 function onCreate()
-	if boyfriendName == 'bf-htf' then
+	if boyfriendName == 'bfFUN' then
 		setPropertyFromClass('GameOverSubstate', 'characterName', 'bfFUN');
 		setPropertyFromClass('GameOverSubstate', 'deathSoundName', 'bunfriend_death_sound');
 		setPropertyFromClass('GameOverSubstate', 'loopSoundName', 'gameover1');
