@@ -46,6 +46,9 @@ function onCreate()
 					if getProperty('dad.animation.curAnim.name') == 'laugh' then
 					  triggerEvent('Camera Follow Pos',xx,yy)
 					end
+					if getProperty('dad.animation.curAnim.name') == 'iamgod' then
+						triggerEvent('Camera Follow Pos',xx,yy)
+					end
 					if getProperty('dad.animation.curAnim.name') == 'idle-alt' then
 						triggerEvent('Camera Follow Pos',xx,yy)
 					end

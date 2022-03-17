@@ -186,6 +186,7 @@ class PlayState extends MusicBeatState
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
+	public var camHUD2:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
@@ -268,10 +269,11 @@ class PlayState extends MusicBeatState
 	var detailsPausedText:String = "";
 	#end
 
-	//sonicexe curstep shits
-	var camLocked:Bool = true;
+	//sonicexe shits
 	private var shakeCam:Bool = false;
 	private var shakeCam2:Bool = false;
+	var camLocked:Bool = true;
+	var daJumpscare:FlxSprite = new FlxSprite(0, 0);
 
 	//Achievement shit
 	var keysPressed:Array<Bool> = [];
@@ -323,12 +325,15 @@ class PlayState extends MusicBeatState
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
+		camHUD2 = new FlxCamera();
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
+		camHUD2.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
+		FlxG.cameras.add(camHUD2);
 		FlxG.cameras.add(camOther);
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
 
@@ -1395,6 +1400,130 @@ class PlayState extends MusicBeatState
 
 		Paths.clearUnusedMemory();
 		CustomFadeTransition.nextCamera = camOther;
+	}
+
+	function doStaticSign(lestatic:Int = 0, leopa:Bool = true)
+	{
+		trace('static MOMENT HAHAHAH ' + lestatic);
+		var daStatic:FlxSprite = new FlxSprite(0, 0);
+	
+		daStatic.frames = Paths.getSparrowAtlas('daSTAT');
+	
+		daStatic.setGraphicSize(FlxG.width, FlxG.height);
+	
+		daStatic.screenCenter();
+	
+		daStatic.cameras = [camHUD2];
+	
+		switch (lestatic)
+		{
+			case 0:
+				daStatic.animation.addByPrefix('static', 'staticFLASH', 24, false);
+		}
+		add(daStatic);
+	
+		FlxG.sound.play(Paths.sound('staticBUZZ'));
+	
+		if (leopa)
+		{
+			if (daStatic.alpha != 0)
+				daStatic.alpha = FlxG.random.float(0.1, 0.5);
+		}
+		else
+			daStatic.alpha = 1;
+	
+		daStatic.animation.play('static');
+	
+		daStatic.animation.finishCallback = function(pog:String)
+		{
+			trace('ended static');
+			remove(daStatic);
+		}
+	}
+
+	function doSimpleJump()
+	{
+		trace('SIMPLE JUMPSCARE');
+	
+		var simplejump:FlxSprite = new FlxSprite(0, 0);
+		simplejump.frames = Paths.getSparrowAtlas('simplejump');
+	
+		simplejump.setGraphicSize(FlxG.width, FlxG.height);
+	
+		simplejump.screenCenter();
+	
+		simplejump.cameras = [camHUD2];
+	
+		FlxG.camera.shake(0.0025, 0.50);
+	
+		add(simplejump);
+	
+		FlxG.sound.play(Paths.sound('sppok'), 1);
+	
+		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		{
+		trace('ended simple jump');
+		remove(simplejump);
+		});
+	
+		// now for static
+	
+		var daStatic:FlxSprite = new FlxSprite(0, 0);
+	
+		daStatic.frames = Paths.getSparrowAtlas('daSTAT');
+	
+		daStatic.setGraphicSize(FlxG.width, FlxG.height);
+	
+		daStatic.screenCenter();
+	
+		daStatic.cameras = [camHUD2];
+	
+		daStatic.animation.addByPrefix('static', 'staticFLASH', 24, false);
+	
+		add(daStatic);
+	
+		FlxG.sound.play(Paths.sound('staticBUZZ'));
+	
+		if (daStatic.alpha != 0)
+			daStatic.alpha = FlxG.random.float(0.1, 0.5);
+	
+		daStatic.animation.play('static');
+	
+		daStatic.animation.finishCallback = function(pog:String)
+		{
+			trace('ended static');
+			remove(daStatic);
+		}
+	}
+
+	function doJumpscare()
+	{
+		trace('JUMPSCARE aaaa');
+	
+		daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE');
+		daJumpscare.animation.addByPrefix('jump', 'sonicSPOOK', 24, false);
+	
+		daJumpscare.screenCenter();
+	
+		daJumpscare.scale.x = 1.1;
+		daJumpscare.scale.y = 1.1;
+	
+		daJumpscare.y += 370;
+	
+		daJumpscare.cameras = [camHUD2];
+	
+		FlxG.sound.play(Paths.sound('jumpscare', 'exe'), 1);
+		FlxG.sound.play(Paths.sound('datOneSound', 'exe'), 1);
+	
+		add(daJumpscare);
+	
+		daJumpscare.animation.play('jump');
+	
+		daJumpscare.animation.finishCallback = function(pog:String)
+		{
+			trace('ended jump');
+			remove(daJumpscare);
+		}
 	}
 
 	function set_songSpeed(value:Float):Float
@@ -4583,6 +4712,100 @@ class PlayState extends MusicBeatState
 					//generateStaticArrows(0, false);
 					//generateStaticArrows(1, false);
 			}
+		}
+
+		if (curStage == 'sonicStage' && curStep != stepOfLast) //&& FlxG.save.data.jumpscares)
+		{
+			switch (curStep)
+			{
+				case 27:
+					doStaticSign(0);
+				case 130:
+					doStaticSign(0);
+				case 265:
+					doStaticSign(0);
+				case 450:
+					doStaticSign(0);
+				case 645:
+					doStaticSign(0);
+				case 800:
+					doStaticSign(0);
+				case 855:
+					doStaticSign(0);
+				case 889:
+					doStaticSign(0);
+				case 921:
+					doSimpleJump();
+				case 938:
+					doStaticSign(0);
+				case 981:
+					doStaticSign(0);
+				case 1030:
+					doStaticSign(0);
+				case 1065:
+					doStaticSign(0);
+				case 1105:
+					doStaticSign(0);
+				case 1123:
+					doStaticSign(0);
+				case 1178:
+					doSimpleJump();
+				case 1245:
+				    doStaticSign(0);
+				case 1337:
+					doSimpleJump();
+				case 1345:
+					doStaticSign(0);
+				case 1432:
+					doStaticSign(0);
+				case 1454:
+					doStaticSign(0);
+				case 1495:
+					doStaticSign(0);
+				case 1521:
+					doStaticSign(0);
+				case 1558:
+					doStaticSign(0);
+				case 1578:
+					doStaticSign(0);
+				case 1599:
+					doStaticSign(0);
+				case 1618:
+					doStaticSign(0);
+				case 1647:
+					doStaticSign(0);
+				case 1657:
+					doStaticSign(0);
+				case 1692:
+					doStaticSign(0);
+				case 1713:
+					doStaticSign(0);
+				case 1723:
+					doJumpscare();
+				case 1738:
+					doStaticSign(0);
+				case 1747:
+					doStaticSign(0);
+				case 1761:
+					doStaticSign(0);
+				case 1785:
+					doStaticSign(0);
+				case 1806:
+					doStaticSign(0);
+				case 1816:
+					doStaticSign(0);
+				case 1832:
+					doStaticSign(0);
+				case 1849:
+					doStaticSign(0);
+				case 1868:
+					doStaticSign(0);
+				case 1887:
+					doStaticSign(0);
+				case 1909:
+					doStaticSign(0);
+			}
+			stepOfLast = curStep;
 		}
 
 		if(curStep == lastStepHit) {
