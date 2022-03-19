@@ -1097,6 +1097,10 @@ class PlayState extends MusicBeatState
 			//FlxG.camera.follow(camFollow, LOCKON, 0.05 * (30 / (cast(Lib.current.getChildAt(0), Main)).getFPS()));
 			FlxG.save.data.storyProgress = 1;
 		}
+		else if (curSong.toLowerCase() == 'too-slow' && storyDifficulty != 2)
+		{
+			LoadingState.loadAndSwitchState(new UnlockScreen(false, 'soundtest'));
+		}
 		else if (curSong == 'you-cant-run')
 		{
 			FlxG.camera.follow(camFollowPos, LOCKON, 0.6);
@@ -4929,7 +4933,33 @@ class PlayState extends MusicBeatState
 				});
 			}
 		}
-
+		if (curSong == 'milk')
+		{
+			if (curStep == 538 || curStep == 2273)
+			{
+				var sponge:FlxSprite = new FlxSprite(dad.getGraphicMidpoint().x - 200,
+					dad.getGraphicMidpoint().y - 120).loadGraphic(Paths.image('SpingeBinge'));
+	
+				add(sponge);
+	
+				dad.visible = false;
+	
+				new FlxTimer().start(0.7, function(tmr:FlxTimer)
+				{
+					remove(sponge);
+					dad.visible = true;
+				});
+			}
+			if (curStep == 69) // holy fuck niceeee
+			{
+				FlxTween.tween(FlxG.camera, {zoom: 2.2}, 4);
+			}
+			if (curStep == 96) // holy fuck niceeee
+			{
+				FlxTween.cancelTweensOf(FlxG.camera);
+				FlxG.camera.zoom = defaultCamZoom;
+			}
+		}
 		if (curSong == 'cycles')
 		{
 			switch (curStep)
