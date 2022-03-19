@@ -273,6 +273,7 @@ class PlayState extends MusicBeatState
 	private var shakeCam:Bool = false;
 	private var shakeCam2:Bool = false;
 	var camLocked:Bool = true;
+	var bgspec:FlxSprite;
 	var daJumpscare:FlxSprite = new FlxSprite(0, 0);
 
 	//Achievement shit
@@ -1445,8 +1446,8 @@ class PlayState extends MusicBeatState
 	{
 		trace('SIMPLE JUMPSCARE');
 	
-		var simplejump:FlxSprite = new FlxSprite(0, 0);
-		simplejump.frames = Paths.getSparrowAtlas('simplejump');
+		//var simplejump:FlxSprite = new FlxSprite(0, 0);
+		var simplejump:FlxSprite = new FlxSprite().loadGraphic(Paths.image('simplejump'));
 	
 		simplejump.setGraphicSize(FlxG.width, FlxG.height);
 	
@@ -1512,8 +1513,8 @@ class PlayState extends MusicBeatState
 	
 		daJumpscare.cameras = [camHUD2];
 	
-		FlxG.sound.play(Paths.sound('jumpscare', 'exe'), 1);
-		FlxG.sound.play(Paths.sound('datOneSound', 'exe'), 1);
+		FlxG.sound.play(Paths.sound('jumpscare'), 1);
+		FlxG.sound.play(Paths.sound('datOneSound'), 1);
 	
 		add(daJumpscare);
 	
@@ -2159,6 +2160,8 @@ class PlayState extends MusicBeatState
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
 	}
+
+	var amongus:Int = 0;
 
 	var debugNum:Int = 0;
 	private var noteTypeMap:Map<String, Bool> = new Map<String, Bool>();
@@ -4676,9 +4679,13 @@ class PlayState extends MusicBeatState
 				case 765:
 					shakeCam = true;
 					FlxG.camera.flash(FlxColor.RED, 4);
+				case 1305:
+					camHUD.visible = false;
 				case 1362:
 					FlxG.camera.shake(0.002, 0.6);
 					camHUD.camera.shake(0.002, 0.6);
+				case 1432:
+					camHUD.visible = true;
 			}
 		}
 
@@ -4806,6 +4813,134 @@ class PlayState extends MusicBeatState
 					doStaticSign(0);
 			}
 			stepOfLast = curStep;
+		}
+
+		if (curSong == 'you-cant-run')
+		{
+			var vg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('RedVG'));
+			vg.alpha = 0;
+			vg.cameras = [camHUD];
+			add(vg);
+	
+			var amongus:Bool = true;
+	
+			if (curStep == 528) // PIXEL MOMENT LAWLALWALAWL
+			{
+				//healthBar.createFilledBar(FlxColor.fromRGB(0, 128, 7), FlxColor.fromRGB(49, 176, 209));
+	
+				doStaticSign(0, false);
+				//SONG.noteStyle = 'pixel';
+				//removeStatics();
+				//generateStaticArrows(0, false);
+				//generateStaticArrows(1, false);
+	
+				/*
+				remove(dad);
+				dad = new Character(100, 100 + 300 - 50, 'sonic.exe alt');
+				add(dad);
+	
+				iconP2.animation.play('sonic.exe alt');
+	
+				remove(gf);
+				gf = new Character(400, 130, 'gf-pixel');
+				add(gf);
+	
+				remove(boyfriend);
+				boyfriend = new Boyfriend(770, 450, 'bf-pixel');
+				boyfriend.setPosition(530 + 100, 170 + 200);
+				add(boyfriend);
+	
+				iconP1.animation.play('bf-pixel');
+	
+				bgspec.visible = true;
+				*/
+			}
+			else if (curStep == 784) // BACK TO NORMAL MF!!!
+			{
+				//healthBar.createFilledBar(FlxColor.fromRGB(0, 19, 102), FlxColor.fromRGB(49, 176, 209));
+	
+				doStaticSign(0, false);
+				//SONG.noteStyle = 'normal';
+				//removeStatics();
+				//generateStaticArrows(0, false);
+			    //generateStaticArrows(1, false);
+
+	            /*
+				remove(dad);
+				dad = new Character(116 - 20, 107, 'sonic.exe');
+				add(dad);
+	
+				iconP2.animation.play('sonic.exe');
+	
+				dad.y -= 125;
+				dad.scrollFactor.set(1.37, 1);
+	
+				remove(gf);
+				gf = new Character(635.5 - 50 - 100, 265.1 - 250, 'gf');
+				add(gf);
+	
+				remove(boyfriend);
+				boyfriend = new Boyfriend(1036 - 100, 300, 'bf');
+				add(boyfriend);
+	
+				iconP1.animation.play('bf');
+	
+				dad.scrollFactor.set(1.3, 1);
+				boyfriend.scrollFactor.set(1.3, 1);
+				gf.scrollFactor.set(1.25, 1);
+	
+				bgspec.visible = false;
+				*/
+			}
+			else if (curStep == 521 && curStep == 1160)
+			{
+				camGame.shake(0.03, 1.5);
+				camHUD.shake(0.05, 1);
+			}
+			else if (curStep == 80 || curStep == 785) // MaliciousBunny did this
+			{
+				new FlxTimer().start(.085, function(sex:FlxTimer)
+				{
+					if (curStep >= 528 && curStep <= 784)
+						vg.visible = false;
+					else
+						vg.visible = true;
+	
+					if (!paused)
+						vg.alpha += 0.1;
+					if (vg.alpha < 1)
+					{
+						sex.reset();
+					}
+					if (vg.alpha == 1)
+					{
+						new FlxTimer().start(.085, function(sex2:FlxTimer)
+						{
+							if (!paused)
+								vg.alpha -= 0.1;
+							if (vg.alpha > 0)
+							{
+								sex2.reset();
+							}
+							if (vg.alpha == 0)
+								sex.reset();
+						});
+					}
+				});
+			}
+		}
+
+		if (curSong == 'cycles')
+		{
+			switch (curStep)
+			{
+				case 320:
+					FlxTween.tween(FlxG.camera, {zoom: .9}, 2, {ease: FlxEase.cubeOut});
+					defaultCamZoom = .9;
+				case 1103:
+					FlxTween.tween(FlxG.camera, {zoom: .8}, 2, {ease: FlxEase.cubeOut});
+					defaultCamZoom = .8;
+			}
 		}
 
 		if(curStep == lastStepHit) {

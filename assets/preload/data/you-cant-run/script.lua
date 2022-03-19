@@ -32,22 +32,7 @@ end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by junior - https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg)
 
-    [527] = function()
-    makeLuaSprite('daSTAT', 'Jumpscare/daSTAT', 0, 0);
-    setScrollFactor('daSTAT', 0, 0);
-    scaleObject('daSTAT', 2, 2);
-    
-    if Popups then
-        addLuaSprite('daSTAT', true);
-
-        print('you-cant-run/script.lua: DA STAT!!!!')
-    end
-    
-    setObjectCamera('daSTAT', 'camHUD')
-
-    end,
-
-    [528] = function() --528
+    [526] = function() --528 but 526 is more accurate i think
 
     for i=0,4,1 do
     setPropertyFromGroup('opponentStrums', i, 'texture', 'PIXEL_NOTE_assets');
@@ -68,26 +53,6 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
     
     end,
 
-    [530] = function()
-    removeLuaSprite('daSTAT', true);
-
-    end,
-
-    [783] = function()
-    makeLuaSprite('daSTAT', 'Jumpscare/daSTAT', 0, 0);
-    setScrollFactor('daSTAT', 0, 0);
-    scaleObject('daSTAT', 2, 2);
-        
-    if Popups then
-        addLuaSprite('daSTAT', true);
-
-        print('you-cant-run/script.lua: DA STAT!!!!')
-    end
-        
-    setObjectCamera('daSTAT', 'camHUD')
-    
-    end,
-
     [784] = function()
 
     for i=0,4,1 do
@@ -96,11 +61,6 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
 	end
 
     removeLuaSprite('GreenHill', true);
-
-    end,
-
-    [786] = function()
-    removeLuaSprite('daSTAT', true);
 
     end
 
