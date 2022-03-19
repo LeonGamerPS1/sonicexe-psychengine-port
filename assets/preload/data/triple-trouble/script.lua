@@ -13,111 +13,14 @@ end
 
 stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by junior - https://www.youtube.com/channel/UCJGR8x_g-cE1KsXKR_jZXAg)
     [1] = function()
-    makeAnimatedLuaSprite('static', 'Phase3/Phase3Static', -50, -40); --x and y
-
-    setScrollFactor('static', 0, 0);
-    addAnimationByPrefix('static', 'stat', 'Phase3Static instance 1', 24, false);
-    objectPlayAnimation('static', 'stat', false);
-
-    scaleObject('static', 5, 5);
-  
-    if Popups then
-        addLuaSprite('static', true);
-
-        print('triple-trouble/script.lua: Static change thing')
-    end
-
-    noteTweenX('NoteMove1', 0, 100, 0.000000001, cubeInOut)
-    noteTweenX('NoteMove2', 1, 200, 0.000000001, cubeInOut)
-    noteTweenX('NoteMove3', 2, -768, 0.000000001, cubeInOut)
-    noteTweenX('NoteMove4', 3, 300, 0.000000001, cubeInOut)
-    noteTweenX('NoteMove5', 4, 400, 0.000000001, cubeInOut)
-
-    setObjectCamera('static', 'camHUD')
-
-    end,
-
-    [16] = function()
-    removeLuaSprite('static', true);  
-    end,
-
-    [144] = function() --144
-    makeLuaSprite('TailsJump', 'Jumpscare/Tails', 0, 0);
-    setScrollFactor('TailsJump', 0.9, 0.9);
-    scaleObject('TailsJump', 1.0, 1.0);
-
-    setObjectCamera('TailsJump', 'camHUD')
-
-    playSound('P3Jumps/TailsScreamLOL', 0.5);
-
-    addLuaSprite('TailsJump', true)
-    end,
-
-    [152] = function()
-    removeLuaSprite('TailsJump', true);  
-    end,
-
-    [1032] = function()
-    makeAnimatedLuaSprite('static', 'Phase3/Phase3Static', -50, -40); --x and y
-  
-    setScrollFactor('static', 0, 0);
-    addAnimationByPrefix('static', 'stat', 'Phase3Static instance 1', 24, false);
-    objectPlayAnimation('static', 'stat', false);
-  
-    scaleObject('static', 5, 5);
-    
-    if Popups then
-        addLuaSprite('static', true);
-  
-        print('triple-trouble/script.lua: Static change thing')
-    end
-
-    setObjectCamera('static', 'camHUD')
-  
-    end,
-
-    [1042] = function()
-        removeLuaSprite('static', true);  
-    end,
-  
-    [1219] = function()
-        makeAnimatedLuaSprite('static', 'Phase3/Phase3Static', -50, -40); --x and y
-      
-        setScrollFactor('static', 0, 0);
-        addAnimationByPrefix('static', 'stat', 'Phase3Static instance 1', 24, false);
-        objectPlayAnimation('static', 'stat', false);
-      
-        scaleObject('static', 5, 5);
-        
-        if Popups then
-            addLuaSprite('static', true);
-      
-            print('triple-trouble/script.lua: Static change thing')
-        end
-    
-        setObjectCamera('static', 'camHUD')
-      
-    end,
-
-    [1229] = function()
-        removeLuaSprite('static', true);  
+        noteTweenX('NoteMove1', 0, 100, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove2', 1, 200, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove3', 2, -768, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove4', 3, 300, 0.000000001, cubeInOut)
+        noteTweenX('NoteMove5', 4, 400, 0.000000001, cubeInOut)
     end,
 
     [1287] = function()
-        makeAnimatedLuaSprite('static', 'Phase3/Phase3Static', -50, -40); --x and y
-      
-        setScrollFactor('static', 0, 0);
-        addAnimationByPrefix('static', 'stat', 'Phase3Static instance 1', 24, false);
-        objectPlayAnimation('static', 'stat', false);
-      
-        scaleObject('static', 5, 5);
-        
-        if Popups then
-            addLuaSprite('static', true);
-      
-            print('triple-trouble/script.lua: Static change thing')
-        end
-        
         noteTweenX('NoteMove1', 0, 700, 0.000000001, cubeInOut)
         noteTweenX('NoteMove2', 1, 800, 0.000000001, cubeInOut)
         noteTweenX('NoteMove3', 2, -910, 0.000000001, cubeInOut) --hello if u are reading, this is the middle note for the opponent so uh pretty useless
@@ -128,125 +31,20 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
         noteTweenX('NoteMove8', 7, 268, 0.000000001, cubeInOut)
         noteTweenX('NoteMove9', 8, 368, 0.000000001, cubeInOut)
         noteTweenX('NoteMove10', 9, 468, 0.000000001, cubeInOut)
-    
-        setObjectCamera('static', 'camHUD')
-      
-    end,
-
-    [1295] = function()
-        removeLuaSprite('static', true);  
-    end,
-
-    [1296] = function()
-        makeLuaSprite('KnucklesJump', 'Jumpscare/Knuckles', 50, 0);
-        setScrollFactor('KnucklesJump', 0.9, 0.9);
-        scaleObject('KnucklesJump', 1.0, 1.0);
-
-        setObjectCamera('KnucklesJump', 'camHUD')
-
-        playSound('P3Jumps/KnucklesScreamLOL', 0.5);
-
-        addLuaSprite('KnucklesJump', true)
-    end,
-    
-    [1304] = function()
-        removeLuaSprite('KnucklesJump', true);  
-    end,
-
-    [2307] = function()
-        makeAnimatedLuaSprite('static', 'Phase3/Phase3Static', -50, -40); --x and y
-      
-        setScrollFactor('static', 0, 0);
-        addAnimationByPrefix('static', 'stat', 'Phase3Static instance 1', 24, false);
-        objectPlayAnimation('static', 'stat', false);
-      
-        scaleObject('static', 5, 5);
-        
-        if Popups then
-            addLuaSprite('static', true);
-      
-            print('triple-trouble/script.lua: Static change thing')
-        end
-    
-        setObjectCamera('static', 'camHUD')
-      
-    end,
-
-    [2320] = function()
-        removeLuaSprite('static', true);  
     end,
 
     [2820] = function()
-        makeAnimatedLuaSprite('static', 'Phase3/Phase3Static', -50, -40); --x and y
-      
-        setScrollFactor('static', 0, 0);
-        addAnimationByPrefix('static', 'stat', 'Phase3Static instance 1', 24, false);
-        objectPlayAnimation('static', 'stat', false);
-      
-        scaleObject('static', 5, 5);
-        
-        if Popups then
-            addLuaSprite('static', true);
-      
-            print('triple-trouble/script.lua: Static change thing')
-        end
-        
-        noteTweenX('NoteMove1', 0, 100, 0.000000001, cubeInOut)
-        noteTweenX('NoteMove2', 1, 200, 0.000000001, cubeInOut)
-        noteTweenX('NoteMove3', 2, -841, 0.000000001, cubeInOut) --hello if u are reading, this is the middle note for the opponent so uh pretty useless
-        noteTweenX('NoteMove4', 3, 300, 0.000000001, cubeInOut)
-        noteTweenX('NoteMove5', 4, 400, 0.000000001, cubeInOut)
-        noteTweenX('NoteMove6', 5, 710, 0.000000001, cubeInOut)
-        noteTweenX('NoteMove7', 6, 810, 0.000000001, cubeInOut)
-        noteTweenX('NoteMove8', 7, 910, 0.000000001, cubeInOut)
-        noteTweenX('NoteMove9', 8, 1010, 0.000000001, cubeInOut)
-        noteTweenX('NoteMove10', 9, 1110, 0.000000001, cubeInOut)
-    
-        setObjectCamera('static', 'camHUD')
-      
-    end,
+    noteTweenX('NoteMove1', 0, 100, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove2', 1, 200, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove3', 2, -841, 0.000000001, cubeInOut) --hello if u are reading, this is the middle note for the opponent so uh pretty useless
+    noteTweenX('NoteMove4', 3, 300, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove5', 4, 400, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove6', 5, 710, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove7', 6, 810, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove8', 7, 910, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove9', 8, 1010, 0.000000001, cubeInOut)
+    noteTweenX('NoteMove10', 9, 1110, 0.000000001, cubeInOut)
 
-    [2823] = function()
-        makeLuaSprite('EggmanJump', 'Jumpscare/Eggman', 50, 0);
-        setScrollFactor('EggmanJump', 0.9, 0.9);
-        scaleObject('EggmanJump', 1.0, 1.0);
-
-        setObjectCamera('EggmanJump', 'camHUD')
-
-        playSound('P3Jumps/EggmanScreamLOL', 0.5);
-
-        addLuaSprite('EggmanJump', true);
-    end,
-    
-    [2830] = function()
-        removeLuaSprite('EggmanJump', true);  
-    end,
-
-    [2832] = function()
-        removeLuaSprite('static', true);  
-    end,
-
-    [4100] = function()
-        makeAnimatedLuaSprite('static', 'Phase3/Phase3Static', -50, -40); --x and y
-      
-        setScrollFactor('static', 0, 0);
-        addAnimationByPrefix('static', 'stat', 'Phase3Static instance 1', 24, false);
-        objectPlayAnimation('static', 'stat', false);
-      
-        scaleObject('static', 5, 5);
-        
-        if Popups then
-            addLuaSprite('static', true);
-      
-            print('triple-trouble/script.lua: Static change thing')
-        end
-    
-        setObjectCamera('static', 'camHUD')
-      
-    end,
-
-    [4111] = function()
-        removeLuaSprite('static', true);  
     end
 
 }

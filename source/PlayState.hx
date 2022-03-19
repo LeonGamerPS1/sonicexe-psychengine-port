@@ -229,8 +229,6 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
 
-	var p3staticbg:BGSprite; //USE THIS FOR TRIP TRUB
-
 	//STARTING SONG SHIT
 	var blackFuck:FlxSprite;
 	var startCircle:FlxSprite;
@@ -269,12 +267,18 @@ class PlayState extends MusicBeatState
 	var detailsPausedText:String = "";
 	#end
 
+	//SONIC EXE SHIT SONIC EXE SHIT SONIC EXE SHIT SONIC EXE SHIT SONIC EXE SHIT SONIC EXE SHIT SONIC EXE SHIT SONIC EXE SHIT SONIC EXE SHIT
+
 	//sonicexe shits
 	private var shakeCam:Bool = false;
 	private var shakeCam2:Bool = false;
 	var camLocked:Bool = true;
 	var bgspec:FlxSprite;
 	var daJumpscare:FlxSprite = new FlxSprite(0, 0);
+	var daP3Static:FlxSprite = new FlxSprite(0, 0);
+	var balling:FlxSprite = new FlxSprite(0, 0);
+	var daNoteStatic:FlxSprite = new FlxSprite(0, 0);
+	var p3staticbg:FlxSprite;
 
 	//Achievement shit
 	var keysPressed:Array<Bool> = [];
@@ -724,16 +728,13 @@ class PlayState extends MusicBeatState
 				sSKY.antialiasing = true;
 				add(sSKY);
 
-				var p3staticbg:BGSprite;
-				p3staticbg = new BGSprite('NewTitleMenuBG', 0.0, 0.0, 0.1, 0.1, ['TitleMenuSSBG instance 1']);
-				p3staticbg.animation.addByPrefix('idle', 'TitleMenuSSBG instance 1', 24);
-				p3staticbg.animation.play('idle');
-				p3staticbg.alpha = .75;
+				p3staticbg = new FlxSprite(0, 0);
+				p3staticbg.frames = Paths.getSparrowAtlas('NewTitleMenuBG');
+				p3staticbg.animation.addByPrefix('P3Static', 'TitleMenuSSBG instance 1', 24, true);
+				p3staticbg.animation.play('P3Static');
+				p3staticbg.screenCenter();
 				p3staticbg.scale.x = 4.5;
 				p3staticbg.scale.y = 4.5;
-				p3staticbg.antialiasing = true;
-				p3staticbg.updateHitbox();
-				p3staticbg.screenCenter();
 				p3staticbg.visible = false;
 				add(p3staticbg);
 
@@ -1498,6 +1499,183 @@ class PlayState extends MusicBeatState
 		{
 			trace('ended static');
 			remove(daStatic);
+		}
+	}
+
+	function doP3Static()
+	{
+		trace('p3static XDXDXD');
+	
+		daP3Static.frames = Paths.getSparrowAtlas('Phase3Static');
+		daP3Static.animation.addByPrefix('P3Static', 'Phase3Static instance 1', 24, false);
+	
+		daP3Static.screenCenter();
+	
+		daP3Static.scale.x = 4;
+		daP3Static.scale.y = 4;
+		daP3Static.alpha = 0.5;
+	
+		daP3Static.cameras = [camHUD2];
+	
+		add(daP3Static);
+	
+		daP3Static.animation.play('P3Static');
+	
+		daP3Static.animation.finishCallback = function(pog:String)
+		{
+			trace('ended p3static');
+			daP3Static.alpha = 0;
+	
+			remove(daP3Static);
+		}
+	}
+
+	function doP3JumpTAILS()
+	{
+		trace('SIMPLE JUMPSCARE');
+	
+		var doP3JumpTAILS:FlxSprite = new FlxSprite().loadGraphic(Paths.image('JUMPSCARES/Tails'));
+	
+		doP3JumpTAILS.setGraphicSize(FlxG.width, FlxG.height);
+	
+		doP3JumpTAILS.screenCenter();
+	
+		doP3JumpTAILS.cameras = [camHUD2];
+	
+		FlxG.camera.shake(0.0025, 0.50);
+	
+		add(doP3JumpTAILS);
+	
+		FlxG.sound.play(Paths.sound('P3Jumps/TailsScreamLOL'), .1);
+	
+		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		{
+			trace('ended simple jump');
+			remove(doP3JumpTAILS);
+		});
+	
+		balling.frames = Paths.getSparrowAtlas('daSTAT');
+		balling.animation.addByPrefix('static', 'staticFLASH', 24, false);
+	
+		balling.setGraphicSize(FlxG.width, FlxG.height);
+	
+		balling.screenCenter();
+	
+		balling.cameras = [camHUD2];
+	
+		add(balling);
+	
+		FlxG.sound.play(Paths.sound('staticBUZZ'));
+	
+		if (balling.alpha != 0)
+			balling.alpha = FlxG.random.float(0.1, 0.5);
+	
+		balling.animation.play('static');
+	
+		balling.animation.finishCallback = function(pog:String)
+		{
+			trace('ended static');
+			remove(balling);
+		}
+	}
+	
+	function doP3JumpKNUCKLES()
+	{
+		trace('SIMPLE JUMPSCARE');
+	
+		var doP3JumpKNUCKLES:FlxSprite = new FlxSprite().loadGraphic(Paths.image('JUMPSCARES/Knuckles'));
+	
+		doP3JumpKNUCKLES.setGraphicSize(FlxG.width, FlxG.height);
+	
+		doP3JumpKNUCKLES.screenCenter();
+	
+		doP3JumpKNUCKLES.cameras = [camHUD2];
+	
+		FlxG.camera.shake(0.0025, 0.50);
+	
+		add(doP3JumpKNUCKLES);
+	
+		FlxG.sound.play(Paths.sound('P3Jumps/KnucklesScreamLOL'), .1);
+	
+		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		{
+			trace('ended simple jump');
+			remove(doP3JumpKNUCKLES);
+		});
+	
+		balling.frames = Paths.getSparrowAtlas('daSTAT');
+	
+		balling.setGraphicSize(FlxG.width, FlxG.height);
+	
+		balling.screenCenter();
+	
+		balling.cameras = [camHUD2];
+	
+		balling.animation.addByPrefix('static', 'staticFLASH', 24, false);
+	
+		add(balling);
+	
+		FlxG.sound.play(Paths.sound('staticBUZZ'));
+	
+		if (balling.alpha != 0)
+			balling.alpha = FlxG.random.float(0.1, 0.5);
+	
+		balling.animation.play('static');
+	
+		balling.animation.finishCallback = function(pog:String)
+		{
+			trace('ended static');
+			remove(balling);
+		}
+	}
+	
+	function doP3JumpEGGMAN()
+	{
+		trace('SIMPLE JUMPSCARE');
+	
+		var doP3JumpEGGMAN:FlxSprite = new FlxSprite().loadGraphic(Paths.image('JUMPSCARES/Eggman'));
+	
+		doP3JumpEGGMAN.setGraphicSize(FlxG.width, FlxG.height);
+	
+		doP3JumpEGGMAN.screenCenter();
+	
+		doP3JumpEGGMAN.cameras = [camHUD2];
+	
+		FlxG.camera.shake(0.0025, 0.50);
+	
+		add(doP3JumpEGGMAN);
+	
+		FlxG.sound.play(Paths.sound('P3Jumps/EggmanScreamLOL'), .1);
+	
+		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		{
+			trace('ended simple jump');
+			remove(doP3JumpEGGMAN);
+		});
+	
+	    balling.frames = Paths.getSparrowAtlas('daSTAT');
+	
+		balling.setGraphicSize(FlxG.width, FlxG.height);
+	
+		balling.screenCenter();
+	
+		balling.cameras = [camHUD2];
+	
+		balling.animation.addByPrefix('static', 'staticFLASH', 24, false);
+	
+		add(balling);
+	
+		FlxG.sound.play(Paths.sound('staticBUZZ'));
+	
+		if (balling.alpha != 0)
+			balling.alpha = FlxG.random.float(0.1, 0.5);
+	
+		balling.animation.play('static');
+	
+		balling.animation.finishCallback = function(pog:String)
+		{
+			trace('ended static');
+			remove(balling);
 		}
 	}
 
@@ -4931,6 +5109,49 @@ class PlayState extends MusicBeatState
 						});
 					}
 				});
+			}
+		}
+		if (curSong.toLowerCase() == 'triple-trouble')
+		{
+			switch (curStep)
+			{
+				case 1:
+					doP3Static(); // cool static
+					FlxTween.tween(FlxG.camera, {zoom: 1.1}, 2, {ease: FlxEase.cubeOut});
+					defaultCamZoom = 1.1;
+				case 144:
+					doP3JumpTAILS();
+				case 1024, 1088, 1216, 1280, 2305, 2810, 3199, 4096:
+					doP3Static();
+				case 1040: // switch to sonic facing right
+					FlxTween.tween(FlxG.camera, {zoom: 0.9}, 2, {ease: FlxEase.cubeOut});
+					defaultCamZoom = 0.9;
+	
+					p3staticbg.visible = true;
+	
+				case 1296: // switch to knuckles facing left facing right and bf facing right, and cool static
+	
+					FlxTween.tween(FlxG.camera, {zoom: 1.1}, 2, {ease: FlxEase.cubeOut});
+					defaultCamZoom = 1.1;
+	
+					p3staticbg.visible = false;
+	
+					doP3JumpKNUCKLES();
+	
+				case 2320:
+					FlxTween.tween(FlxG.camera, {zoom: 0.9}, 2, {ease: FlxEase.cubeOut});
+					defaultCamZoom = 0.9;
+	
+					p3staticbg.visible = true;
+				case 2823:
+					doP3JumpEGGMAN();
+	
+					FlxTween.tween(FlxG.camera, {zoom: 1}, 2, {ease: FlxEase.cubeOut});
+					defaultCamZoom = 1;
+	
+					p3staticbg.visible = false;
+				case 4111:
+					p3staticbg.visible = true;
 			}
 		}
 		if (curSong == 'milk')
