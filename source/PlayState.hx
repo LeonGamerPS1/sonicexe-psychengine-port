@@ -1098,10 +1098,6 @@ class PlayState extends MusicBeatState
 			//FlxG.camera.follow(camFollow, LOCKON, 0.05 * (30 / (cast(Lib.current.getChildAt(0), Main)).getFPS()));
 			FlxG.save.data.storyProgress = 1;
 		}
-		else if (curSong.toLowerCase() == 'too-slow' && storyDifficulty != 2)
-		{
-			LoadingState.loadAndSwitchState(new UnlockScreen(false, 'soundtest'));
-		}
 		else if (curSong == 'you-cant-run')
 		{
 			FlxG.camera.follow(camFollowPos, LOCKON, 0.6);
