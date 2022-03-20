@@ -6,7 +6,7 @@
 	],
 	"hideFreeplay": false,
 	"weekBackground": "sonic",
-	"difficulties": "Hard, Encore",
+	"difficulties": "Easy, Normal, Hard, Encore",
 	"weekCharacters": [
 		"dad",
 		"bf",

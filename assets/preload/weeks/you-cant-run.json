@@ -3,7 +3,7 @@
 		["you-cant-run", "sonic2", [26, 113, 253]],
 		["triple-trouble", "sonicp3", [26, 113, 253]]
 	],
-	"hideFreeplay": false,
+	"hideFreeplay": true,
 	"weekBackground": "sonic",
 	"difficulties": "Hard",
 	"weekCharacters": [

@@ -25,7 +25,7 @@ class CoolUtil
 
 	public static var difficulties:Array<String> = [];
 
-	public static var difficultyArray:Array<String> = ['Hard', "Normal", "Easy"];
+	public static var difficultyArray:Array<String> = ['Easy', "Normal", "Hard", "Encore"];
 
 	public static function difficultyFromInt(difficulty:Int):String
 	{

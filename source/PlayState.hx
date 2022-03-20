@@ -273,6 +273,7 @@ class PlayState extends MusicBeatState
 	private var shakeCam:Bool = false;
 	private var shakeCam2:Bool = false;
 	var camLocked:Bool = true;
+	var cooltext:String = '';
 	var bgspec:FlxSprite;
 	var daJumpscare:FlxSprite = new FlxSprite(0, 0);
 	var daP3Static:FlxSprite = new FlxSprite(0, 0);
@@ -1210,11 +1211,39 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
+		
+		//song names lol
+		switch (SONG.song)
+		{
+			case 'too-slow':
+				cooltext = 'Too Slow';
+
+			case 'you-cant-run':
+				cooltext = "You Can't Run";
+
+			case 'triple-trouble':
+				cooltext = "triple-trouble";
+
+			case 'endless':
+				cooltext = "endless";
+
+			case 'cycles':
+				cooltext = "cycles";
+
+			case 'chaos':
+				cooltext = "chaos";
+
+			case 'sunshine':
+				cooltext = "sunshine";
+
+			case 'milk':
+				cooltext = "milk";
+		}
 
 		// Add Kade Engine watermark
 		kadeEngineWatermark = new FlxText(-2, 650
 			+ 50, 0,
-			SONG.song
+			cooltext
 			+ " - "
 			+ CoolUtil.difficultyFromInt(storyDifficulty)
 			+ (Main.watermarks ? " | KE 1.5.4/PE " + MainMenuState.psychEngineVersion : ""), 17);

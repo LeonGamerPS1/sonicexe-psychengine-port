@@ -2,7 +2,7 @@
 	"songs": [
 		["triple-trouble", "sonicp3", [26, 113, 253]]
 	],
-	"hideFreeplay": false,
+	"hideFreeplay": true,
 	"weekBackground": "sonic",
 	"difficulties": "Hard",
 	"weekCharacters": [
