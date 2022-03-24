@@ -7,6 +7,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState; // appearently its visual studio code
+import flixel.effects.FlxFlicker;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxGroup;
@@ -74,6 +75,14 @@ class StoryMenuState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
+
+		switch (FlxG.save.data.storyProgress)
+		{
+			case 1:
+				songArray = ['too-slow', 'you-cant-run'];
+			case 2:
+				songArray = ['too-slow', 'you-cant-run', 'triple-trouble'];
+		}
 
 		PlayState.isStoryMode = true;
 		WeekData.reloadWeekFiles(true);
@@ -320,8 +329,8 @@ class StoryMenuState extends MusicBeatState
 		//add(scoreText);
 		//add(txtWeekTitle);
 
-		changeWeek();
-		changeDifficulty();
+		//changeWeek();
+		//changeDifficulty();
 
 		super.create();
 	}
@@ -378,114 +387,6 @@ class StoryMenuState extends MusicBeatState
 		persistentUpdate = true;
 		changeWeek();
 		super.closeSubState();
-	}
-
-	override function update(elapsed:Float)
-	{
-		// scoreText.setFormat('VCR OSD Mono', 32);
-		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
-		if(Math.abs(intendedScore - lerpScore) < 10) lerpScore = intendedScore;
-
-		scoreText.text = "WEEK SCORE:" + lerpScore;
-
-		// FlxG.watch.addQuick('font', scoreText.font);
-
-		if (!movedBack && !selectedWeek)
-		{
-			var upUI = controls.UP_P;
-			var downUI = controls.DOWN_P;
-			var upP = controls.UI_UP_P;
-			var downP = controls.UI_DOWN_P;
-			var leftP = controls.UI_LEFT_P;
-			var rightP = controls.UI_RIGHT_P;
-
-			if (controls.LEFT && oneclickpls)
-				leftArrow.animation.play('press');
-			else
-				leftArrow.animation.play('idle');
-	
-			if (controls.LEFT_P && oneclickpls)
-			{
-				if (selection)
-					changeAct(-1);
-				else
-					changediff(-1);
-			}
-	
-			if (controls.RIGHT && oneclickpls)
-				rightArrow.animation.play('press');
-			else
-				rightArrow.animation.play('idle');
-	
-			if (controls.RIGHT_P && oneclickpls)
-			{
-				if (selection)
-					changeAct(1);
-				else
-					changediff(1);
-			}
-	
-			if ((controls.UP_P && oneclickpls) || (controls.DOWN_P && oneclickpls))
-				changeSelec(); // i forgor how ifs work
-	
-			if (controls.BACK && oneclickpls)
-			{
-				FlxG.sound.play(Paths.sound('cancelMenu'));
-				FlxG.switchState(new MainMenuState());
-			}
-
-			if (controls.UI_RIGHT)
-				rightArrow.animation.play('press')
-			else
-				rightArrow.animation.play('idle');
-
-			if (controls.UI_LEFT)
-				leftArrow.animation.play('press');
-			else
-				leftArrow.animation.play('idle');
-
-			/*
-			if (controls.UI_RIGHT_P)
-				changeDifficulty(1);
-			else if (controls.UI_LEFT_P)
-				changeDifficulty(-1);
-			else if (upP || downP)
-				changeDifficulty();
-			*/
-
-			if(FlxG.keys.justPressed.CONTROL)
-			{
-				persistentUpdate = false;
-				openSubState(new GameplayChangersSubstate());
-			}
-			else if(controls.RESET)
-			{
-				persistentUpdate = false;
-				openSubState(new ResetScoreSubState('', curDifficulty, '', curWeek));
-				//FlxG.sound.play(Paths.sound('scrollMenu'));
-			}
-			else if (controls.ACCEPT)
-			{
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-
-				selectWeek();
-			}
-		}
-
-		if (controls.BACK && oneclickpls)
-		{
-			FlxG.sound.play(Paths.sound('cancelMenu'));
-			movedBack = true;
-			MusicBeatState.switchState(new MainMenuState());
-		}
-
-		super.update(elapsed);
-
-		grpLocks.forEach(function(lock:FlxSprite)
-		{
-			lock.y = grpWeekText.members[lock.ID].y;
-			lock.visible = (lock.y > FlxG.height / 2);
-		});
 	}
 
 	var movedBack:Bool = false;
@@ -708,4 +609,123 @@ class StoryMenuState extends MusicBeatState
 		intendedScore = Highscore.getWeekScore(loadedWeeks[curWeek].fileName, curDifficulty);
 		#end
 	}
-}
+
+	override public function update(elapsed:Float)
+	{
+		if (controls.LEFT && oneclickpls)
+			leftArrow.animation.play('press');
+		else
+			leftArrow.animation.play('idle');
+	
+		if (controls.LEFT_P && oneclickpls)
+		{
+			if (selection)
+				changeAct(-1);
+			else
+				changediff(-1);
+		}
+	
+		if (controls.RIGHT && oneclickpls)
+			rightArrow.animation.play('press');
+		else
+			rightArrow.animation.play('idle');
+	
+		if (controls.RIGHT_P && oneclickpls)
+		{
+			if (selection)
+				changeAct(1);
+			else
+				changediff(1);
+		}
+	
+		if ((controls.UP_P && oneclickpls) || (controls.DOWN_P && oneclickpls))
+			changeSelec(); // i forgor how ifs work
+	
+		if (controls.BACK && oneclickpls)
+		{
+			FlxG.sound.play(Paths.sound('cancelMenu'));
+			FlxG.switchState(new MainMenuState());
+		}
+	
+		if (controls.ACCEPT)
+		{
+			if (oneclickpls)
+			{
+				oneclickpls = false;
+				var curDifficulty = '';
+	
+				FlxG.sound.play(Paths.sound('confirmMenu'));
+	
+				if (FlxG.save.data.storyProgress == 0)
+				{
+					PlayState.storyPlaylist = ['too-slow', 'you-cant-run', 'triple-trouble'];
+					PlayState.isStoryMode = true;
+					switch (curdiff)
+					{
+						case 1:
+							curDifficulty = '-easy';
+						case 3:
+							curDifficulty = '-hard';
+					}
+	
+					curdiff -= 1;
+					PlayState.storyDifficulty = FlxG.save.data.storyDiff = curdiff;
+	
+					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + curDifficulty, PlayState.storyPlaylist[0].toLowerCase());
+					PlayState.storyWeek = 1;
+					PlayState.campaignScore = 0;
+				}
+				else
+				{
+					if (songArray[real] == 'too-slow')
+					{
+						switch (curdiff)
+						{
+							case 1:
+								curDifficulty = '-easy';
+							case 3:
+								curDifficulty = '-hard';
+						}
+					}
+					else
+						curDifficulty = '-hard';
+	
+					PlayState.SONG = Song.loadFromJson(songArray[real].toLowerCase() + curDifficulty, songArray[real].toLowerCase());
+					PlayState.isStoryMode = false;
+					LoadingState.loadAndSwitchState(new PlayState());
+				}
+				if (FlxG.save.data.storyProgress == 1 && songArray[real] == 'you-cant-run')
+				{
+					PlayState.storyPlaylist = ['you-cant-run', 'triple-trouble'];
+					PlayState.isStoryMode = true;
+					curDifficulty = '-hard';
+	
+					PlayState.storyDifficulty = FlxG.save.data.storyDiff = curdiff;
+	
+					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + curDifficulty, PlayState.storyPlaylist[0].toLowerCase());
+					PlayState.storyWeek = 1;
+				}
+	
+				if (songArray[real] == 'too-slow')
+				{
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						// LoadingState.loadAndSwitchState(new PlayState(), true); //save this code for the cutsceneless build of the game
+							
+						{
+							//LoadingState.loadAndSwitchState(new VideoState("tooslowcutscene1.webm", new PlayState()));
+							LoadingState.loadAndSwitchState(new PlayState(), true);
+						}
+					});
+				}
+			}
+	
+			if (FlxG.save.data.flashing)
+			{
+				FlxFlicker.flicker(redBOX, 1, 0.06, false, false, function(flick:FlxFlicker) {});
+			}
+		}
+
+		super.update(elapsed);
+	}
+}	
