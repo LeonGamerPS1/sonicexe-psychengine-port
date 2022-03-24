@@ -326,32 +326,7 @@ class PlayState extends MusicBeatState
 		{
 			Main.dumpCache(); // Honestly it's just preloading so idrc.
 
-			if (SONG.song.toLowerCase() == 'too-slow')
-			{
-				daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE', 'exe');
-				daJumpscare.animation.addByPrefix('jump', 'sonicSPOOK', 24, false);
-				add(daJumpscare);
-				daJumpscare.animation.play('jump');
-	
-				daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
-				daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
-				daNoteStatic.animation.play('static');
-	
-				remove(daNoteStatic);
-			}
-			else if (SONG.song.toLowerCase() == 'you-cant-run')
-			{
-				daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
-				daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
-				daNoteStatic.animation.play('static');
-	
-				remove(daNoteStatic);
-	
-				dad = new Character(100, 100, 'sonic.exe alt');
-				add(dad);
-				remove(dad);
-			}
-		    else if (SONG.song.toLowerCase() == 'chaos')
+		    if (SONG.song.toLowerCase() == 'chaos')
 			{
 				FlxG.bitmap.add(Paths.image('characters/Super_BoyFriend_Extra_Anims', 'shared'));
 				FlxG.bitmap.add(Paths.image('characters/fleetway', 'shared'));
