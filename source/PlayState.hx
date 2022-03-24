@@ -326,7 +326,7 @@ class PlayState extends MusicBeatState
 		{
 			Main.dumpCache(); // Honestly it's just preloading so idrc.
 
-			if (SONG.song.toLowerCase() == 'too-slow' && FlxG.save.data.jumpscares)
+			if (SONG.song.toLowerCase() == 'too-slow')
 			{
 				daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE', 'exe');
 				daJumpscare.animation.addByPrefix('jump', 'sonicSPOOK', 24, false);
