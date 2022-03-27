@@ -1,7 +1,7 @@
 {
 	"animations": [
 		{
-			"loop": false,
+			"loop": true,
 			"offsets": [
 				55,
 				13
@@ -12,7 +12,7 @@
 			"indices": []
 		},
 		{
-			"loop": false,
+			"loop": true,
 			"offsets": [
 				56,
 				-72
@@ -23,7 +23,7 @@
 			"indices": []
 		},
 		{
-			"loop": false,
+			"loop": true,
 			"offsets": [
 				48,
 				36
@@ -34,7 +34,7 @@
 			"indices": []
 		},
 		{
-			"loop": false,
+			"loop": true,
 			"offsets": [
 				3,
 				11
@@ -45,105 +45,6 @@
 			"indices": []
 		},
 		{
-			"loop": false,
-			"offsets": [
-				-3,
-				5
-			],
-			"anim": "hey",
-			"fps": 24,
-			"name": "BF HEY",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				15,
-				18
-			],
-			"anim": "hurt",
-			"fps": 24,
-			"name": "BF hit",
-			"indices": []
-		},
-		{
-			"loop": true,
-			"offsets": [
-				-4,
-				0
-			],
-			"anim": "scared",
-			"fps": 24,
-			"name": "BF idle shaking",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				37,
-				11
-			],
-			"anim": "firstDeath",
-			"fps": 24,
-			"name": "BF dies",
-			"indices": []
-		},
-		{
-			"loop": true,
-			"offsets": [
-				37,
-				5
-			],
-			"anim": "deathLoop",
-			"fps": 24,
-			"name": "BF Dead Loop",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				37,
-				69
-			],
-			"anim": "deathConfirm",
-			"fps": 24,
-			"name": "BF Dead confirm",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				-10,
-				-16
-			],
-			"anim": "dodge",
-			"fps": 24,
-			"name": "boyfriend dodge",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				294,
-				267
-			],
-			"anim": "attack",
-			"fps": 24,
-			"name": "boyfriend attack",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				-40,
-				-40
-			],
-			"anim": "pre-attack",
-			"fps": 24,
-			"name": "bf pre attack",
-			"indices": []
-		},
-		{
 			"offsets": [
 				56,
 				11
@@ -151,7 +52,7 @@
 			"indices": [],
 			"fps": 24,
 			"anim": "idle",
-			"loop": false,
+			"loop": true,
 			"name": "BF Super idle dance instance 1"
 		},
 		{
@@ -162,7 +63,7 @@
 			"indices": [],
 			"fps": 24,
 			"anim": "singLEFT",
-			"loop": false,
+			"loop": true,
 			"name": "BF NOTE LEFT instance 1"
 		},
 		{
@@ -173,7 +74,7 @@
 			"indices": [],
 			"fps": 24,
 			"anim": "singDOWN",
-			"loop": false,
+			"loop": true,
 			"name": "BF NOTE DOWN instance 1"
 		},
 		{
@@ -184,7 +85,7 @@
 			"indices": [],
 			"fps": 24,
 			"anim": "singUP",
-			"loop": false,
+			"loop": true,
 			"name": "BF NOTE UP instance 1"
 		},
 		{
@@ -195,7 +96,7 @@
 			"indices": [],
 			"fps": 24,
 			"anim": "singRIGHT",
-			"loop": false,
+			"loop": true,
 			"name": "BF NOTE RIGHT instance 1"
 		}
 	],

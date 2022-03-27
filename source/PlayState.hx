@@ -326,7 +326,70 @@ class PlayState extends MusicBeatState
 		{
 			Main.dumpCache(); // Honestly it's just preloading so idrc.
 
-		    if (SONG.song.toLowerCase() == 'chaos')
+			if (SONG.song.toLowerCase() == 'too-slow')
+			{
+				daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE');
+				daJumpscare.animation.addByPrefix('jump', 'sonicSPOOK', 24, false);
+				add(daJumpscare);
+				daJumpscare.animation.play('jump');
+				
+				daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
+				daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
+				daNoteStatic.animation.play('static');
+	
+				remove(daNoteStatic);
+			}
+			else if (SONG.song.toLowerCase() == 'you-cant-run')
+			{
+				daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
+				daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
+				daNoteStatic.animation.play('static');
+	
+				remove(daNoteStatic);
+			}
+			else if (SONG.song.toLowerCase() == 'triple-trouble')
+			{
+				daP3Static.frames = Paths.getSparrowAtlas('Phase3Static');
+				daP3Static.animation.addByPrefix('P3Static', 'Phase3Static instance 1', 24, false);
+				add(daP3Static);
+				daP3Static.animation.play('P3Static');
+				remove(daP3Static);
+	
+				daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
+				daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
+				daNoteStatic.animation.play('static');
+	
+				remove(daNoteStatic);
+	
+				/*p3staticbg.frames = Paths.getSparrowAtlas('Phase3Static', 'exe');
+					p3staticbg.animation.addByPrefix('P3Static', 'Phase3Static instance 1', 24, true);
+					add(p3staticbg);
+					p3staticbg.animation.play('P3Static');
+					p3staticbg.screenCenter();
+					p3staticbg.scale.x = 4;
+					p3staticbg.scale.y = 4;
+					p3staticbg.visible = false;
+					p3staticbg.cameras = [camHUD2];
+					remove(p3staticbg); */
+			}
+			else if (SONG.song.toLowerCase() == 'sunshine')
+			{
+				var bfdeathshit:FlxSprite = new FlxSprite(); // Yo what if i just preload the game over :)
+				bfdeathshit.frames = Paths.getSparrowAtlas('3DGOpng');
+				bfdeathshit.setGraphicSize(720, 720);
+				bfdeathshit.animation.addByPrefix('firstdeath', 'DeathAnim', 24, false);
+				bfdeathshit.screenCenter();
+				bfdeathshit.animation.play('firstdeath');
+				add(bfdeathshit);
+				bfdeathshit.animation.finishCallback = function(b:String)
+				{
+					remove(bfdeathshit);
+				}
+				dad = new Character(100, 100, 'TDollAlt');
+				add(dad);
+				remove(dad);
+			}
+			else if (SONG.song.toLowerCase() == 'chaos')
 			{
 				FlxG.bitmap.add(Paths.image('characters/Super_BoyFriend_Extra_Anims', 'shared'));
 				FlxG.bitmap.add(Paths.image('characters/fleetway', 'shared'));
@@ -377,7 +440,9 @@ class PlayState extends MusicBeatState
 			// LOL
 		}
 		else
-			preloaded = true;
+		{
+			preloaded = false;
+		}
 
 		// for lua
 		instance = this;
@@ -1097,6 +1162,8 @@ class PlayState extends MusicBeatState
 
 			case 'chamber':
 				add(thechamber);
+				remove(boyfriend);
+				add(boyfriend);
 				add(porker);
 		}
 
@@ -1591,7 +1658,7 @@ class PlayState extends MusicBeatState
 						});
 						new FlxTimer().start(6, function(lol:FlxTimer)
 						{
-							startCountdown();
+			                startCountdown();
 							FlxG.sound.play(Paths.sound('beam'));
 							FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.2, {ease: FlxEase.cubeOut});
 							FlxG.camera.shake(0.02, 0.2);
@@ -5487,16 +5554,19 @@ class PlayState extends MusicBeatState
 		{
 			if (curStep == 15)
 			{
-				//dad.playAnim('fastanim', true);
+				dad.playAnim('fastanim', true);
 				//dad.nonanimated = true;
 				FlxTween.tween(dad, {x: 61.15, y: -94.75}, 2, {ease: FlxEase.cubeOut});
 			}
 			else if (curStep == 9)
 			{
 				remove(boyfriend);
-				boyfriend = new Boyfriend(2040.55 - 200, 950 - 130 - 46, 'bf');
+				boyfriend = new Boyfriend(2000.55 - 200, 950 - 130 - 46, 'bf');
 				add(boyfriend);
 
+				remove(dad);
+				dad = new Character(61.15, 400, 'fleetway');
+				add(dad);
 				dad.visible = true;
 				FlxTween.tween(dad, {y: dad.y - 500}, 0.5, {ease: FlxEase.cubeOut});
 			}
@@ -5511,8 +5581,8 @@ class PlayState extends MusicBeatState
 			switch (curStep)
 			{
 				case 256:
-					laserThingy(true);
-	
+				    laserThingy(true);
+
 				case 399, 528, 656, 784, 1040, 1168, 1296, 1552, 1680, 1808, 1952:
 					remove(dad);
 					dad = new Character(61.15, -94.75, 'fleetway');
