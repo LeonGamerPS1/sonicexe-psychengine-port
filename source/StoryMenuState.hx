@@ -710,12 +710,7 @@ class StoryMenuState extends MusicBeatState
 				{
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
-						// LoadingState.loadAndSwitchState(new PlayState(), true); //save this code for the cutsceneless build of the game
-							
-						{
-							//LoadingState.loadAndSwitchState(new VideoState("tooslowcutscene1.webm", new PlayState()));
-							LoadingState.loadAndSwitchState(new PlayState(), true);
-						}
+						LoadingState.loadAndSwitchState(new PlayState(), true); //save this code for the cutsceneless build of the game
 					});
 				}
 			}

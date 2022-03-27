@@ -94,21 +94,4 @@ class Main extends Sprite
 		FlxG.mouse.visible = false;
 		#end
 	}
-
-	public static function dumpCache() // THIS MOD WASTES 1-2 FUCKING G I G A B Y T E S OF MEMORY SO OF COURSE I COPIED KADE'S CODE FOR FUCKS SAKE
-	{
-		@:privateAccess
-		for (key in FlxG.bitmap._cache.keys())
-		{
-			var obj = FlxG.bitmap._cache.get(key);
-			if (obj != null)
-			{
-				Assets.cache.removeBitmapData(key);
-				FlxG.bitmap._cache.remove(key);
-				obj.destroy();
-			}
-		}
-		Assets.cache.clear("songs");
-		// */
-	}
 }

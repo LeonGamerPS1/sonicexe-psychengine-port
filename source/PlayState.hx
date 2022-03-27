@@ -322,126 +322,84 @@ class PlayState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 
-		if (curSong != SONG.song)
+		if (SONG.song.toLowerCase() == 'too-slow')
 		{
-			Main.dumpCache(); // Honestly it's just preloading so idrc.
+			daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE');
+			daJumpscare.animation.addByPrefix('jump', 'sonicSPOOK', 24, false);
+			add(daJumpscare);
+			daJumpscare.animation.play('jump');
 
-			if (SONG.song.toLowerCase() == 'too-slow')
-			{
-				daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE');
-				daJumpscare.animation.addByPrefix('jump', 'sonicSPOOK', 24, false);
-				add(daJumpscare);
-				daJumpscare.animation.play('jump');
-				
-				daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
-				daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
-				daNoteStatic.animation.play('static');
-	
-				remove(daNoteStatic);
-			}
-			else if (SONG.song.toLowerCase() == 'you-cant-run')
-			{
-				daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
-				daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
-				daNoteStatic.animation.play('static');
-	
-				remove(daNoteStatic);
-			}
-			else if (SONG.song.toLowerCase() == 'triple-trouble')
-			{
-				daP3Static.frames = Paths.getSparrowAtlas('Phase3Static');
-				daP3Static.animation.addByPrefix('P3Static', 'Phase3Static instance 1', 24, false);
-				add(daP3Static);
-				daP3Static.animation.play('P3Static');
-				remove(daP3Static);
-	
-				daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
-				daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
-				daNoteStatic.animation.play('static');
-	
-				remove(daNoteStatic);
-	
-				/*p3staticbg.frames = Paths.getSparrowAtlas('Phase3Static', 'exe');
-					p3staticbg.animation.addByPrefix('P3Static', 'Phase3Static instance 1', 24, true);
-					add(p3staticbg);
-					p3staticbg.animation.play('P3Static');
-					p3staticbg.screenCenter();
-					p3staticbg.scale.x = 4;
-					p3staticbg.scale.y = 4;
-					p3staticbg.visible = false;
-					p3staticbg.cameras = [camHUD2];
-					remove(p3staticbg); */
-			}
-			else if (SONG.song.toLowerCase() == 'sunshine')
-			{
-				var bfdeathshit:FlxSprite = new FlxSprite(); // Yo what if i just preload the game over :)
-				bfdeathshit.frames = Paths.getSparrowAtlas('3DGOpng');
-				bfdeathshit.setGraphicSize(720, 720);
-				bfdeathshit.animation.addByPrefix('firstdeath', 'DeathAnim', 24, false);
-				bfdeathshit.screenCenter();
-				bfdeathshit.animation.play('firstdeath');
-				add(bfdeathshit);
-				bfdeathshit.animation.finishCallback = function(b:String)
-				{
-					remove(bfdeathshit);
-				}
-				dad = new Character(100, 100, 'TDollAlt');
-				add(dad);
-				remove(dad);
-			}
-			else if (SONG.song.toLowerCase() == 'chaos')
-			{
-				FlxG.bitmap.add(Paths.image('characters/Super_BoyFriend_Extra_Anims', 'shared'));
-				FlxG.bitmap.add(Paths.image('characters/fleetway', 'shared'));
-				FlxG.bitmap.add(Paths.image('characters/fleetway1', 'shared'));
-				FlxG.bitmap.add(Paths.image('characters/fleetway2', 'shared'));
-				FlxG.bitmap.add(Paths.image('characters/fleetway3', 'shared'));
-				FlxG.bitmap.add(Paths.image('Warning'));
-				FlxG.bitmap.add(Paths.image('spacebar_icon'));
+			daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
+			daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
+			daNoteStatic.animation.play('static');
 
-				var dad1:Character = new Character(0, 0, 'fleetway-extras');
-				dad1.alpha = 0.01;
-				add(dad1);
-				remove(dad1);
-
-				var dad2:Character = new Character(0, 0, 'fleetway-extras2');
-				dad2.alpha = 0.01;
-				add(dad2);
-				remove(dad2);
-
-				var dad3:Character = new Character(0, 0, 'fleetway-extras3');
-				dad3.alpha = 0.01;
-				add(dad3);
-				remove(dad3);
-
-				boyfriend = new Boyfriend(2040.55 - 200, 685.6 - 130, 'bf-super');
-				add(boyfriend);
-				remove(boyfriend);
-
-				var poo4:FlxSprite = new FlxSprite();
-				add(poo4);
-				poo4.frames = Paths.getSparrowAtlas('Warning');
-				poo4.animation.addByPrefix('a', 'Warning Flash', 24, false);
-				poo4.animation.play('a', true);
-				poo4.alpha = 0.01;
-				remove(poo4);
-
-				var poo1:FlxSprite = new FlxSprite();
-				add(poo1);
-				poo1.frames = Paths.getSparrowAtlas('spacebar_icon');
-				poo1.animation.addByPrefix('a', 'spacebar', 24, false);
-				poo1.animation.play('a', true);
-				poo1.alpha = 0.01;
-				remove(poo1);
-
-				preloaded = true;
-			}
-			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0, false);
-			// LOL
+			remove(daNoteStatic);
 		}
-		else
+		else if (SONG.song.toLowerCase() == 'you-cant-run')
 		{
-			preloaded = false;
+			daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
+			daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
+			daNoteStatic.animation.play('static');
+
+			remove(daNoteStatic);
+		}
+		else if (SONG.song.toLowerCase() == 'triple-trouble')
+		{
+			daP3Static.frames = Paths.getSparrowAtlas('Phase3Static');
+			daP3Static.animation.addByPrefix('P3Static', 'Phase3Static instance 1', 24, false);
+			add(daP3Static);
+			daP3Static.animation.play('P3Static');
+			remove(daP3Static);
+
+			daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
+			daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
+			daNoteStatic.animation.play('static');
+
+			remove(daNoteStatic);
+		}
+		else if (SONG.song.toLowerCase() == 'chaos')
+		{
+			FlxG.bitmap.add(Paths.image('characters/Super_BoyFriend_Extra_Anims', 'shared'));
+			FlxG.bitmap.add(Paths.image('characters/fleetway1', 'shared'));
+			FlxG.bitmap.add(Paths.image('characters/fleetway2', 'shared'));
+			FlxG.bitmap.add(Paths.image('characters/fleetway3', 'shared'));
+			FlxG.bitmap.add(Paths.image('Warning'));
+			FlxG.bitmap.add(Paths.image('spacebar_icon'));
+
+			var dad1:Character = new Character(0, 0, 'fleetway-extras');
+			dad1.alpha = 0.01;
+			add(dad1);
+			remove(dad1);
+
+			var dad2:Character = new Character(0, 0, 'fleetway-extras2');
+			dad2.alpha = 0.01;
+			add(dad2);
+			remove(dad2);
+
+			var dad3:Character = new Character(0, 0, 'fleetway-extras3');
+			dad3.alpha = 0.01;
+			add(dad3);
+			remove(dad3);
+
+			boyfriend = new Boyfriend(2040.55 - 200, 685.6 - 130, 'bf-super');
+			add(boyfriend);
+			remove(boyfriend);
+
+			var poo4:FlxSprite = new FlxSprite();
+			add(poo4);
+			poo4.frames = Paths.getSparrowAtlas('Warning');
+			poo4.animation.addByPrefix('a', 'Warning Flash', 24, false);
+			poo4.animation.play('a', true);
+			poo4.alpha = 0.01;
+			remove(poo4);
+
+			var poo1:FlxSprite = new FlxSprite();
+			add(poo1);
+			poo1.frames = Paths.getSparrowAtlas('spacebar_icon');
+			poo1.animation.addByPrefix('a', 'spacebar', 24, false);
+	    	poo1.animation.play('a', true);
+			poo1.alpha = 0.01;
+			remove(poo1);
 		}
 
 		// for lua
@@ -1452,7 +1410,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song)
 		{
 			case 'too-slow':
-				cooltext = 'Too Slow';
+				cooltext = "Too Slow";
 
 			case 'you-cant-run':
 				cooltext = "You Can't Run";
@@ -1643,35 +1601,30 @@ class PlayState extends MusicBeatState
 				//FlxG.camera.focusOn(camFollow.getPosition());
 				new FlxTimer().start(0.5, function(lol:FlxTimer)
 				{
-					if (preloaded)
+					new FlxTimer().start(1, function(lol:FlxTimer)
 					{
-						new FlxTimer().start(1, function(lol:FlxTimer)
-						{
-							FlxTween.tween(FlxG.camera, {zoom: 1.5}, 3, {ease: FlxEase.cubeOut});
-							FlxG.sound.play(Paths.sound('robot'));
-							FlxG.camera.flash(FlxColor.RED, 0.2);
-						});
-						new FlxTimer().start(2, function(lol:FlxTimer)
-						{
-							FlxG.sound.play(Paths.sound('sonic'));
-							thechamber.animation.play('a');
-						});
-						new FlxTimer().start(6, function(lol:FlxTimer)
-						{
-			                startCountdown();
-							FlxG.sound.play(Paths.sound('beam'));
-							FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.2, {ease: FlxEase.cubeOut});
-							FlxG.camera.shake(0.02, 0.2);
-							FlxG.camera.flash(FlxColor.WHITE, 0.2);
-							floor.animation.play('b');
-							fleetwaybgshit.animation.play('b');
-							pebles.animation.play('b');
-							emeraldbeamyellow.visible = true;
-							emeraldbeam.visible = false;
-						});
-					}
-					else
-						lol.reset();
+						FlxTween.tween(FlxG.camera, {zoom: 1.5}, 3, {ease: FlxEase.cubeOut});
+						FlxG.sound.play(Paths.sound('robot'));
+						FlxG.camera.flash(FlxColor.RED, 0.2);
+					});
+					new FlxTimer().start(2, function(lol:FlxTimer)
+					{
+						FlxG.sound.play(Paths.sound('sonic'));
+						thechamber.animation.play('a');
+					});
+					new FlxTimer().start(6, function(lol:FlxTimer)
+					{
+			            startCountdown();
+						FlxG.sound.play(Paths.sound('beam'));
+						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.2, {ease: FlxEase.cubeOut});
+						FlxG.camera.shake(0.02, 0.2);
+						FlxG.camera.flash(FlxColor.WHITE, 0.2);
+						floor.animation.play('b');
+						fleetwaybgshit.animation.play('b');
+						pebles.animation.play('b');
+						emeraldbeamyellow.visible = true;
+						emeraldbeam.visible = false;
+					});
 				});
 			}
 		    switch (curSong)
