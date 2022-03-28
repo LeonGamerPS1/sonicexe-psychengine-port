@@ -276,6 +276,7 @@ class PlayState extends MusicBeatState
 	var tailscircle:String = '';
 	var ezTrail:FlxTrail;
 	var cooltext:String = '';
+	var difficulty:String = '';
 	var floaty:Float = 0;
 	//dodging shit
 	var preloaded:Bool = false;
@@ -1333,7 +1334,7 @@ class PlayState extends MusicBeatState
 			var funny:shaders.SonicExe;
 			funny = new shaders.SonicExe();
 	
-			daStatic = new BGSprite('Jumpscare/daSTAT', 0, 0, 0.1, 0.1, ['staticFLASH']);
+			daStatic = new BGSprite('daSTAT', 0, 0, 0.1, 0.1, ['staticFLASH']);
 			daStatic.animation.addByPrefix('static', 'staticFLASH', 24);
 			daStatic.animation.play('static');
 			daStatic.alpha = 0.05;
@@ -1406,6 +1407,23 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBarBG.y - 78;
 		}
 		
+		if (storyDifficulty == 0)
+		{
+			difficulty = "Easy";
+		}
+		else if (storyDifficulty == 1)
+		{
+			difficulty = "Normal";
+		}
+		else if (storyDifficulty == 2)
+		{
+			difficulty = "Hard";
+		}
+		else
+		{
+			difficulty = "Encore";
+		}
+
 		//song names lol
 		switch (SONG.song)
 		{
@@ -1432,6 +1450,9 @@ class PlayState extends MusicBeatState
 
 			case 'milk':
 				cooltext = "milk";
+
+			case 'too-slow-encore':
+				cooltext = "Too Slow";
 		}
 
 		// Add Kade Engine watermark
@@ -1439,7 +1460,7 @@ class PlayState extends MusicBeatState
 			+ 50, 0,
 			cooltext
 			+ " - "
-			+ CoolUtil.difficultyFromInt(storyDifficulty)
+			+ difficulty//CoolUtil.difficultyFromInt(storyDifficulty)
 			+ (Main.watermarks ? " | KE 1.5.4/PE " + MainMenuState.psychEngineVersion : ""), 17);
 		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
