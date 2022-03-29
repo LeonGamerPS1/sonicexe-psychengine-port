@@ -1592,7 +1592,7 @@ class PlayState extends MusicBeatState
 				video.playMP4(Paths.video('tooslowcutscene1'));
 				video.finishCallback = function()
 				{
-					LoadingState.loadAndSwitchState(new PlayState());
+					startCountdown();
 				}
 				#else
 				startCountdown();
@@ -1604,7 +1604,7 @@ class PlayState extends MusicBeatState
 				video.playMP4(Paths.video('tooslowcutscene2'));
 				video.finishCallback = function()
 				{
-					LoadingState.loadAndSwitchState(new PlayState());
+					startCountdown();
 				}
 				#else
 				startCountdown();
@@ -1616,7 +1616,7 @@ class PlayState extends MusicBeatState
 				video.playMP4(Paths.video('youcantruncutscene2'));
 				video.finishCallback = function()
 				{
-					LoadingState.loadAndSwitchState(new PlayState());
+					startCountdown();
 				}
 				#else
 				startCountdown();
