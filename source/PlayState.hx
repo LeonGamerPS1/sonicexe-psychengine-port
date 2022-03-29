@@ -1587,6 +1587,7 @@ class PlayState extends MusicBeatState
 		else
 		{
 			if (curSong == 'too-slow')
+			{
 				#if windows
 				video.playMP4(Paths.video('tooslowcutscene1'));
 				video.finishCallback = function()
@@ -1596,7 +1597,9 @@ class PlayState extends MusicBeatState
 				#else
 				startCountdown();
 				#end
+			}
 			else if (curSong == 'you-cant-run')
+			{
 				#if windows
 				video.playMP4(Paths.video('tooslowcutscene2'));
 				video.finishCallback = function()
@@ -1606,7 +1609,9 @@ class PlayState extends MusicBeatState
 				#else
 				startCountdown();
 				#end
+			}
 			else if (curSong == 'triple-trouble')
+			{
 				#if windows
 				video.playMP4(Paths.video('youcantruncutscene2'));
 				video.finishCallback = function()
@@ -1616,6 +1621,7 @@ class PlayState extends MusicBeatState
 				#else
 				startCountdown();
 				#end
+			}
 			else if (curSong == 'chaos')
 			{
 				FlxG.camera.zoom = defaultCamZoom;
