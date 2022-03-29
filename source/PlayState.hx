@@ -1407,21 +1407,25 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBarBG.y - 78;
 		}
 		
-		if (storyDifficulty == 0)
+		if (CoolUtil.difficultyString() == 'EASY')
 		{
 			difficulty = "Easy";
 		}
-		else if (storyDifficulty == 1)
+		else if (CoolUtil.difficultyString() == 'NORMAL')
 		{
 			difficulty = "Normal";
 		}
-		else if (storyDifficulty == 2)
+		else if (CoolUtil.difficultyString() == 'HARD')
 		{
 			difficulty = "Hard";
 		}
-		else
+		else if (CoolUtil.difficultyString() == 'ENCORE')
 		{
 			difficulty = "Encore";
+		}
+		else
+		{
+			difficulty = "Null";
 		}
 
 		//song names lol
@@ -1460,7 +1464,7 @@ class PlayState extends MusicBeatState
 			+ 50, 0,
 			cooltext
 			+ " - "
-			+ difficulty//CoolUtil.difficultyFromInt(storyDifficulty)
+			+ difficulty
 			+ (Main.watermarks ? " | KE 1.5.4/PE " + MainMenuState.psychEngineVersion : ""), 17);
 		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
@@ -1576,50 +1580,50 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-				case 'too-slow':
-					#if windows
-					video.playMP4(Paths.video('tooslowcutscene1'));
-					video.finishCallback = function()
-					{
-						LoadingState.loadAndSwitchState(new PlayState());
-					}
-				    #else
-					startCountdown();
-                    #end
-				case 'you-cant-run':
-					#if windows
-					video.playMP4(Paths.video('tooslowcutscene2'));
-					video.finishCallback = function()
-					{
-						LoadingState.loadAndSwitchState(new PlayState());
-					}
-					#else
-					startCountdown();
-					#end
-				case 'triple-trouble':
-					#if windows
-					video.playMP4(Paths.video('youcantruncutscene2'));
-					video.finishCallback = function()
-					{
-						LoadingState.loadAndSwitchState(new PlayState());
-					}
-					#else
-					startCountdown();
-					#end
 				default:
 					startCountdown();
 			}
 		}
 		else
 		{
-			if (curSong == 'chaos')
+			if (curSong == 'too-slow')
+				#if windows
+				video.playMP4(Paths.video('tooslowcutscene1'));
+				video.finishCallback = function()
+				{
+					LoadingState.loadAndSwitchState(new PlayState());
+				}
+				#else
+				startCountdown();
+				#end
+			else if (curSong == 'you-cant-run')
+				#if windows
+				video.playMP4(Paths.video('tooslowcutscene2'));
+				video.finishCallback = function()
+				{
+					LoadingState.loadAndSwitchState(new PlayState());
+				}
+				#else
+				startCountdown();
+				#end
+			else if (curSong == 'triple-trouble')
+				#if windows
+				video.playMP4(Paths.video('youcantruncutscene2'));
+				video.finishCallback = function()
+				{
+					LoadingState.loadAndSwitchState(new PlayState());
+				}
+				#else
+				startCountdown();
+				#end
+			else if (curSong == 'chaos')
 			{
 				FlxG.camera.zoom = defaultCamZoom;
 				camHUD.visible = false;
 				dad.visible = false;
 				dad.setPosition(600, 400);
-				//camFollow.setPosition(900, 700);
-				//FlxG.camera.focusOn(camFollow.getPosition());
+				camFollowPos.setPosition(900, 700);
+				FlxG.camera.focusOn(camFollowPos.getPosition());
 				new FlxTimer().start(0.5, function(lol:FlxTimer)
 				{
 					new FlxTimer().start(1, function(lol:FlxTimer)
