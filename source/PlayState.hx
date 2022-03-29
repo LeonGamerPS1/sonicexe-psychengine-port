@@ -1580,49 +1580,43 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
+				case 'too-slow':
+					#if windows
+					video.playMP4(Paths.video('tooslowcutscene1'));
+					video.finishCallback = function()
+					{
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+					#else
+					startCountdown();
+					#end
+				case 'you-cant-run':
+					#if windows
+					video.playMP4(Paths.video('tooslowcutscene2'));
+					video.finishCallback = function()
+					{
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+					#else
+						startCountdown();
+				    #end
+				case 'triple-trouble':
+					#if windows
+					video.playMP4(Paths.video('youcantruncutscene2'));
+					video.finishCallback = function()
+					{
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+					#else
+					startCountdown();
+					#end
 				default:
 					startCountdown();
 			}
 		}
 		else
 		{
-			if (curSong == 'too-slow')
-			{
-				#if windows
-				video.playMP4(Paths.video('tooslowcutscene1'));
-				video.finishCallback = function()
-				{
-					startCountdown();
-				}
-				#else
-				startCountdown();
-				#end
-			}
-			else if (curSong == 'you-cant-run')
-			{
-				#if windows
-				video.playMP4(Paths.video('tooslowcutscene2'));
-				video.finishCallback = function()
-				{
-					startCountdown();
-				}
-				#else
-				startCountdown();
-				#end
-			}
-			else if (curSong == 'triple-trouble')
-			{
-				#if windows
-				video.playMP4(Paths.video('youcantruncutscene2'));
-				video.finishCallback = function()
-				{
-					startCountdown();
-				}
-				#else
-				startCountdown();
-				#end
-			}
-			else if (curSong == 'chaos')
+			if (curSong == 'chaos')
 			{
 				FlxG.camera.zoom = defaultCamZoom;
 				camHUD.visible = false;
