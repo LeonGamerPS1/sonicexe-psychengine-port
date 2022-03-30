@@ -360,13 +360,6 @@ class PlayState extends MusicBeatState
 		}
 		else if (SONG.song.toLowerCase() == 'chaos')
 		{
-			FlxG.bitmap.add(Paths.image('characters/Super_BoyFriend_Extra_Anims', 'shared'));
-			FlxG.bitmap.add(Paths.image('characters/fleetway1', 'shared'));
-			FlxG.bitmap.add(Paths.image('characters/fleetway2', 'shared'));
-			FlxG.bitmap.add(Paths.image('characters/fleetway3', 'shared'));
-			FlxG.bitmap.add(Paths.image('Warning'));
-			FlxG.bitmap.add(Paths.image('spacebar_icon'));
-
 			var dad1:Character = new Character(0, 0, 'fleetway-extras');
 			dad1.alpha = 0.01;
 			add(dad1);
@@ -5532,7 +5525,7 @@ class PlayState extends MusicBeatState
 		{
 			if (curStep == 15)
 			{
-				dad.playAnim('fastanim', true);
+				//dad.playAnim('fastanim', true);
 				//dad.nonanimated = true;
 				FlxTween.tween(dad, {x: 61.15, y: -94.75}, 2, {ease: FlxEase.cubeOut});
 			}

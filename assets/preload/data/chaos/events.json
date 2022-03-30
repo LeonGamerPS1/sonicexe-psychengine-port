@@ -1,0 +1,30 @@
+{
+	"song": {
+		"speed": 3,
+		"stage": "chamber",
+		"player1": "nothing",
+		"player2": "fleetway",
+		"player3": null,
+		"events": [
+			[
+				1190.47619047619,
+				[
+					[
+						"Play Animation",
+						"fastanim",
+						"dad"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "nothing",
+		"bpm": 189,
+		"mania": 3,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "chaos"
+	}
+}
