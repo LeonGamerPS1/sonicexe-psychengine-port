@@ -37,6 +37,11 @@ class StoryMenuState extends MusicBeatState
 	var txtWeekTitle:FlxText;
 	var bgSprite:FlxSprite;
 
+	//cutscenes baby
+	#if windows
+	var video:MP4Handler = new MP4Handler();
+	#end
+
 	private static var curWeek:Int = 0;
 
 	var txtTracklist:FlxText;
@@ -710,7 +715,15 @@ class StoryMenuState extends MusicBeatState
 				{
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
-						LoadingState.loadAndSwitchState(new PlayState(), true); //save this code for the cutsceneless build of the game
+						#if windows
+						video.playMP4(Paths.video('tooslowcutscene1'));
+						video.finishCallback = function()
+						{
+							LoadingState.loadAndSwitchState(new PlayState());
+						}
+						#else
+						LoadingState.loadAndSwitchState(new PlayState(), true);
+						#end
 					});
 				}
 			}

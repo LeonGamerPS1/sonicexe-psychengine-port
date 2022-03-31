@@ -39,7 +39,7 @@ class MiscSubstate extends BaseOptionsMenu
 			trace("Caching is " + ClientPrefs.cache);
 			#if desktop
 			trace("Closing...");
-			new FlxTimer().start(0.8, function(tmr:FlxTimer) //so it saves because it instantly closes
+			new FlxTimer().start(0.8, function(tmr:FlxTimer) //so it saves because it instantly closes //this doesnt work lmfao
 			{
 			    Sys.exit(0);
 			});
@@ -54,7 +54,7 @@ class MiscSubstate extends BaseOptionsMenu
 		    'bool', //Variable type
 		    true); //Default value
 		option.onChange = CacheRestart;
-	    //addOption(option); //for some reason this doesnt save so no being able to disable caching
+	    //addOption(option); //for some reason this doesnt save when you use it so no being able to disable caching
 
 		super();
 	}

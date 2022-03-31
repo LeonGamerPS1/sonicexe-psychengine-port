@@ -1383,7 +1383,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			difficulty = "Null";
+			difficulty = "Hard"; //should be null but im just gonna put hard lol
 		}
 
 		//song names lol
@@ -1538,16 +1538,6 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-				case 'too-slow':
-					#if windows
-					video.playMP4(Paths.video('tooslowcutscene1'));
-					video.finishCallback = function()
-					{
-						LoadingState.loadAndSwitchState(new PlayState());
-					}
-					#else
-					startCountdown();
-					#end
 				case 'you-cant-run':
 					#if windows
 					video.playMP4(Paths.video('tooslowcutscene2'));
