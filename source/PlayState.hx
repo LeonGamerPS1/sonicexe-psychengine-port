@@ -2306,7 +2306,7 @@ class PlayState extends MusicBeatState
 
 	function three():Void
 	{
-		var three:FlxSprite = new FlxSprite().loadGraphic(Paths.image('three', 'shared'));
+		var three:FlxSprite = new FlxSprite().loadGraphic(Paths.image('FunInfiniteStage/three'));
 		three.scrollFactor.set();
 		three.updateHitbox();
 		three.screenCenter();
@@ -2324,7 +2324,7 @@ class PlayState extends MusicBeatState
 	
 	function two():Void
 	{
-		var two:FlxSprite = new FlxSprite().loadGraphic(Paths.image('two', 'shared'));
+		var two:FlxSprite = new FlxSprite().loadGraphic(Paths.image('FunInfiniteStage/two'));
 		two.scrollFactor.set();
 		two.screenCenter();
 		two.y -= 100;
@@ -2341,7 +2341,7 @@ class PlayState extends MusicBeatState
 	
 	function one():Void
 	{
-		var one:FlxSprite = new FlxSprite().loadGraphic(Paths.image('one', 'shared'));
+		var one:FlxSprite = new FlxSprite().loadGraphic(Paths.image('FunInfiniteStage/one'));
 		one.scrollFactor.set();
 		one.screenCenter();
 		one.y -= 100;
@@ -2359,7 +2359,7 @@ class PlayState extends MusicBeatState
 	
 	function gofun():Void
 	{
-		var gofun:FlxSprite = new FlxSprite().loadGraphic(Paths.image('gofun', 'shared'));
+		var gofun:FlxSprite = new FlxSprite().loadGraphic(Paths.image('FunInfiniteStage/gofun'));
 		gofun.scrollFactor.set();
 	
 		gofun.updateHitbox();
@@ -5225,17 +5225,21 @@ class PlayState extends MusicBeatState
 					camLocked = false;
 					//camFollow.setPosition(GameDimensions.width / 2 + 50, GameDimensions.height / 4 * 3 + 280);
 					FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.3}, 0.7, {ease: FlxEase.cubeInOut});
-					//three();
+					three();
+					trace("3!");
 				case 891:
 					FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.3}, 0.7, {ease: FlxEase.cubeInOut});
-					//two();
+					two();
+					trace("2!");
 				case 896:
 					FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.3}, 0.7, {ease: FlxEase.cubeInOut});
-					//one();
+					one();
+					trace("1!");
 				case 899:
 					camLocked = true;
 					FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.7, {ease: FlxEase.cubeInOut});
-					//gofun();
+					gofun();
+					trace("GO!");
 					//SONG.noteStyle = 'majinNOTES';
 					//removeStatics();
 					//generateStaticArrows(0, false);
