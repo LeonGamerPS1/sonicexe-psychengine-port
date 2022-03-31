@@ -181,6 +181,7 @@ class FunkinLua {
 		set('noResetButton', ClientPrefs.noReset);
 		set('Cutscenes', ClientPrefs.Cutscenes);
 		set('Jumpscare', ClientPrefs.Jumpscare);
+		set('cache', ClientPrefs.cache);
 		set('Popups', ClientPrefs.Popups);
 		set('StageSwap', ClientPrefs.StageSwap);
 		set('lowQuality', ClientPrefs.lowQuality);

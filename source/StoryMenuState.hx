@@ -714,11 +714,7 @@ class StoryMenuState extends MusicBeatState
 					});
 				}
 			}
-	
-			if (FlxG.save.data.flashing)
-			{
-				FlxFlicker.flicker(redBOX, 1, 0.06, false, false, function(flick:FlxFlicker) {});
-			}
+			FlxFlicker.flicker(redBOX, 1, 0.06, false, false, function(flick:FlxFlicker) {});
 		}
 
 		super.update(elapsed);

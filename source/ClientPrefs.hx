@@ -18,6 +18,7 @@ class ClientPrefs {
 	#else
 	public static var Cutscenes:Bool = false;
 	#end
+	public static var cache:Bool = true;
 	public static var Jumpscare:Bool = true;
 	public static var sonicExeShaders:Bool = false;
 	public static var Popups:Bool = true;

@@ -323,42 +323,7 @@ class PlayState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 
-		if (SONG.song.toLowerCase() == 'too-slow')
-		{
-			daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE');
-			daJumpscare.animation.addByPrefix('jump', 'sonicSPOOK', 24, false);
-			add(daJumpscare);
-			daJumpscare.animation.play('jump');
-
-			daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
-			daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
-			daNoteStatic.animation.play('static');
-
-			remove(daNoteStatic);
-		}
-		else if (SONG.song.toLowerCase() == 'you-cant-run')
-		{
-			daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
-			daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
-			daNoteStatic.animation.play('static');
-
-			remove(daNoteStatic);
-		}
-		else if (SONG.song.toLowerCase() == 'triple-trouble')
-		{
-			daP3Static.frames = Paths.getSparrowAtlas('Phase3Static');
-			daP3Static.animation.addByPrefix('P3Static', 'Phase3Static instance 1', 24, false);
-			add(daP3Static);
-			daP3Static.animation.play('P3Static');
-			remove(daP3Static);
-
-			daNoteStatic.frames = Paths.getSparrowAtlas('hitStatic');
-			daNoteStatic.animation.addByPrefix('static', 'staticANIMATION', 24, false);
-			daNoteStatic.animation.play('static');
-
-			remove(daNoteStatic);
-		}
-		else if (SONG.song.toLowerCase() == 'chaos')
+		if (SONG.song.toLowerCase() == 'chaos')
 		{
 			var dad1:Character = new Character(0, 0, 'fleetway-extras');
 			dad1.alpha = 0.01;
@@ -5237,6 +5202,24 @@ class PlayState extends MusicBeatState
 					camHUD.visible = true;
 			}
 		}
+
+		/*
+		if (dad.curCharacter == 'SonicFUN' && SONG.song.toLowerCase() == 'endless')
+		{
+			switch (curStep)
+			{
+				case 10:
+					FlxG.sound.play(Paths.sound('laugh1', 'shared'), 0.7);
+			}
+			if (spinArray.contains(curStep))
+			{
+				strumLineNotes.forEach(function(tospin:FlxSprite)
+				{
+					FlxTween.angle(tospin, 0, 360, 0.2, {ease: FlxEase.quintOut});
+				});
+			}
+		}
+		*/
 
 		if (dad.curCharacter == 'SonicEXE' && SONG.song.toLowerCase() == 'too-slow' && curStep == 791)
 		{
