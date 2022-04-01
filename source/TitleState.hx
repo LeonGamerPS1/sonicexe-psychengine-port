@@ -69,7 +69,8 @@ class TitleState extends MusicBeatState
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
-	var menubg:BGSprite;
+	//var menubg:BGSprite;
+	var bge:FlxSprite;
 
 	#if TITLE_SCREEN_EASTER_EGG
 	var easterEggKeys:Array<String> = [
@@ -248,21 +249,23 @@ class TitleState extends MusicBeatState
 		Conductor.changeBPM(titleJSON.bpm);
 		persistentUpdate = true;
 
-		var menubg:BGSprite;
+		var bg:FlxSprite;
+		var bge:FlxSprite;
 
 		//var menubg:BGSprite = new BGSprite('NewTitleMenuBG', 0, 0);
 		//menubg.animation.addByPrefix('idle', "TitleMenuSSBG instance 1", 24);
 		//menubg.animation.play('idle');
-		menubg = new BGSprite('NewTitleMenuBG', 0.0, 0.0, 0.1, 0.1, ['TitleMenuSSBG instance 1']);
-		menubg.animation.addByPrefix('idle', 'TitleMenuSSBG instance 1', 24);
-		menubg.animation.play('idle');
-		menubg.alpha = .75;
-		menubg.scale.x = 3;
-		menubg.scale.y = 3;
-		menubg.antialiasing = true;
-		menubg.updateHitbox();
-		menubg.screenCenter();
-		add(menubg);
+		bge = new FlxSprite(0, 0);
+		bge.frames = Paths.getSparrowAtlas('NewTitleMenuBG');
+		bge.animation.addByPrefix('idle', "TitleMenuSSBG instance 1", 24);
+		bge.animation.play('idle');
+		bge.alpha = .75;
+		bge.scale.x = 3;
+		bge.scale.y = 3;
+		bge.antialiasing = true;
+		bge.updateHitbox();
+		bge.screenCenter();
+		add(bge);
 
 		var bg:FlxSprite = new FlxSprite();
 		
@@ -467,7 +470,7 @@ class TitleState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('menulaugh'));
 
 				//remove('menubg');
-				//FlxTween.tween(menubg, {alpha: 0}, 1);
+				//FlxTween.tween(bge, {alpha: 0}, 1); //this still doesnt work lmfao
 
 				//new FlxTimer().start(1, function(tmr:FlxTimer)
 				//{

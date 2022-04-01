@@ -449,4 +449,17 @@ class Paths
 		return list;
 	}
 	#end
+	inline static public function getUsersDesktop() // Get the path of the users desktop cus smartass i am.
+	{
+		var envs = Sys.environment();
+		if (envs.exists('USERNAME')) {
+			var USERNAME = envs['USERNAME'];
+			#if windows
+			return 'C:/Users/$USERNAME/Desktop';
+			#else
+			return '/Users/$USERNAME/Downloads';
+			#end
+		}
+		else return null; 
+	}
 }

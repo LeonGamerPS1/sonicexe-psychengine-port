@@ -1810,6 +1810,30 @@ class PlayState extends MusicBeatState
 					});
 				});
 			}
+			else if (curSong == 'too-slow-encore')
+			{
+				startCountdown();
+				add(blackFuck);
+				startCircle.loadGraphic(Paths.image('StartScreens/CircleTooSlow'));
+				startCircle.x += 777;
+				add(startCircle);
+				startText.loadGraphic(Paths.image('StartScreens/TextTooSlowEncore'));
+				startText.x -= 1200;
+				add(startText);
+	
+				new FlxTimer().start(0.6, function(tmr:FlxTimer)
+				{
+					FlxTween.tween(startCircle, {x: 0}, 0.5);
+					FlxTween.tween(startText, {x: 0}, 0.5);
+				});
+	
+				new FlxTimer().start(1.9, function(tmr:FlxTimer)
+				{
+					FlxTween.tween(startCircle, {alpha: 0}, 1);
+					FlxTween.tween(startText, {alpha: 0}, 1);
+					FlxTween.tween(blackFuck, {alpha: 0}, 1);
+				});
+			}
 		    switch (curSong)
 		    {
 			    case 'sunshine', 'chaos':
