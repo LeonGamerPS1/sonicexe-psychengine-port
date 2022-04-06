@@ -1,18 +1,65 @@
 package;
 
+import flixel.graphics.FlxGraphic;
 #if desktop
 import Discord.DiscordClient;
 #end
+import lime.app.Application;
+import Section.SwagSection;
+import Song.SwagSong;
+import WiggleEffect.WiggleEffectType;
+import flixel.FlxBasic;
+import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.FlxGame;
+import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.FlxState;
 import flixel.FlxSubState;
-import flixel.addons.transition.FlxTransitionableState; // appearently its visual studio code
-import flixel.group.FlxGroup;
+import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.effects.FlxTrail;
+import flixel.addons.effects.FlxTrailArea;
+import flixel.addons.effects.chainable.FlxEffectSprite;
+import flixel.addons.effects.chainable.FlxWaveEffect;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.graphics.atlas.FlxAtlas;
+import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.math.FlxMath;
+import flixel.math.FlxPoint;
+import flixel.math.FlxRect;
+import flixel.system.FlxSound;
+import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import lime.app.Application;
-import lime.net.curl.CURLCode;
-import flixel.graphics.FlxGraphic;
+import flixel.ui.FlxBar;
+import flixel.util.FlxCollision;
+import flixel.util.FlxColor;
+import flixel.util.FlxSort;
+import flixel.util.FlxStringUtil;
+import flixel.util.FlxTimer;
+import haxe.Json;
+import lime.utils.Assets;
+import openfl.Lib;
+import openfl.display.BlendMode;
+import openfl.display.StageQuality;
+import openfl.filters.BitmapFilter;
+import openfl.filters.ShaderFilter;
+import openfl.utils.Assets as OpenFlAssets;
+import editors.ChartingState;
+import editors.CharacterEditorState;
+import flixel.group.FlxSpriteGroup;
+import flixel.input.keyboard.FlxKey;
+import Note.EventNote;
+import openfl.events.KeyboardEvent;
+import flixel.util.FlxSave;
+import Achievements;
+import StageData;
+import FunkinLua;
+import DialogueBoxPsych;
+#if sys
+import sys.FileSystem;
+#end
 
 using StringTools;
 
@@ -21,6 +68,35 @@ class Startup extends MusicBeatState
 	var text:String = 'Cached:';
 	var defaultCamZoom:Float = 1.05;
 	var poggers:FlxSprite = new FlxSprite(0, 0);
+	public static var Restart:Bool = false;
+
+	function Start():Void
+	{
+		#if windows
+		var video:MP4Handler = new MP4Handler();
+	
+		video.playMP4(Paths.video("HaxeFlixelIntro"));
+		video.finishCallback = function()
+		{
+			MusicBeatState.switchState(new TitleState());
+		}
+		#else
+		MusicBeatState.switchState(new TitleState());
+		#end
+	}
+
+	/*
+	function End():Void
+	{
+		#if desktop
+		trace("Closing...");
+
+		Sys.exit(0);
+		#else
+		trace("Shit i guess not...");
+		#end
+	}
+	*/
 
 	function Cache():Void
 	{
@@ -44,7 +120,6 @@ class Startup extends MusicBeatState
 		poggers.animation.addByPrefix('jump', 'sonicSPOOK', 24, false);
 		add(poggers);
 		poggers.animation.play('jump');
-		//remove(poggers); //yea fuck this
 		trace(text + " Too Slow Assets");
 
 		//Assets for You Can't Run
@@ -99,21 +174,6 @@ class Startup extends MusicBeatState
 		trace("Done Caching!"); //this caching shit isnt from the original mod except for the chaos cache shit but yea i hate lag.
 	}
 
-	function Start():Void
-	{
-		#if windows
-		var video:MP4Handler = new MP4Handler();
-
-		video.playMP4(Paths.video("HaxeFlixelIntro"));
-		video.finishCallback = function()
-		{
-			MusicBeatState.switchState(new TitleState());
-		}
-		#else
-		MusicBeatState.switchState(new TitleState());
-		#end
-	}
-
     override public function create():Void
 	{
 		FlxG.mouse.visible = false;
@@ -128,14 +188,21 @@ class Startup extends MusicBeatState
 		}
 		#end
 
-		if (ClientPrefs.cache) //main thing
+		/* //this just breaks it so just forget it lmao
+		if (Restart)
+		{
+			End();
+		}
+		*/
+
+		if (!ClientPrefs.cache)//main thing
+		{
+			Start();
+		}
+		else if (ClientPrefs.cache)
 		{
 			Cache();
 
-			Start();
-		}
-		else if (!ClientPrefs.cache) //this shit doesnt even work lol
-		{
 			Start();
 		}
 	}

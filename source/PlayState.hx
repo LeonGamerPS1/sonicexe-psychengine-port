@@ -5858,6 +5858,68 @@ class PlayState extends MusicBeatState
 				FlxG.camera.zoom = defaultCamZoom;
 			}
 		}
+		if (curSong == 'sunshine')
+		{
+			if (curStep == 64)
+			    tailscircle = 'hovering';
+			if (curStep == 128 || curStep == 319 || curStep == 866)
+				tailscircle = 'circling';
+			if (curStep == 256 || curStep == 575) // this is to return tails to it's original positions (me very smart B))
+			{
+				FlxTween.tween(dad, {x: -150, y: 330}, 0.2, {
+					onComplete: function(twn:FlxTween)
+					{
+						dad.setPosition(-150, 330);
+						tailscircle = 'hovering';
+						floaty = 41.82;
+					}
+				});
+			}
+			if (curStep == 588) // kill me 588
+			{
+				gf.visible = false;
+				bgspec.visible = false;
+				kadeEngineWatermark.visible = false;
+				healthBarBG.visible = false;
+				healthBar.visible = false;
+				botplayTxt.visible = false;
+				iconP1.visible = false;
+				iconP2.visible = false;
+				scoreTxt.visible = false;
+	
+				remove(dad);
+				dad = new Character(-150, 330, 'TDollAlt');
+				add(dad);
+			}
+			if (curStep == 860) // kill me
+			{
+				gf.visible = true;
+				bgspec.visible = true;
+				kadeEngineWatermark.visible = true;
+				botplayTxt.visible = true;
+				healthBarBG.visible = true;
+				healthBar.visible = true;
+				iconP1.visible = true;
+				iconP2.visible = true;
+				scoreTxt.visible = true;
+				remove(dad);
+				dad = new Character(-150, 330, 'TDoll');
+				add(dad);
+				//ezTrail = new FlxTrail(dad, null, 2, 5, 0.3, 0.04);
+				tailscircle = '';
+			}
+			if (curStep == 1120)
+			{
+				FlxTween.tween(dad, {x: -150, y: 330}, 0.2, {
+					onComplete: function(twn:FlxTween)
+					{
+						dad.setPosition(-150, 330);
+						tailscircle = '';
+						remove(ezTrail);
+					}
+				});
+			}
+		}
 		if (curSong == 'cycles')
 		{
 			switch (curStep)
