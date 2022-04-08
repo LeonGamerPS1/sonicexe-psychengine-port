@@ -5,4 +5,10 @@ function onCreate()
 		--setPropertyFromClass('GameOverSubstate', 'loopSoundName', 'gameover1');
 	    --setPropertyFromClass('GameOverSubstate', 'endSoundName', 'gameover2');
 	end
+
+	if songName == 'chaos' then
+		setPropertyFromClass('GameOverSubstate', 'characterName', 'fleetway_death');
+	end
+
+	--remind for retarded junior uh DONT DO "end," IT FUCKS IT UP
 end

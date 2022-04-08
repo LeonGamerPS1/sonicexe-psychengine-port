@@ -19,13 +19,16 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	var stageSuffix:String = "";
 
+	var FLEETchance:Int = FlxG.random.int(1, 11); //fleetway lol
+	var Xchance:Int = FlxG.random.int(1, 5); //x lol
+
 	public static var characterName:String = 'bf';
 	public static var deathSoundName:String = 'fnf_loss_sfx';
 	public static var loopSoundName:String = 'gameOver';
 	public static var endSoundName:String = 'gameOverEnd';
 
 	public static var instance:GameOverSubstate;
-
+	
 	public static function resetVariables() {
 		characterName = 'bf';
 		deathSoundName = 'fnf_loss_sfx';
@@ -38,7 +41,25 @@ class GameOverSubstate extends MusicBeatSubstate
 		instance = this;
 		PlayState.instance.callOnLuas('onGameOverStart', []);
 
+		if (characterName == 'fleetway_death')
+		{
+			GameOverSubstate.deathSoundName = ('laser_moment');
+			GameOverSubstate.loopSoundName = ('chaosgameover');
+
+			FLEETLINES();
+		}
+
 		super.create();
+	}
+
+	function FLEETLINES():Void
+	{
+		FlxG.sound.play(Paths.sound('FleetLines/' + FLEETchance));
+	}
+
+	function XLINES():Void
+	{
+		FlxG.sound.play(Paths.sound('XLines/' + Xchance));
 	}
 
 	public function new(x:Float, y:Float, camX:Float, camY:Float)
@@ -97,7 +118,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			if (PlayState.isStoryMode)
 				MusicBeatState.switchState(new StoryMenuState());
 			else
-				MusicBeatState.switchState(new FreeplayState());
+				MusicBeatState.switchState(new SoundTestMenu());
 
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);

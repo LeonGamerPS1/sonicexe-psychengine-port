@@ -145,7 +145,7 @@ class PlayState extends MusicBeatState
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
 
 	public var camZooming:Bool = false;
-	private var curSong:String = "";
+	public static var curSong:String = "";
 
 	public var gfSpeed:Int = 1;
 	public var health:Float = 1;
@@ -3338,7 +3338,7 @@ class PlayState extends MusicBeatState
 		if (curSong == 'chaos' && dad.curCharacter == 'fleetway-extras3' && dad.animation.curAnim.curFrame == 15 && !dodging)
 			health = 0;
 
-		/*if (FlxG.keys.justPressed.NINE)
+		/*if (FlxG.keys.justPressed.NINE) //why did psych engine remove this :(
 		{
 			iconP1.swapOldIcon();
 		}*/
@@ -4502,7 +4502,7 @@ class PlayState extends MusicBeatState
 				if(FlxTransitionableState.skipNextTransIn) {
 					CustomFadeTransition.nextCamera = null;
 				}
-				MusicBeatState.switchState(new FreeplayState());
+				MusicBeatState.switchState(new SoundTestMenu());
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 				changedDifficulty = false;
 			}
