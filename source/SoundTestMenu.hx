@@ -210,7 +210,8 @@ class SoundTestMenu extends MusicBeatState
 				if (!FlxG.save.data.songArray.contains('faker') && !FlxG.save.data.botplay) FlxG.save.data.songArray.push('faker');
 			}
 			*/
-		else if (first == 66 && second == 6)
+			/*
+		else if (first == 66 && second == 6) //not ready for release yet
 			{
 				woahmanstopspammin = false;
 				PlayState.SONG = Song.loadFromJson('sunshine', 'sunshine');
@@ -225,6 +226,7 @@ class SoundTestMenu extends MusicBeatState
 					LoadingState.loadAndSwitchState(new PlayState());
 				});
 			}
+			*/
 		else if (first == 8 && second == 21)
 			{
 				woahmanstopspammin = false;
