@@ -83,6 +83,7 @@ class ClientPrefs {
 
 		'note_left'		=> [A, LEFT],
 		'note_down'		=> [S, DOWN],
+		'note_space'    => [SPACE, NONE],
 		'note_up'		=> [W, UP],
 		'note_right'	=> [D, RIGHT],
 

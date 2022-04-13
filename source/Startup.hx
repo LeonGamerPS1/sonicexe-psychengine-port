@@ -68,6 +68,8 @@ class Startup extends MusicBeatState
 	var text:String = 'Cached:';
 	var defaultCamZoom:Float = 1.05;
 	var poggers:FlxSprite = new FlxSprite(0, 0);
+	var sonicDEATH:SonicDeathAnimation;
+	public var boyfriend:Boyfriend;
 	public static var Restart:Bool = false;
 	public static var Temporary:Bool = false;
 
@@ -122,6 +124,15 @@ class Startup extends MusicBeatState
 		poggers.animation.play('static');
 		add(poggers);
 		remove(poggers);
+
+		sonicDEATH = new SonicDeathAnimation(80, 350);
+		sonicDEATH.scale.x = 2;
+		sonicDEATH.scale.y = 2;
+		sonicDEATH.antialiasing = true;
+		sonicDEATH.playAnim('firstDEATH');
+		add(sonicDEATH);
+		remove(sonicDEATH);
+
 		trace(text + " Main Story Stuff");
 
 		//Assets for Too Slow
@@ -159,13 +170,6 @@ class Startup extends MusicBeatState
 		remove(poggers);
 		trace(text + " Triple Trouble Assets");
 
-		//Assets for Endless
-		FlxG.bitmap.add(Paths.image("FunInfiniteStage/three"));
-		FlxG.bitmap.add(Paths.image("FunInfiniteStage/two"));
-		FlxG.bitmap.add(Paths.image("FunInfiniteStage/one"));
-		FlxG.bitmap.add(Paths.image("FunInfiniteStage/gofun"));
-		trace(text + " Endless Assets");
-
 		//Assets for Chaos
 		FlxG.bitmap.add(Paths.image("characters/Super_BoyFriend_Assets", "shared"));
 		FlxG.bitmap.add(Paths.image("characters/Fleetway_Super_Sonic", "shared"));
@@ -175,6 +179,13 @@ class Startup extends MusicBeatState
 		FlxG.bitmap.add(Paths.image("Warning"));
 		FlxG.bitmap.add(Paths.image("spacebar_icon"));
 		trace(text + " Chaos Assets");
+
+		//Assets for Endless
+		FlxG.bitmap.add(Paths.image("FunInfiniteStage/three"));
+		FlxG.bitmap.add(Paths.image("FunInfiniteStage/two"));
+		FlxG.bitmap.add(Paths.image("FunInfiniteStage/one"));
+		FlxG.bitmap.add(Paths.image("FunInfiniteStage/gofun"));
+		trace(text + " Endless Assets");
 
 		//Camera Shit (this was so zoom inside endless wasn't laggy)
 		FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.3}, 0.7, {ease: FlxEase.cubeInOut});

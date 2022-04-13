@@ -1,6 +1,8 @@
 function onCreate()
     --shit...
 
+    local CutsceneEnd = false;
+
     print('triple-trouble/script.lua: Precached shit!!!!!')
 end
 
@@ -20,7 +22,7 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
         noteTweenX('NoteMove5', 4, 400, 0.000000001, cubeInOut)
     end,
 
-    [1287] = function()
+    [1296] = function()
         noteTweenX('NoteMove1', 0, 700, 0.000000001, cubeInOut)
         noteTweenX('NoteMove2', 1, 800, 0.000000001, cubeInOut)
         noteTweenX('NoteMove3', 2, -910, 0.000000001, cubeInOut) --hello if u are reading, this is the middle note for the opponent so uh pretty useless
@@ -33,7 +35,7 @@ stepHitFuncs = { --a bunch of timed events, timed to steps (all code typed by ju
         noteTweenX('NoteMove10', 9, 468, 0.000000001, cubeInOut)
     end,
 
-    [2820] = function()
+    [2832] = function()
     noteTweenX('NoteMove1', 0, 100, 0.000000001, cubeInOut)
     noteTweenX('NoteMove2', 1, 200, 0.000000001, cubeInOut)
     noteTweenX('NoteMove3', 2, -841, 0.000000001, cubeInOut) --hello if u are reading, this is the middle note for the opponent so uh pretty useless
@@ -54,14 +56,11 @@ if Cutscenes then
 	function onEndSong()
 		-- song ended/starting transition (Will be delayed if you're unlocking an achievement)
             if isStoryMode and not cutsceneEnded then
-            	if difficulty == 2 then
-                
-                	--if score > number then
-                        startVideo('soundtestcodes');
-                    	CutsceneEnd = true;
-                    	return Function_Stop --to stop the song from ending for playing a cutscene or something.
-                	--end
-           	    end
+            	--if score > number then
+                    startVideo('soundtestcodes');
+                	CutsceneEnd = true;
+                  	return Function_Stop --to stop the song from ending for playing a cutscene or something.
+                --end
         	end
             return Function_Continue;
     end

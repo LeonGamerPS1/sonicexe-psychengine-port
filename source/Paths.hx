@@ -382,6 +382,10 @@ class Paths
 	}
 	
 	#if MODS_ALLOWED
+	inline static public function modsbutnot(key:String = '') {
+		return 'assets/' + key;
+	}
+
 	inline static public function mods(key:String = '') {
 		return 'mods/' + key;
 	}

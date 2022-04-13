@@ -251,6 +251,7 @@ class TitleState extends MusicBeatState
 
 		var bg:FlxSprite;
 		var bge:FlxSprite;
+		var logoBlBUMP:FlxSprite;
 
 		//var menubg:BGSprite = new BGSprite('NewTitleMenuBG', 0, 0);
 		//menubg.animation.addByPrefix('idle', "TitleMenuSSBG instance 1", 24);
@@ -291,8 +292,20 @@ class TitleState extends MusicBeatState
 		logoBl.updateHitbox();
 		logoBl.screenCenter(X);
 		logoBl.screenCenter(Y);
+		logoBl.visible = false;
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
+
+		logoBlBUMP = new FlxSprite(0, 0);
+		logoBlBUMP.loadGraphic(Paths.image('Logo'));
+		logoBlBUMP.antialiasing = true;
+
+		logoBlBUMP.scale.x = .5;
+		logoBlBUMP.scale.y = .5;
+
+		logoBlBUMP.screenCenter();
+
+		add(logoBlBUMP);
 
 		swagShader = new ColorSwap();
 		gfDance = new FlxSprite(titleJSON.gfx, titleJSON.gfy);

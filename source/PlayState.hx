@@ -1597,6 +1597,7 @@ class PlayState extends MusicBeatState
 			if (curSong == 'too-slow')
 			{
 				startCountdown();
+				GameOverSubstate.sonicdeath = true;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/CircleTooSlow'));
 				startCircle.x += 777;
@@ -1621,6 +1622,7 @@ class PlayState extends MusicBeatState
 			else if (curSong == 'you-cant-run')
 			{
 				startCountdown();
+				GameOverSubstate.sonicdeath = true;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/CircleYouCantRun'));
 				startCircle.x += 777;
@@ -1645,6 +1647,7 @@ class PlayState extends MusicBeatState
 			else if (curSong == 'triple-trouble')
 			{
 				startCountdown();
+				GameOverSubstate.sonicdeath = true;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/CircleTripleTrouble'));
 				startCircle.x += 777;
@@ -3365,7 +3368,10 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 		}*/
 
-		if (FlxG.keys.justPressed.SPACE && canDodge)
+		var dodge:Array<FlxKey>;
+	    dodge = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('note_space'));
+
+		if (FlxG.keys.anyJustPressed(dodge) && canDodge)
 		{
 			dodging = true;
 			boyfriend.playAnim('dodge', true);

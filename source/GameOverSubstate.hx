@@ -22,6 +22,12 @@ class GameOverSubstate extends MusicBeatSubstate
 	var FLEETchance:Int = FlxG.random.int(1, 11); //fleetway lol
 	var Xchance:Int = FlxG.random.int(1, 5); //x lol
 
+	var sonicDEATH:SonicDeathAnimation;
+
+	var defaultCamZoom:Float = 1.05;
+
+	public static var sonicdeath:Bool = false;
+
 	public static var characterName:String = 'bf';
 	public static var deathSoundName:String = 'fnf_loss_sfx';
 	public static var loopSoundName:String = 'gameOver';
@@ -41,14 +47,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		instance = this;
 		PlayState.instance.callOnLuas('onGameOverStart', []);
 
-		if (characterName == 'fleetway_death')
-		{
-			GameOverSubstate.deathSoundName = ('laser_moment');
-			GameOverSubstate.loopSoundName = ('chaosgameover');
-
-			FLEETLINES();
-		}
-
+		FlxG.camera.zoom = defaultCamZoom;
+		
 		super.create();
 	}
 
@@ -73,9 +73,35 @@ class GameOverSubstate extends MusicBeatSubstate
 		boyfriend = new Boyfriend(x, y, characterName);
 		boyfriend.x += boyfriend.positionArray[0];
 		boyfriend.y += boyfriend.positionArray[1];
-		add(boyfriend);
 
 		camFollow = new FlxPoint(boyfriend.getGraphicMidpoint().x, boyfriend.getGraphicMidpoint().y);
+
+		if (characterName == 'bf' && sonicdeath)
+		{   
+			sonicDEATH = new SonicDeathAnimation(Std.int(boyfriend.x) - 80, Std.int(boyfriend.y) - 350);
+			sonicDEATH.scale.x = 2;
+			sonicDEATH.scale.y = 2;
+			sonicDEATH.antialiasing = true;
+			sonicDEATH.playAnim('firstDEATH');
+			add(sonicDEATH);
+			add(boyfriend);
+
+		    FlxG.camera.zoom -= 0.65;
+		}
+		else if (characterName == 'fleetway_death')
+		{
+			GameOverSubstate.deathSoundName = ('laser_moment');
+			GameOverSubstate.loopSoundName = ('chaosgameover');
+		
+			add(boyfriend);
+
+			FLEETLINES();
+		}
+		else
+		{
+			add(boyfriend);
+		}
+
 
 		FlxG.sound.play(Paths.sound(deathSoundName));
 		Conductor.changeBPM(100);
@@ -166,16 +192,20 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (!isEnding)
 		{
 			isEnding = true;
+			sonicDEATH.playAnim('retry', true);
 			boyfriend.playAnim('deathConfirm', true);
-			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.music(endSoundName));
-			new FlxTimer().start(0.7, function(tmr:FlxTimer)
+			new FlxTimer().start(0.1, function(tmr:FlxTimer)
 			{
-				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
+				boyfriend.visible = false;
+				FlxG.camera.flash(FlxColor.RED, 4);
+
+				new FlxTimer().start(0.5, function(tmr:FlxTimer)
 				{
 					MusicBeatState.resetState();
 				});
 			});
+			FlxG.sound.music.stop();
 			PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
 		}
 	}
