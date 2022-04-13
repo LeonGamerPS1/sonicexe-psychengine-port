@@ -69,23 +69,26 @@ class Startup extends MusicBeatState
 	var defaultCamZoom:Float = 1.05;
 	var poggers:FlxSprite = new FlxSprite(0, 0);
 	public static var Restart:Bool = false;
+	public static var Temporary:Bool = false;
 
 	function Start():Void
 	{
 		#if windows
-		var video:MP4Handler = new MP4Handler();
-	
-		video.playMP4(Paths.video("HaxeFlixelIntro"));
-		video.finishCallback = function()
+		if (ClientPrefs.Cutscenes);
 		{
-			MusicBeatState.switchState(new TitleState());
+			var video:MP4Handler = new MP4Handler();
+	
+			video.playMP4(Paths.video("HaxeFlixelIntro"));
+			video.finishCallback = function()
+			{
+				MusicBeatState.switchState(new TitleState());
+			}
 		}
 		#else
 		MusicBeatState.switchState(new TitleState());
 		#end
 	}
 
-	/*
 	function End():Void
 	{
 		#if desktop
@@ -96,7 +99,16 @@ class Startup extends MusicBeatState
 		trace("Shit i guess not...");
 		#end
 	}
-	*/
+
+	function CacheQuick():Void
+	{
+		Cache();
+        
+		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		{
+			//close();
+		});
+	}
 
 	function Cache():Void
 	{
@@ -194,6 +206,11 @@ class Startup extends MusicBeatState
 			End();
 		}
 		*/
+
+		if(Temporary)
+		{
+            CacheQuick();
+		}
 
 		if (!ClientPrefs.cache)//main thing
 		{

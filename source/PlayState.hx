@@ -323,6 +323,10 @@ class PlayState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 
+		/*
+		Startup.Temporary = true;
+		openSubState(new Startup);
+		*/
 		if (SONG.song.toLowerCase() == 'chaos')
 		{
 			var dad1:Character = new Character(0, 0, 'fleetway-extras');
@@ -1546,24 +1550,42 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
+				case 'too-slow':
+					#if windows
+					if (ClientPrefs.Cutscenes)
+					{
+						video.playMP4(Paths.video('tooslowcutscene1'));
+						video.finishCallback = function()
+						{
+							LoadingState.loadAndSwitchState(new PlayState());
+						}
+					}
+					#else
+						startCountdown();
+				    #end
 				case 'you-cant-run':
 					#if windows
-					video.playMP4(Paths.video('tooslowcutscene2'));
-					video.finishCallback = function()
+					if (ClientPrefs.Cutscenes)
 					{
-						LoadingState.loadAndSwitchState(new PlayState());
+						video.playMP4(Paths.video('tooslowcutscene2'));
+						video.finishCallback = function()
+						{
+							LoadingState.loadAndSwitchState(new PlayState());
+						}
 					}
 					#else
 						startCountdown();
 				    #end
 				case 'triple-trouble':
 					#if windows
-					video.playMP4(Paths.video('youcantruncutscene2'));
-					video.finishCallback = function()
+					if (ClientPrefs.Cutscenes)
 					{
-						LoadingState.loadAndSwitchState(new PlayState());
+						video.playMP4(Paths.video('youcantruncutscene2'));
+						video.finishCallback = function()
+						{
+							LoadingState.loadAndSwitchState(new PlayState());
+						}
 					}
-					#else
 					startCountdown();
 					#end
 				default:
@@ -5483,7 +5505,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curStage == 'sonicStage' && curStep != stepOfLast) //&& FlxG.save.data.jumpscares)
+		if (curStage == 'sonicStage' && curStep != stepOfLast && ClientPrefs.Popups) //&& FlxG.save.data.jumpscares)
 		{
 			switch (curStep)
 			{
@@ -5549,8 +5571,6 @@ class PlayState extends MusicBeatState
 					doStaticSign(0);
 				case 1713:
 					doStaticSign(0);
-				case 1723:
-					doJumpscare();
 				case 1738:
 					doStaticSign(0);
 				case 1747:
@@ -5573,11 +5593,21 @@ class PlayState extends MusicBeatState
 					doStaticSign(0);
 				case 1909:
 					doStaticSign(0);
+		    }
+			stepOfLast = curStep;
+		}
+
+		if (curStage == 'sonicStage' && curStep != stepOfLast && ClientPrefs.Jumpscare) //&& FlxG.save.data.jumpscares)
+		{
+			switch (curStep)
+			{
+				case 1723:
+					doJumpscare();
 			}
 			stepOfLast = curStep;
 		}
 
-		if (curSong == 'you-cant-run')
+		if (curSong == 'you-cant-run' && ClientPrefs.Popups)
 		{
 			var vg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('RedVG'));
 			vg.alpha = 0;
@@ -5691,7 +5721,7 @@ class PlayState extends MusicBeatState
 				});
 			}
 		}
-		if (curSong.toLowerCase() == 'triple-trouble')
+		if(curSong.toLowerCase() == 'triple-trouble' && ClientPrefs.Popups)
 		{
 			switch (curStep)
 			{

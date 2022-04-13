@@ -489,10 +489,15 @@ class TitleState extends MusicBeatState
 					else 
 					{
 						#if windows
-						video.playMP4(Paths.video('bothCreditsAndIntro'));
-						video.finishCallback = function()
+						if (ClientPrefs.Cutscenes);
 						{
-							MusicBeatState.switchState(new MainMenuState());
+							var video:MP4Handler = new MP4Handler();
+					
+							video.playMP4(Paths.video("bothCreditsAndIntro"));
+							video.finishCallback = function()
+							{
+								MusicBeatState.switchState(new MainMenuState());
+							}
 						}
 						#else
 						MusicBeatState.switchState(new MainMenuState());
