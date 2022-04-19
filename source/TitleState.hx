@@ -493,7 +493,7 @@ class TitleState extends MusicBeatState
 				transitioning = true;
 				// FlxG.sound.music.stop();
 
-				new FlxTimer().start(4, function(tmr:FlxTimer)
+				new FlxTimer().start(2.75, function(tmr:FlxTimer)
 				{
 					if (mustUpdate) 
 					{
@@ -502,7 +502,7 @@ class TitleState extends MusicBeatState
 					else 
 					{
 						#if windows
-						if (ClientPrefs.Cutscenes);
+						if (ClientPrefs.Cutscenes)
 						{
 							var video:MP4Handler = new MP4Handler();
 					

@@ -1586,8 +1586,9 @@ class PlayState extends MusicBeatState
 							LoadingState.loadAndSwitchState(new PlayState());
 						}
 					}
-					startCountdown();
-					#end
+					#else
+						startCountdown();
+				    #end
 				default:
 					startCountdown();
 			}
@@ -1598,6 +1599,8 @@ class PlayState extends MusicBeatState
 			{
 				startCountdown();
 				GameOverSubstate.sonicdeath = true;
+				GameOverSubstate.sunkydeath = false;
+				GameOverSubstate.xdeath = false;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/CircleTooSlow'));
 				startCircle.x += 777;
@@ -1623,6 +1626,8 @@ class PlayState extends MusicBeatState
 			{
 				startCountdown();
 				GameOverSubstate.sonicdeath = true;
+				GameOverSubstate.sunkydeath = false;
+				GameOverSubstate.xdeath = false;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/CircleYouCantRun'));
 				startCircle.x += 777;
@@ -1648,6 +1653,8 @@ class PlayState extends MusicBeatState
 			{
 				startCountdown();
 				GameOverSubstate.sonicdeath = true;
+				GameOverSubstate.sunkydeath = false;
+				GameOverSubstate.xdeath = false;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/CircleTripleTrouble'));
 				startCircle.x += 777;
@@ -1672,6 +1679,9 @@ class PlayState extends MusicBeatState
 			else if (curSong == 'endless')
 			{
 				startCountdown();
+				GameOverSubstate.sonicdeath = false;
+				GameOverSubstate.sunkydeath = false;
+				GameOverSubstate.xdeath = false;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/CircleMajin'));
 				startCircle.x += 777;
@@ -1695,6 +1705,9 @@ class PlayState extends MusicBeatState
 			else if (curSong == 'cycles')
 			{
 				startCountdown();
+				GameOverSubstate.sonicdeath = false;
+				GameOverSubstate.sunkydeath = false;
+				GameOverSubstate.xdeath = true;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/CircleCycles'));
 				startCircle.x += 777;
@@ -1718,6 +1731,9 @@ class PlayState extends MusicBeatState
 			else if (curSong == 'milk')
 			{
 				startCountdown();
+				GameOverSubstate.sonicdeath = false;
+				GameOverSubstate.sunkydeath = true;
+				GameOverSubstate.xdeath = false;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/Sunky'));
 				startCircle.scale.x = 0;
@@ -1775,6 +1791,9 @@ class PlayState extends MusicBeatState
 						{
 							case 0:
 								startCountdown();
+								GameOverSubstate.sonicdeath = false;
+								GameOverSubstate.sunkydeath = false;
+								GameOverSubstate.xdeath = false;
 								add(ready);
 								FlxTween.tween(ready.scale, {x: .9, y: .9}, Conductor.crochet / 500);
 								FlxG.sound.play(Paths.sound('ready'));
@@ -1805,7 +1824,7 @@ class PlayState extends MusicBeatState
 				camHUD.visible = false;
 				dad.visible = false;
 				dad.setPosition(600, 400);
-				camFollowPos.setPosition(900, 700);
+				snapCamFollowToPos(900, 700);
 				FlxG.camera.focusOn(camFollowPos.getPosition());
 				new FlxTimer().start(0.5, function(lol:FlxTimer)
 				{
@@ -1823,6 +1842,9 @@ class PlayState extends MusicBeatState
 					new FlxTimer().start(6, function(lol:FlxTimer)
 					{
 			            startCountdown();
+						GameOverSubstate.sonicdeath = false;
+						GameOverSubstate.sunkydeath = false;
+						GameOverSubstate.xdeath = false;
 						FlxG.sound.play(Paths.sound('beam'));
 						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.2, {ease: FlxEase.cubeOut});
 						FlxG.camera.shake(0.02, 0.2);
@@ -1838,6 +1860,9 @@ class PlayState extends MusicBeatState
 			else if (curSong == 'too-slow-encore')
 			{
 				startCountdown();
+				GameOverSubstate.sonicdeath = true;
+				GameOverSubstate.sunkydeath = false;
+				GameOverSubstate.xdeath = false;
 				add(blackFuck);
 				startCircle.loadGraphic(Paths.image('StartScreens/CircleTooSlow'));
 				startCircle.x += 777;
@@ -5781,7 +5806,7 @@ class PlayState extends MusicBeatState
 			else if (curStep == 9)
 			{
 				remove(boyfriend);
-				boyfriend = new Boyfriend(2000.55 - 200, 950 - 130 - 46, 'bf');
+				boyfriend = new Boyfriend(2100.55 - 200, 900 - 130 - 46, 'bf');
 				add(boyfriend);
 
 				remove(dad);

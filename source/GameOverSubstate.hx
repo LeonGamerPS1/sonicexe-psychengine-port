@@ -9,6 +9,8 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.system.FlxSound;
+import flixel.FlxSprite;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
@@ -22,11 +24,17 @@ class GameOverSubstate extends MusicBeatSubstate
 	var FLEETchance:Int = FlxG.random.int(1, 11); //fleetway lol
 	var Xchance:Int = FlxG.random.int(1, 5); //x lol
 
+	var voiceline:FlxSound;
+
 	var sonicDEATH:SonicDeathAnimation;
 
 	var defaultCamZoom:Float = 1.05;
 
 	public static var sonicdeath:Bool = false;
+	public static var sunkydeath:Bool = false;
+	public static var xdeath:Bool = false;
+
+	var bfdeathshit:FlxSprite;
 
 	public static var characterName:String = 'bf';
 	public static var deathSoundName:String = 'fnf_loss_sfx';
@@ -50,16 +58,6 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.zoom = defaultCamZoom;
 		
 		super.create();
-	}
-
-	function FLEETLINES():Void
-	{
-		FlxG.sound.play(Paths.sound('FleetLines/' + FLEETchance));
-	}
-
-	function XLINES():Void
-	{
-		FlxG.sound.play(Paths.sound('XLines/' + Xchance));
 	}
 
 	public function new(x:Float, y:Float, camX:Float, camY:Float)
@@ -88,6 +86,26 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		    FlxG.camera.zoom -= 0.65;
 		}
+		else if (characterName == 'bf' && sunkydeath)
+		{   
+			boyfriend.visible = false;
+			add(boyfriend);
+
+			GameOverSubstate.loopSoundName = ('Sunky_death');
+
+			bfdeathshit = new FlxSprite(x - 105, y - 20);
+			bfdeathshit.frames = Paths.getSparrowAtlas('Bf_dancin');
+			bfdeathshit.animation.addByPrefix('dance', 'Dance', 24, true);
+			bfdeathshit.animation.play('dance', true);
+			bfdeathshit.alpha = 0;
+			add(bfdeathshit);
+		}
+		else if (characterName == 'bf' && xdeath)
+		{   
+			add(boyfriend);
+
+			XLINES();
+		}
 		else if (characterName == 'fleetway_death')
 		{
 			GameOverSubstate.deathSoundName = ('laser_moment');
@@ -104,6 +122,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 
 		FlxG.sound.play(Paths.sound(deathSoundName));
+		FlxG.sound.play(Paths.sound('woooshFIRSTDEATH', 'shared'));
 		Conductor.changeBPM(100);
 		// FlxG.camera.followLerp = 1;
 		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
@@ -130,6 +149,11 @@ class GameOverSubstate extends MusicBeatSubstate
 			camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 		}
 
+		if (sunkydeath)
+		{
+			FlxTween.tween(bfdeathshit, {alpha: 1}, 1);
+		}
+
 		if (controls.ACCEPT)
 		{
 			endBullshit();
@@ -148,6 +172,11 @@ class GameOverSubstate extends MusicBeatSubstate
 
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
+		}
+
+		if (boyfriend.animation.curAnim.name == 'firstDeath' && boyfriend.animation.curAnim.curFrame == 12)
+		{
+			FlxG.camera.follow(camFollowPos, LOCKON, 0.01);
 		}
 
 		if (boyfriend.animation.curAnim.name == 'firstDeath')
@@ -192,7 +221,6 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (!isEnding)
 		{
 			isEnding = true;
-			sonicDEATH.playAnim('retry', true);
 			boyfriend.playAnim('deathConfirm', true);
 			FlxG.sound.play(Paths.music(endSoundName));
 			new FlxTimer().start(0.1, function(tmr:FlxTimer)
@@ -208,5 +236,48 @@ class GameOverSubstate extends MusicBeatSubstate
 			FlxG.sound.music.stop();
 			PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
 		}
+		else if (!isEnding && sonicdeath)
+		{
+			isEnding = true;
+			sonicDEATH.playAnim('retry', true);
+			boyfriend.playAnim('deathConfirm', true);
+			boyfriend.visible = false;
+			FlxG.camera.flash(FlxColor.RED, 4);
+			FlxG.sound.play(Paths.music(endSoundName));
+			new FlxTimer().start(1.5, function(tmr:FlxTimer)
+			{
+				MusicBeatState.resetState();
+			});
+			FlxG.sound.music.stop();
+			PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
+		}
+	}
+
+	function FLEETLINES():Void
+	{
+		FlxTween.tween(FlxG.sound.music, {volume: 0.25}, 0.3);
+		
+		voiceline = new FlxSound();
+		voiceline.loadEmbedded('assets/sounds/FleetLines/' + FLEETchance + '.ogg');
+		voiceline.play();
+		voiceline.onComplete = function()
+		{
+			FlxTween.tween(FlxG.sound.music, {volume: 1}, 0.3);
+		}
+		FlxG.sound.list.add(voiceline);
+	}
+		
+	function XLINES():Void
+	{
+		FlxTween.tween(FlxG.sound.music, {volume: 0.25}, 0.3);
+		
+		voiceline = new FlxSound();
+		voiceline.loadEmbedded('assets/sounds/XLines/' + Xchance + '.ogg');
+		voiceline.play();
+		voiceline.onComplete = function()
+		{
+			FlxTween.tween(FlxG.sound.music, {volume: 1}, 0.3);
+		}
+		FlxG.sound.list.add(voiceline);
 	}
 }

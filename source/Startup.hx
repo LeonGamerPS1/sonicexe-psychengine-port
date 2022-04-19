@@ -71,12 +71,12 @@ class Startup extends MusicBeatState
 	var sonicDEATH:SonicDeathAnimation;
 	public var boyfriend:Boyfriend;
 	public static var Restart:Bool = false;
-	public static var Temporary:Bool = false;
+	var StartCache:Bool = false;
 
 	function Start():Void
 	{
 		#if windows
-		if (ClientPrefs.Cutscenes);
+		if (ClientPrefs.Cutscenes)
 		{
 			var video:MP4Handler = new MP4Handler();
 	
@@ -87,7 +87,7 @@ class Startup extends MusicBeatState
 			}
 		}
 		#else
-		MusicBeatState.switchState(new TitleState());
+	    MusicBeatState.switchState(new TitleState());
 		#end
 	}
 
@@ -95,21 +95,13 @@ class Startup extends MusicBeatState
 	{
 		#if desktop
 		trace("Closing...");
-
-		Sys.exit(0);
+		new FlxTimer().start(0.5, function(tmr:FlxTimer)
+		{
+			Sys.exit(0);
+		});
 		#else
 		trace("Shit i guess not...");
 		#end
-	}
-
-	function CacheQuick():Void
-	{
-		Cache();
-        
-		new FlxTimer().start(0.2, function(tmr:FlxTimer)
-		{
-			//close();
-		});
 	}
 
 	function Cache():Void
@@ -211,26 +203,32 @@ class Startup extends MusicBeatState
 		}
 		#end
 
-		/* //this just breaks it so just forget it lmao
+		if (ClientPrefs.cache)
+		{
+            StartCache = true;
+		}
+
+		if (!ClientPrefs.cache)
+		{
+			StartCache = false;
+		}
+
 		if (Restart)
 		{
 			End();
 		}
-		*/
+	}
 
-		if(Temporary)
-		{
-            CacheQuick();
-		}
-
-		if (!ClientPrefs.cache)//main thing
-		{
-			Start();
-		}
-		else if (ClientPrefs.cache)
+	override public function update(elapsed:Float)
+	{
+		if (StartCache)//main thing
 		{
 			Cache();
 
+			Start();
+		}
+		else if (!StartCache)
+		{	
 			Start();
 		}
 	}
