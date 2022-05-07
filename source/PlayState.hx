@@ -623,18 +623,18 @@ class PlayState extends MusicBeatState
 				floor.scrollFactor.set(1.1, 1);
 				floor.antialiasing = true;
 
+				fleetwaybgshit = new FlxSprite(-2629.05, -1344.05);
+				add(fleetwaybgshit);
+				fleetwaybgshit.frames = Paths.getSparrowAtlas('Chamber/FleetwayBGshit');
+				fleetwaybgshit.animation.addByPrefix('a', 'BGblue');
+				fleetwaybgshit.animation.addByPrefix('b', 'BGyellow');
+				fleetwaybgshit.animation.play('b', true);
+				fleetwaybgshit.animation.play('a', true);
+				fleetwaybgshit.antialiasing = true;
+				fleetwaybgshit.scrollFactor.set(1.1, 1);
+
 				if (!ClientPrefs.lowQuality)
 				{
-					fleetwaybgshit = new FlxSprite(-2629.05, -1344.05);
-					add(fleetwaybgshit);
-					fleetwaybgshit.frames = Paths.getSparrowAtlas('Chamber/FleetwayBGshit');
-					fleetwaybgshit.animation.addByPrefix('a', 'BGblue');
-					fleetwaybgshit.animation.addByPrefix('b', 'BGyellow');
-					fleetwaybgshit.animation.play('b', true);
-					fleetwaybgshit.animation.play('a', true);
-					fleetwaybgshit.antialiasing = true;
-					fleetwaybgshit.scrollFactor.set(1.1, 1);
-	
 					emeraldbeam = new FlxSprite(0, -1376.95 - 200);
 					emeraldbeam.antialiasing = true;
 					emeraldbeam.frames = Paths.getSparrowAtlas('Chamber/Emerald Beam');
