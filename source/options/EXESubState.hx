@@ -60,13 +60,15 @@ class EXESubState extends BaseOptionsMenu
 		    true); //Default value
 	    addOption(option);
 
+		#if desktop
 		var option:Option = new Option('Sunshine Shaders', 
-		    'If checked, there will be sunshine shaders in every song',
+		    'If checked, there will be sunshine shaders in every song,\nKeep in mind that shaders are already used in sunshine.',
 			'sonicExeShaders',
 			'bool',
 			false);
 		option.onChange = onChangeShaders;
 		addOption(option);
+		#end
 
 		super();
 	}

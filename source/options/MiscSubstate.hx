@@ -38,9 +38,17 @@ class MiscSubstate extends BaseOptionsMenu
 		{
 			trace("Caching is now " + ClientPrefs.cache);
 
-			LoadingState.loadAndSwitchState(new Startup());
+			#if desktop
+			trace("Closing...");
 
-			Startup.Restart = true;
+			new FlxTimer().start(0.25, function(tmr:FlxTimer)
+			{
+                FlxG.resetGame();
+				//FlxG.resetState();
+			});
+			#else
+			trace("Shit i guess not...");
+			#end
 		}
 
 		var option:Option = new Option('Caching', //Name

@@ -175,6 +175,13 @@ class ClientPrefs {
 	}
 
 	public static function saveSettings() {
+        //sonic
+		FlxG.save.data.Cutscenes = Cutscenes;
+		FlxG.save.data.Jumpscare = Jumpscare;
+		FlxG.save.data.Popups = Popups;
+		FlxG.save.data.sonicExeShaders = sonicExeShaders;
+		FlxG.save.data.cache = cache;
+		//sonic
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.middleScroll = middleScroll;
 		FlxG.save.data.showFPS = showFPS;
@@ -219,6 +226,23 @@ class ClientPrefs {
 	}
 
 	public static function loadPrefs() {
+		//sonic
+		if(FlxG.save.data.Cutscense != null) {
+			downScroll = FlxG.save.data.Cutscenes;
+		}
+		if(FlxG.save.data.Jumpscare != null) {
+			downScroll = FlxG.save.data.Jumpscare;
+		}
+		if(FlxG.save.data.Popups != null) {
+			downScroll = FlxG.save.data.Popups;
+		}
+		if(FlxG.save.data.sonicExeShaders != null) {
+			downScroll = FlxG.save.data.sonicExeShaders;
+		}
+		if(FlxG.save.data.cache != null) {
+			downScroll = FlxG.save.data.cache;
+		}
+		//sonic
 		if(FlxG.save.data.downScroll != null) {
 			downScroll = FlxG.save.data.downScroll;
 		}

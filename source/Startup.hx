@@ -70,7 +70,6 @@ class Startup extends MusicBeatState
 	var poggers:FlxSprite = new FlxSprite(0, 0);
 	var sonicDEATH:SonicDeathAnimation;
 	public var boyfriend:Boyfriend;
-	public static var Restart:Bool = false;
 	var StartCache:Bool = false;
 
 	function Start():Void
@@ -88,19 +87,6 @@ class Startup extends MusicBeatState
 		}
 		#else
 	    MusicBeatState.switchState(new TitleState());
-		#end
-	}
-
-	function End():Void
-	{
-		#if desktop
-		trace("Closing...");
-		new FlxTimer().start(0.5, function(tmr:FlxTimer)
-		{
-			Sys.exit(0);
-		});
-		#else
-		trace("Shit i guess not...");
 		#end
 	}
 
@@ -187,6 +173,8 @@ class Startup extends MusicBeatState
 		trace(text + " Camera Stuff");
 
 		trace("Done Caching!"); //this caching shit isnt from the original mod except for the chaos cache shit but yea i hate lag.
+
+		Start();
 	}
 
     override public function create():Void
@@ -205,30 +193,11 @@ class Startup extends MusicBeatState
 
 		if (ClientPrefs.cache)
 		{
-            StartCache = true;
+			Cache();
 		}
 
 		if (!ClientPrefs.cache)
 		{
-			StartCache = false;
-		}
-
-		if (Restart)
-		{
-			End();
-		}
-	}
-
-	override public function update(elapsed:Float)
-	{
-		if (StartCache)//main thing
-		{
-			Cache();
-
-			Start();
-		}
-		else if (!StartCache)
-		{	
 			Start();
 		}
 	}
