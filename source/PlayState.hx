@@ -1600,9 +1600,8 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('sonic'));
 						if (!ClientPrefs.lowQuality)
 						{
-
+						    thechamber.animation.play('a');
 						}
-						thechamber.animation.play('a');
 					});
 					new FlxTimer().start(6, function(lol:FlxTimer)
 					{
