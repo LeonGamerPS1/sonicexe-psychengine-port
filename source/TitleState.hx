@@ -57,6 +57,7 @@ class TitleState extends MusicBeatState
 
 	public static var initialized:Bool = false;
 
+	var code:Int = 0;
 	#if windows
 	var video:MP4Handler = new MP4Handler();
 	#end
@@ -297,7 +298,7 @@ class TitleState extends MusicBeatState
 		// logoBl.color = FlxColor.BLACK;
 
 		logoBlBUMP = new FlxSprite(0, 0);
-		logoBlBUMP.loadGraphic(Paths.image('Logo'));
+		logoBlBUMP.loadGraphic(Paths.image('logo'));
 		logoBlBUMP.antialiasing = true;
 
 		logoBlBUMP.scale.x = .5;
@@ -457,6 +458,30 @@ class TitleState extends MusicBeatState
 		}
 		#end
 
+		if (FlxG.keys.justPressed.UP)
+			if (code == 0)
+				code = 1;
+			else
+				code == 0;
+
+		if (FlxG.keys.justPressed.DOWN)
+			if (code == 1)
+				code = 2;
+			else
+				code == 0;
+
+		if (FlxG.keys.justPressed.LEFT)
+			if (code == 2)
+				code = 3;
+			else
+				code == 0;
+
+		if (FlxG.keys.justPressed.RIGHT)
+			if (code == 3)
+				code = 4;
+			else
+				code == 0;
+
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
 		if (gamepad != null)
@@ -472,7 +497,7 @@ class TitleState extends MusicBeatState
 
 		// EASTER EGG
 
-		if (initialized && !transitioning && skippedIntro)
+		if (initialized && !transitioning && skippedIntro && code != 4)
 		{
 			if(pressedEnter)
 			{
@@ -520,52 +545,24 @@ class TitleState extends MusicBeatState
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 			}
-			#if TITLE_SCREEN_EASTER_EGG
-			else if (FlxG.keys.firstJustPressed() != FlxKey.NONE)
+		} else if (initialized && !transitioning && skippedIntro && code == 4) {
+			transitioning = true;
+
+			PlayStateChangeables.nocheese = false;
+			PlayState.SONG = Song.loadFromJson('milk', 'milk');
+			PlayState.isStoryMode = false;
+			PlayState.storyDifficulty = 1;
+			PlayState.storyWeek = 1;
+			FlxG.camera.fade(FlxColor.WHITE, 0.5, false);
+			FlxG.sound.play(Paths.sound('confirmMenu'));
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
+			if (!FlxG.save.data.songArray.contains('milk') && !FlxG.save.data.botplay)
+				FlxG.save.data.songArray.push('milk');
+			new FlxTimer().start(1.5, function(tmr:FlxTimer)
 			{
-				var keyPressed:FlxKey = FlxG.keys.firstJustPressed();
-				var keyName:String = Std.string(keyPressed);
-				if(allowedKeys.contains(keyName)) {
-					easterEggKeysBuffer += keyName;
-					if(easterEggKeysBuffer.length >= 32) easterEggKeysBuffer = easterEggKeysBuffer.substring(1);
-					//trace('Test! Allowed Key pressed!!! Buffer: ' + easterEggKeysBuffer);
-
-					for (wordRaw in easterEggKeys)
-					{
-						var word:String = wordRaw.toUpperCase(); //just for being sure you're doing it right
-						if (easterEggKeysBuffer.contains(word))
-						{
-							//trace('YOOO! ' + word);
-							if (FlxG.save.data.psychDevsEasterEgg == word)
-								FlxG.save.data.psychDevsEasterEgg = '';
-							else
-								FlxG.save.data.psychDevsEasterEgg = word;
-							FlxG.save.flush();
-
-							FlxG.sound.play(Paths.sound('ToggleJingle'));
-
-							var black:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-							black.alpha = 0;
-							add(black);
-
-							FlxTween.tween(black, {alpha: 1}, 1, {onComplete:
-								function(twn:FlxTween) {
-									FlxTransitionableState.skipNextTransIn = true;
-									FlxTransitionableState.skipNextTransOut = true;
-									MusicBeatState.switchState(new TitleState());
-								}
-							});
-							FlxG.sound.music.fadeOut();
-							closedState = true;
-							transitioning = true;
-							playJingle = true;
-							easterEggKeysBuffer = '';
-							break;
-						}
-					}
-				}
-			}
-			#end
+				LoadingState.loadAndSwitchState(new PlayState());
+			});
 		}
 
 		if (initialized && pressedEnter && !skippedIntro)

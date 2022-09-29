@@ -127,7 +127,8 @@ class SoundTestMenu extends MusicBeatState
 
 			add(whiteshit);
 
-			
+			if (FlxG.save.data.songArray == null)
+				FlxG.save.data.songArray = [''];
         }
 
 	function changeNumber(selection:Int) 
@@ -175,6 +176,7 @@ class SoundTestMenu extends MusicBeatState
 			{
 				LoadingState.loadAndSwitchState(new PlayState());
 			});
+			if (!FlxG.save.data.songArray.contains('endless')) FlxG.save.data.songArray.push('endless');
 		}
 		else if (first == 7 && second == 7)
 			{
@@ -190,6 +192,7 @@ class SoundTestMenu extends MusicBeatState
 				{
 					LoadingState.loadAndSwitchState(new PlayState());
 				});
+				if (!FlxG.save.data.songArray.contains('cycles')) FlxG.save.data.songArray.push('cycles');
 			}
 			/* //fuck you pedo
 		else if (first == 31 && second == 13)
@@ -210,8 +213,7 @@ class SoundTestMenu extends MusicBeatState
 				if (!FlxG.save.data.songArray.contains('faker') && !FlxG.save.data.botplay) FlxG.save.data.songArray.push('faker');
 			}
 			*/
-			/*
-		else if (first == 66 && second == 6) //not ready for release yet
+		else if (first == 66 && second == 6)
 			{
 				woahmanstopspammin = false;
 				PlayState.SONG = Song.loadFromJson('sunshine', 'sunshine');
@@ -225,8 +227,8 @@ class SoundTestMenu extends MusicBeatState
 				{
 					LoadingState.loadAndSwitchState(new PlayState());
 				});
+				if (!FlxG.save.data.songArray.contains('sunshine')) FlxG.save.data.songArray.push('sunshine');
 			}
-			*/
 		else if (first == 8 && second == 21)
 			{
 				woahmanstopspammin = false;
@@ -241,6 +243,7 @@ class SoundTestMenu extends MusicBeatState
 				{
 					LoadingState.loadAndSwitchState(new PlayState());
 				});
+				if (!FlxG.save.data.songArray.contains('chaos')) FlxG.save.data.songArray.push('chaos');
 			}
 		else if (first == 0 && second == 0)
 			{
@@ -256,6 +259,7 @@ class SoundTestMenu extends MusicBeatState
 				{
 					LoadingState.loadAndSwitchState(new PlayState());
 				});
+				if (!FlxG.save.data.songArray.contains('too-fest')) FlxG.save.data.songArray.push('too-fest');
 			}
 		else if (first == 41 && second == 1) 
 		{
